@@ -174,22 +174,19 @@
 
 <h3 id="1-1-梯度下降法逻辑回归"><a href="#1-1-梯度下降法逻辑回归" class="headerlink" title="1.1 梯度下降法逻辑回归"></a>1.1 梯度下降法逻辑回归</h3><p>利用给定的一组带标记的训练集进行代数运算获取<strong><em>w</em></strong>和<strong><em>b</em></strong>是一项艰巨的工作，甚至是难以完成的，人工智能的发展也因此一度停滞不前。梯度下降法的提出解决了这一问题，虽然其获得的可能不是最优解，但至少让这一过程有解。梯度下降法的思路是：初始随机选择参数，根据预测值与期望值的偏差反向传播误差，进而调整参数的大小。就像从山的任意位置沿着梯度的方向朝着谷底前进，谷底就是预测偏差最小的位置，也就是模型训练的目标点。表1列出了本文会用到的符号解释。</p>
 <center> <b>表1 本文用到的符号及解释</b> </center>
+
 <div align="center">
     <img src="/2022/10/07/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B5%85%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片3.png">
 </div>
 
 
-当输入值多于一个时，需要程序循环多次以计算对应的预测值，但在编程时，大量使用for循环会极大影响程序执行速度。为了解决这个问题，我们尽量采用向量的形式表示各个值，应用python内嵌函数可以轻松地处理向量的运算，经过比较，向量形式比for循环形式快数百倍。因此，本文均采用向量形式进行计算。<br>逻辑回归的过程可以分为forward propagation (向前传播)和backward propagation(向后传播)两个过程。向前传播通过上面所述的过程计算当前参数对应预测值的代价(或损失)，向后传播采用链式法则计算总代价(或总损失)对各参数的偏导数，根据设定的学习率更新参数。之后重复前述操作，直到达到理想的代价或者迭代次数为止。<br>具体的逻辑回归模型训练过程如下：
-
+<p>当输入值多于一个时，需要程序循环多次以计算对应的预测值，但在编程时，大量使用for循环会极大影响程序执行速度。为了解决这个问题，我们尽量采用向量的形式表示各个值，应用python内嵌函数可以轻松地处理向量的运算，经过比较，向量形式比for循环形式快数百倍。因此，本文均采用向量形式进行计算。<br>逻辑回归的过程可以分为forward propagation (向前传播)和backward propagation(向后传播)两个过程。向前传播通过上面所述的过程计算当前参数对应预测值的代价(或损失)，向后传播采用链式法则计算总代价(或总损失)对各参数的偏导数，根据设定的学习率更新参数。之后重复前述操作，直到达到理想的代价或者迭代次数为止。<br>具体的逻辑回归模型训练过程如下：</p>
 <div align="center">
     <img src="/2022/10/07/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B5%85%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片4.png">
 </div>
 
 
-### 1.2 编程实现逻辑回归
-
-现通过python编程搭建逻辑回归模型实现“猫识别”，程序采用模块化方式编写，用到的函数如表2所示。本文采用可下载的h5文件数据集进行模型训练，也可采用CSV文件数据集。
-
+<h3 id="1-2-编程实现逻辑回归"><a href="#1-2-编程实现逻辑回归" class="headerlink" title="1.2 编程实现逻辑回归"></a>1.2 编程实现逻辑回归</h3><p>现通过python编程搭建逻辑回归模型实现“猫识别”，程序采用模块化方式编写，用到的函数如表2所示。本文采用可下载的h5文件数据集进行模型训练，也可采用CSV文件数据集。</p>
 <center> <b>表2 “猫识别”程序用到的函数</b></center>
 
 <div align="center">
@@ -251,7 +248,7 @@
 </div>
 
 <p>其中，<script type="math/tex">A^{[0]}</script>相当于第0层的输入，即<strong><em>X</em></strong>。下面以第1层为例推导该过程的维度对应关系：</p>
-<center>$$W^{[1]}X=\begin{bmatrix}w_1^{[1]T}\\w_2^{[1]T}\\...\\w_{n_{hidden}}^{[1]T}\end{bmatrix}\cdot\begin{bmatrix}\vdots&\vdots&\vdots&\vdots\\x_1&x_2&x_3&\vdots\\\vdots&\vdots&\vdots&\vdots\end{bmatrix}=\begin{bmatrix}\vdots&\vdots&\vdots&\vdots\\w_1^{[1]T}&w_2^{[1]T}&w_3^{[1]T}&\vdots\\\vdots&\vdots&\vdots&\vdots\end{bmatrix}=\begin{bmatrix}\vdots&\vdots&\vdots&\vdots\\z_1^{[1]}&z_2^{[1]}&z_3^{[1]}&\vdots\\\vdots&\vdots&\vdots&\vdots\end{bmatrix}Z^{[1]}=Z^{[1]}$$</center>
+<center>$$W^{[1]}X=\begin{bmatrix}w_1^{[1]T}\\w_2^{[1]T}\\...\\w_{n_{hidden}}^{[1]T}\end{bmatrix}\cdot\begin{bmatrix}\vdots&\vdots&\vdots&\vdots\\x_1&x_2&x_3&\vdots\\\vdots&\vdots&\vdots&\vdots\end{bmatrix}=\begin{bmatrix}\vdots&\vdots&\vdots&\vdots\\w_1^{[1]T}&w_2^{[1]T}&w_3^{[1]T}&\vdots\\\vdots&\vdots&\vdots&\vdots\end{bmatrix}=\begin{bmatrix}\vdots&\vdots&\vdots&\vdots\\z_1^{[1]}&z_2^{[1]}&z_3^{[1]}&\vdots\\\vdots&\vdots&\vdots&\vdots\end{bmatrix}=Z^{[1]}$$</center>
 
 <h4 id="2-1-1-forward-propagation-正向传播"><a href="#2-1-1-forward-propagation-正向传播" class="headerlink" title="2.1.1 forward propagation(正向传播)"></a><strong>2.1.1</strong> <strong>forward propagation(</strong>正向传播<strong>)</strong></h4><p>只有2层的浅层神经网络的正向传播可由以下4个式子求得</p>
 <div align="center">
@@ -294,13 +291,13 @@ dZ^{[1]}=W^{[2]T}*g^{[1]'}(Z^{[1]})</script><h4 id="2-1-3-浅层神经网络训�
 <h4 id="2-1-5-随机初始化"><a href="#2-1-5-随机初始化" class="headerlink" title="2.1.5 随机初始化"></a>2.1.5 随机初始化</h4><p>训练神经网络时，权重随机初始化是十分重要的。当把权重<strong><em>W</em></strong>全部初始化为0时，同层的隐藏单元计算着同一个函数，他们对输出的影响也全部相同，无论经过多少次迭代他们都计算着相同的函数。也就是说，这和只有一个隐藏单元没有任何差别。为了解决这一问题，我们应当将<strong><em>W</em></strong>随机初始化，而<strong><em>b</em></strong>没有这个问题，可以将其初始化为0。</p>
 <h3 id="2-2-编程实现浅层神经网络"><a href="#2-2-编程实现浅层神经网络" class="headerlink" title="2.2 编程实现浅层神经网络"></a><strong>2.2 编程实现浅层神经网络</strong></h3><p>现编程搭建只有一个隐藏层的浅层神经网络，隐藏层设置5个节点，用到的函数如表4所示。</p>
 <center><b>表4 浅层神经网络用到的函数</b> </center>
+
 <div align="center">
     <img src="/2022/10/07/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B5%85%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片19.png" style="zoom:100%;">
 </div>
 
 
-为了方便比较，本文采用与逻辑回归程序相同的数据集进行训练，迭代次数同为10000次，总代价的变化如图10所示。可以发现，相同的迭代次数下，浅层神经网络比逻辑回归单节点网络的代价0.035704要小。
-
+<p>为了方便比较，本文采用与逻辑回归程序相同的数据集进行训练，迭代次数同为10000次，总代价的变化如图10所示。可以发现，相同的迭代次数下，浅层神经网络比逻辑回归单节点网络的代价0.035704要小。</p>
 <div align="center">
     <img src="/2022/10/07/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B5%85%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片20.png" style="zoom:100%;">
 </div>
@@ -522,5 +519,20 @@ dZ^{[1]}=W^{[2]T}*g^{[1]'}(Z^{[1]})</script><h4 id="2-1-3-浅层神经网络训�
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
