@@ -267,7 +267,7 @@ body {
   padding: 0;
   color: var(--default-text-color);
   font-weight: 400;
-  font-size: 15.2px;
+  font-size: 19.2px;
   font-family: Optima-Regular, Optima, -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial;
   line-height: 22px;
   background: var(--background-color);
@@ -280,14 +280,14 @@ body::-webkit-scrollbar {
 @media (max-width: 780px) {
   html,
   body {
-    font-size: 14.591999999999999px;
+    font-size: 18.432px;
     line-height: 21.119999999999997px;
   }
 }
 @media (max-width: 500px) {
   html,
   body {
-    font-size: 13.68px;
+    font-size: 17.28px;
     line-height: 19.8px;
   }
 }
