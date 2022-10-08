@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Sun Hao">
+    
+    <title>
+        
+            深度学习方法探析——深层神经网络 |
+        
+        SnSpace
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Slogo.svg">
+    
+<link rel="stylesheet" href="/fontawesome/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","logo":"/images/Slogo.svg","favicon":"/images/Slogo.svg","avatar":"/images/Slogo.svg","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":{"enable":false}},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{},"code_block_tools":{"enable":false,"style":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.8"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/Slogo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               SnSpace
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">深度学习方法探析——深层神经网络</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/Slogo.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Sun Hao</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-10-08 11:12:17</span>
+        <span class="mobile">2022-10-08 11:12</span>
+    </span>
+    
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="1-深层神经网络"><a href="#1-深层神经网络" class="headerlink" title="1. 深层神经网络"></a>1. 深层神经网络</h2><p>深层神经网络与之前的浅层神经网络的不同之处在于网络的层数更多，或者说隐藏层的层数更多，网络更深，深度学习也是基于此命名的。在过去的几年中，DLI（Deep Learning Institute）已经意识到有一些函数，只有非常深的神经网络能学会，而更浅的模型则办不到，因此深度神经网络是十分重要的。但网络的深是深在网络层数上，而不在网络节点的数量多。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B7%B1%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片1.png">
+</div>
+
+<center>图1 深层神经网络模型</center>
+
+<p>图1是一个深层神经网络的模型，它有5层，输入层算作第0层。本文用<script type="math/tex">L</script>表示层数，该模型的<script type="math/tex">L=5</script>，用<script type="math/tex">n^{[l]}</script>表示每层的节点数，这里<script type="math/tex">n^{[1]}=n^{[2]}=n^{[3]}=4, n^{[4]}=3, n^{[5]}=1</script>。</p>
+<h3 id="1-1-Forward-Propagation-正向传播"><a href="#1-1-Forward-Propagation-正向传播" class="headerlink" title="1.1 Forward Propagation (正向传播)"></a>1.1 Forward Propagation (正向传播)</h3><p>正向传播和浅层神经网络差别不大，也比较简单，只需不断向前迭代即可，可用(1)、(2)式表示。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B7%B1%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片2.png" style="zoom: 80%;">
+</div>
+
+<p>当对多个样本进行训练时，可使用(3)、(4)式的向量形式。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B7%B1%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片3.png" style="zoom: 80%;">
+</div>
+
+<p>该过程需要提供给系统<script type="math/tex">A^{[0]} =X</script>进行初始化。</p>
+<h3 id="1-2Backward-Propagation-反向传播"><a href="#1-2Backward-Propagation-反向传播" class="headerlink" title="1.2Backward Propagation (反向传播)"></a>1.2Backward Propagation (反向传播)</h3><p>反向传播通过对总代价求导得到的<script type="math/tex">da^{[l]}</script>计算<script type="math/tex">dw^{[l]}、db^{[l]}</script>和<script type="math/tex">da^{[l-1]}</script> ，依次向前传递，计算出各<script type="math/tex">dw^{[l]}</script>和<script type="math/tex">db^{[l]}</script>，便于运用梯度下降法对参数进行优化。反向传播可由(5)-(8)式进行计算。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B7%B1%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片4.png" style="zoom: 80%;">
+</div>
+
+<p>向量化形式可写成(9)-(12)式。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B7%B1%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片5.png" style="zoom: 80%;">
+</div>
+
+<p>对整个正向传播和反向传播的过程进行总结可得到图2，其中系统将正向传播得到的<script type="math/tex">z^{[l]}</script>进行缓存，并传递给反向传播各模块进行计算。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B7%B1%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片6.png">
+</div>
+
+<center>图2 深层神经网络正反向传播过程</center>
+
+<p>在计算过程中，确保各参数的维数正确是避免bug产生的重要手段，故将各参数的维数总结到表1中。</p>
+<center><b>表1 深层神经网络参数维数</b></center>
+
+
+
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B7%B1%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片7.png">
+</div>
+
+<h3 id="1-3-深层神经网络计算过程"><a href="#1-3-深层神经网络计算过程" class="headerlink" title="1.3 深层神经网络计算过程"></a>1.3 深层神经网络计算过程</h3><div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B7%B1%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片8.png">
+</div>
+
+<center>图3 深层神经网络计算过程</center>
+
+<p>当运行人脸识别程序时，输入给程序一张人脸照片，如图3所示，第一层神经网络可以看做在识别图像的边缘，每个节点负责不同方向的边缘，如第一张图所示。识别到边缘后交给第二层网络进行计算，它将各个边缘组合起来变成人体的各个部位，每个结点负责不同的部位，如第二张图所示，后面层的结点可能会将各部位再进行组合变成一张人脸，对此进行识别，这就是深度神经网络在进行计算时所经历的大致过程。总的来说，这是一个由小的区域到大的区域，由简单到复杂的过程。</p>
+<h3 id="1-4-编程实现深层神经网络"><a href="#1-4-编程实现深层神经网络" class="headerlink" title="1.4 编程实现深层神经网络"></a>1.4 编程实现深层神经网络</h3><p>由上面几节已经知道了深层神经网络中的几种重要计算，现将训练整个深层神经网络的过程归纳为图4所示的流程，并由此编程搭建深层神经网络。本文设计了一个4层深层神经网络作为编程对象，第0-4层分别有12288、20、7、5和1个节点。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B7%B1%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片9.png">
+</div>
+
+<center>图4 深层神经网络训练流程</center>
+
+<p>程序用到的函数及功能说明如表2所示。</p>
+<center><b>表2 深层神经网络用到的函数</b></center>
+
+
+
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B7%B1%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片11.png">
+</div>
+
+<p>现采用与浅层神经网络相同的训练集进行模型训练，迭代次数为3000次，仅为浅层神经网络程序的十分之三，学习率<script type="math/tex">\alpha</script>同为0.005。总代价随着迭代次数的变化如图5所示，可以发现相同迭代次数下，深层神经网络的总代价略高于浅层神经网络。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B7%B1%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片12.png">
+</div>
+
+<center>图5 总代价随迭代次数的变化</center>
+
+<h2 id="2-深层神经网络与浅层神经网络比较"><a href="#2-深层神经网络与浅层神经网络比较" class="headerlink" title="2. 深层神经网络与浅层神经网络比较"></a>2. 深层神经网络与浅层神经网络比较</h2><p>对浅层神经网络进行测试发现，只可识别正面较标准的猫图片，对于角度较偏或姿势奇特的图片不可识别。现采用深层神经网络对这些难以识别的图片进行对比测试，得到的测试结果如表3所示。</p>
+<center><b>表3 浅层神经网络和深层神经网络对非标准猫图片的预测</b></center>
+
+
+
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B7%B1%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片13.png">
+</div>
+
+<p>从上表可以看出，尽管深层神经网络迭代次数仅为浅层神经网络的四分之一，深层神经网络比浅层神经网络识别正确率高得多。并且可以发现，对于这些猫图片，深层神经网络预测的概率几乎全部为1或近似于1，比浅层神经网络概率高很多，可见其性能的优异。</p>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>从测试结果中看，神经网络凭借较少的训练次数就可拥有远超浅层神经网络的性能，这是十分令人兴奋的。同时，深层神经网络模型对表3中的第4张图片预测错误，这时，将学习率<script type="math/tex">\alpha</script>从0.005改为0.0075，再次对模型进行训练，得到的总代价如图6所示，比学习率为0.005时小。再次对该图片进行预测得到了如图7所示的结果，预测正确，且概率达到了1。这说明学习率的选择对模型的性能有很大影响，这也引起了我们对超参数优化的兴趣，关于模型优化方面的内容将在后续文章中阐述。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B7%B1%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片14.png">
+</div>
+
+<center>图6 α=0.0075时总代价随迭代次数的变化</center>
+
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B7%B1%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片15.png">
+</div>
+
+<center>图7 α=0.0075时的预测结果</center>
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li>Post title：深度学习方法探析——深层神经网络</li>
+        <li>Post author：Sun Hao</li>
+        <li>Create time：2022-10-08 11:12:17</li>
+        <li>
+            Post link：http://example.com/2022/10/08/深度学习方法探析——深层神经网络/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/10/07/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B5%85%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">深度学习方法探析——浅层神经网络</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Sun Hao</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme
+            &nbsp;
+            <a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.8</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-up-right-and-down-left-from-center"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
