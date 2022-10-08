@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Sun Hao">
+    
+    <title>
+        
+            深度学习方法探析——训练过程优化 |
+        
+        SnSpace
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Slogo.svg">
+    
+<link rel="stylesheet" href="/fontawesome/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","logo":"/images/Slogo.svg","favicon":"/images/Slogo.svg","avatar":"/images/Slogo.svg","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":{"enable":false}},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{},"code_block_tools":{"enable":false,"style":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.8"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/Slogo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               SnSpace
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">深度学习方法探析——训练过程优化</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/Slogo.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Sun Hao</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-10-08 17:16:44</span>
+        <span class="mobile">2022-10-08 17:16</span>
+    </span>
+    
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1. 引言"></a>1. 引言</h2><p>深层神经网络的训练过程往往需要花费很多时间，特别对于很深的网络，往往需要花费巨大的时间和算力，而且如果网络的结构选择不当，会造成数据欠拟合或过拟合的后果。为了尽可能减少训练深层神经网络的代价，提高模型准确度，本文从训练过程角度讨论了几种可以加速训练速度和精度的方法，包括欠拟合和过拟合的判断方法、解决过拟合的正则化方法、提高训练速度的归一化输入、减缓梯度消失和梯度爆炸的初始化方法。另外，本文还介绍了一种用于检验网络梯度下降正确性的方法——梯度检验。</p>
+<h2 id="2-训练集、验证集和测试集"><a href="#2-训练集、验证集和测试集" class="headerlink" title="2.  训练集、验证集和测试集"></a>2.  训练集、验证集和测试集</h2><p>在深层神经网络模型训练的过程中，需要提供许多数据用于计算最优参数，这些训练用的数据被称为训练集 (train set)。可以注意到模型中还存在许多超参数，这些超参数在模型训练开始都是根据经验设置的，可以使用交叉验证集，也称验证集 (dev set)来挑选超参数，它是参与模型选择过程的。而测试集 (test set)不以任何形式参与到模型的选择中，它用于在选择好模型后对模型的运行状况进行无偏估计。<br>我们要做的是，在训练集上对模型进行训练；然后尝试不同的模型框架，在验证集上评估这些模型，迭代选出适合的模型；最后在测试集上对该模型的运行状况进行无偏估计，通过不断的循环迭代训练出优秀的模型，该过程如图1所示。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片1.png" style="zoom: 100%;">
+</div>
+
+<center>图1 深层神经网络模型训练迭代流程</center>
+
+<p>在数据量比较小的时候，可以按照60%训练集，20%验证集，20%测试集的比例进行划分。但是在大数据时代，数据量可能是百万级别，验证集和测试集占数据总量的比例会趋向于变得更小。有时，如果不需要无偏估计，也可以只设置训练集和验证集，人们通常把这种情况称为只有训练集和测试集，实际上是将验证集过度拟合到了验证集，从而把测试集当做验证集使用。训练集、验证集和测试集的对比如表1所示。</p>
+<center><b>表1 训练集、验证集、测试集对比</b></center>
+
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片2.png" style="zoom: 100%;">
+</div>
+
+<h2 id="3-偏差和方差"><a href="#3-偏差和方差" class="headerlink" title="3. 偏差和方差"></a>3. 偏差和方差</h2><h3 id="3-1-偏差和方差"><a href="#3-1-偏差和方差" class="headerlink" title="3.1 偏差和方差"></a>3.1 偏差和方差</h3><p>估计的偏差 (bias)被定义为</p>
+<div align="right">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片3.png" style="zoom: 60%;">
+</div>
+
+<p>其中，期望作用在所有数据上，<script type="math/tex">\theta</script>是用于定义数据生成分布的<script type="math/tex">\theta</script>的真实值。<br>估计量的方差 (variance)为</p>
+<div align="right">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片4.png" style="zoom: 60%;">
+</div>
+
+<p>其中，随机变量是训练集。估计量的方差告诉我们，当独立地从潜在的数据生成过程中重采样数据集时，如何期望估计的变化。正如我们希望估计的偏差较小，我们也希望其方差较小。</p>
+<h3 id="3-2-欠拟合和过拟合"><a href="#3-2-欠拟合和过拟合" class="headerlink" title="3.2 欠拟合和过拟合"></a>3.2 欠拟合和过拟合</h3><p>当讨论偏差和方差时，就不得不研究欠拟合和过拟合的问题。如图2所示，图中的绿点为一组数据集，图2 (a)对数据集拟合了一条直线，得到了一个逻辑回归拟合，它并不能很好地拟合该数据，这就是欠拟合 (underfitting)的情况，该情况下偏差高；如果我们使用一个复杂的网络模型，比如深度神经网络或含有隐藏单元的神经网络，可能就非常适用于这个数据集，如图2 (c)所示，但这显然也不是一种很好的拟合方式，它过度地拟合了训练集中的特殊情况，这就是过拟合 (overfitting)，该情况下方差高。图2 (b)就是一种很好的拟合方式，其复杂程度适中，拟合数据更加合理，可以称这种情况为适度拟合 (just right)，这种情况下偏差和方差均较小。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片5.png" style="zoom: 80%;">
+</div>
+
+<center>图2 三种拟合情况</center>
+
+<h3 id="3-3-欠拟合和过拟合的判断"><a href="#3-3-欠拟合和过拟合的判断" class="headerlink" title="3.3 欠拟合和过拟合的判断"></a>3.3 欠拟合和过拟合的判断</h3><p>现假设训练集和验证集的最优化误差为0，我们可以通过比较训练集和验证集的误差大小判断拟合情况。若某情况下训练集的误差小，而验证集的误差大，说明过度拟合了训练集的数据，为高方差；若训练集和验证集的误差都很大且二者相当，则训练集数据没有得到很好的拟合，为高偏差；若训练集和验证集的误差都很大且验证集误差更大一些，则为高偏差高方差的情况，在某些维度上的数据区域偏差高，某些维度上的数据方差高，是最坏的一种情况；若训练集和验证集误差都很小，该情况就为适度拟合。现将欠拟合和过拟合判断方法总结为表2。</p>
+<center><b>表2 欠拟合和过拟合判断方法</b></center>
+
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片6.png" style="zoom: 100%;">
+</div>
+
+<h3 id="3-4-降低偏差和方差的方法"><a href="#3-4-降低偏差和方差的方法" class="headerlink" title="3.4 降低偏差和方差的方法"></a>3.4 降低偏差和方差的方法</h3><p>训练网络的最低标准就是能够拟合数据，因此在训练完模型后应该首先评估网络的偏差是否很大。如果发现网络的偏差很大，可以常识几个方法：选择一个新的网络，比如含有更多隐藏层或者隐藏单元的网络；花费更多时间来训练网络；或者尝试更先进的优化算法。其中，使用规模更大的网络通常是有用的。<br>如果检测到网络的方差很高，最好的办法就是采用更多的数据。但有时我们无法获得更多数据，这时可以尝试使用正则化的方式降低网络的方差，这将在下一节中讲述。</p>
+<h2 id="4-正则化"><a href="#4-正则化" class="headerlink" title="4. 正则化"></a>4. 正则化</h2><h3 id="4-1-L-2正则化"><a href="#4-1-L-2正则化" class="headerlink" title="4.1 L^2正则化"></a>4.1 <script type="math/tex">L^2</script>正则化</h3><p>现从逻辑回归模型着手，对<script type="math/tex">L^2</script>正则化进行研究。对逻辑回归模型实施正则化后，其总代价为</p>
+<div align="right">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片7.png" style="zoom: 70%;">
+</div>
+
+<p>其中涉及到了范数的概念，<script type="math/tex">L^p</script>范数定义如下</p>
+<div align="right">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片8.png" style="zoom: 60%;">
+</div>
+
+<p>其中<script type="math/tex">p∈R ,p≥1</script>。由于该过程用到了<script type="math/tex">w</script>的<script type="math/tex">L^2</script>范数，因此称其为称为<script type="math/tex">L^2</script>正则化，<script type="math/tex">‖w‖_2^2</script>的计算过程为</p>
+<div align="right">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片9.png" style="zoom: 60%;">
+</div>
+
+<p>这里只将参数<script type="math/tex">w</script>正则化的原因是，<script type="math/tex">w</script>几乎包含了所有参数，而<script type="math/tex">b</script>只是一个参数，可以忽略不计。<br>将<script type="math/tex">L^2</script>正则化推广到神经网络中，(3)式变为</p>
+<div align="right">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片10.png" style="zoom: 70%;">
+</div>
+
+<p>其中，<script type="math/tex">‖W^{[l] } ‖_F^2</script>的计算过程为</p>
+<div align="right">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片11.png" style="zoom: 60%;">
+</div>
+
+<p>该矩阵范数被称作“弗罗贝尼乌斯范数 (<script type="math/tex">Frobenius norm</script>)”，用下标F标注。正则化后的<script type="math/tex">dW</script>只需在原有基础上减去正则项的导数即可：</p>
+<div align="right">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片12.png" style="zoom: 65%;">
+</div>
+
+<p>其中，(<script type="math/tex">back prop</script>)代表未正则化前的<script type="math/tex">dW^{[l]}</script> 。更新后的<script type="math/tex">W^{[l]}</script>为</p>
+<div align="right">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片13.png" style="zoom: 70%;">
+</div>
+
+<p>可见，<script type="math/tex">L^2</script>正则化每次更新都在原有的<script type="math/tex">W^{[l]}</script>上先乘一个小于1点的数再进行梯度下降，因此<script type="math/tex">L^2</script>正则化也被称为“权重衰减”。</p>
+<h3 id="4-2-正则化减少过拟合的原理"><a href="#4-2-正则化减少过拟合的原理" class="headerlink" title="4.2 正则化减少过拟合的原理"></a>4.2 正则化减少过拟合的原理</h3><p>如前所述，过拟合情况的发生是由于网络过于复杂，拟合了过多的训练集数据，我们希望简化网络模型，正则化减少过拟合的原理可以从两方面直观理解。一方面，正则化朝着减小权重的方向更新<script type="math/tex">W^{[l]}</script> ，可以假设某些<script type="math/tex">W^{[l]}</script>被更新到接近于0，这样对应的节点就相当于断开了，网络得到简化。实际上权重的衰减并不会这么大，但可以一定程度简化网络，达到减缓过拟合的效果。<br>另一方面，我们所用的激活函数，如<script type="math/tex">sigmoid</script>函数和<script type="math/tex">tanh</script>函数，在0附近近似于线性，正则化将参数往减小的方向调整，假设调整幅度很大，正则化参数λ足够大，就会使得<script type="math/tex">z^{[l]}</script>落在线性区域。而线性的激活函数无论有多少层，对输出而言都只有一层，这就使得复杂的网络得到了简化。虽然在实际情况下每层输出不会变为线性，但可以一定程度地减缓过拟合。</p>
+<h3 id="4-3-Dropout正则化"><a href="#4-3-Dropout正则化" class="headerlink" title="4.3 Dropout正则化"></a>4.3 Dropout正则化</h3><p>除<script type="math/tex">L^2</script>正则化外，还有一种十分有效的正则化方法——Dropout正则化，可以理解为随机失活。Dropout的原理是：对每一层的节点设置失活概率，该层中的每个节点都以该概率随机被删除，这在一定程度上简化了网络，可以达到减缓过拟合的效果，如图3所示。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片14.png" style="zoom: 100%;">
+</div>
+
+<center>图3 实施Dropout前后的网络</center>
+
+<p>Dropout正则化可以减缓过拟合的原因可以理解为：每个节点的输入都可能随机消失，所以在训练过程中不会过分依赖任何一个节点，这会产生收缩权重的平方范数的效果，这和<script type="math/tex">L^2</script>正则化相类似。值得注意的是，为了不对预测结果在范围上产生变化，需要在每层激活函数的输出数据上除以 (1-失活概率)，这起到了归一化的作用。<br>Dropout的一大缺点就是代价函数 <script type="math/tex">J</script>不再被明确定义，或者说在某种程度上很难计算，每次迭代，都会随机移除一些节点，这使得梯度下降的性能很难得到检验。因此，通常可以先关闭Dropout，检查代价函数 J单调递减后再打开Dropout进行迭代训练，这有助于减少程序中的错误。</p>
+<h3 id="4-4-正则化实际效果测试"><a href="#4-4-正则化实际效果测试" class="headerlink" title="4.4 正则化实际效果测试"></a>4.4 正则化实际效果测试</h3><p>通过理论推理，可以得出正则化可以减缓过拟合的结论，下面将使用python编程实现<script type="math/tex">L^2</script>正则化和Dropout正则化，比较实际结果与理论推理是否一致。首先不适用正则化，对一组数据进行拟合，该组数据有两个特征向量，通过图形化展示如图4所示，不同的y以不同的颜色表示。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片15.png" style="zoom: 100%;">
+</div>
+
+<center>图4 待分类数据</center>
+
+<p>现使用一个三层网络对其进行训练，每层节点数分别为2、20、3、1，迭代30000次，得到的总代价曲线如图5所示，训练集和验证集准确度如图6所示，验证集误差比训练集误差大。将训练出的分类器不同部分以不同颜色填图得到图7，可以发现有部分特例也被分类器拟合了，存在过拟合的情况。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片16.png" style="zoom: 100%;">
+</div>
+
+<center>图5 未正则化时的总代价曲线</center>
+
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片17.png" style="zoom: 100%;">
+</div>
+
+<center>图6 未正则化时的测试验证集准确度</center>
+
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片18.png" style="zoom: 100%;">
+</div>
+
+<center>图7 未正则化时训练得到的模型</center>
+
+<h4 id="4-4-1-L-2正则化"><a href="#4-4-1-L-2正则化" class="headerlink" title="4.4.1 L^2正则化"></a>4.4.1 <script type="math/tex">L^2</script>正则化</h4><p>对上述模型实施<script type="math/tex">L^2</script>正则化，设置参数<script type="math/tex">λ</script>为0.7，其余不变，这时总代价曲线如图8所示，训练集和验证集准确度如图9所示。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片19.png" style="zoom: 100%;">
+</div>
+
+<center>图8 $$L^2$$正则化时的总代价曲线</center>
+
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片20.png" style="zoom: 100%;">
+</div>
+
+<center>图9 $$L^2$$正则化时的测试验证集准确度</center>
+
+<p>可以看到，此时验证机误差和训练集误差十分接近，过拟合情况得到了改善。对模型进行颜色填图，得到的分类器模型如图10所示。该模型没有将特殊点拟合进去，实现了不错的二分类，可见<script type="math/tex">L^2</script>正则化的效果是不错的。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片21.png" style="zoom: 100%;">
+</div>
+
+<center>图10 $$L^2$$正则化时训练得到的模型</center>
+
+<h4 id="4-4-2-Dropout正则化"><a href="#4-4-2-Dropout正则化" class="headerlink" title="4.4.2 Dropout正则化"></a>4.4.2 Dropout正则化</h4><p>现对最初的模型进行Dropout正则化，将所有节点的失活概率都设置为0.14，其余不变，得到的总代价曲线如图11所示，训练集和验证集准确度如图12所示。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片22.png" style="zoom: 100%;">
+</div>
+
+<center>图11 Dropout正则化时的总代价曲线</center>
+
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片23.png" style="zoom: 100%;">
+</div>
+
+<center>图12 Dropout正则化时的测试验证集准确度</center>
+
+<p>使用Dropout正则化后，验证集的准确度超过了训练集，说明适当简化网络后得到了更佳的性能。得到的分类器模型如图13所示，该模型也没有将特殊点拟合进去，并且对分界线上得数据进行了合理分配，训练得到的模型性能优于前者。可见，Dropout正则化在一定程度上能缓解数据的过拟合。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片24.png" style="zoom: 100%;">
+</div>
+
+<center>图13 Dropout正则化时训练得到的模型</center>
+
+<h3 id="4-5-Early-Stopping"><a href="#4-5-Early-Stopping" class="headerlink" title="4.5 Early Stopping"></a>4.5 Early Stopping</h3><p>除了<script type="math/tex">L^2</script>正则化和Dropout正则化外，Early Stopping也是一种避免数据过拟合的有效方法。在未进行多少次迭代时，参数<script type="math/tex">W^{[l]}</script>的值很小，随着迭代次数的增加，<script type="math/tex">W^{[l]}</script>的值越来越大，此时就可能会产生过拟合。Early Stopping要做的就是在方差恶化的时候及时停止迭代，如图14所示，后半段验证集误差随着迭代次数增加而增大，方差进而增大，在最优迭代次数处停止迭代可以得到较好的偏差和方差的权衡。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片25.png" style="zoom: 100%;">
+</div>
+
+<center>图14 训练验证集误差随迭代次数的变化</center>
+
+<p>Early Stopping的优点是：不必像<script type="math/tex">L^2</script>正则化一样不断测试λ的值以便找到合适的超参数，它只需运行一次梯度下降即可。但它在停止迭代的同时也停止了对总代价的优化，因此它可能影响偏差的大小。换句话说，它是在进行偏差和方差的权衡，降低了方差可能以提高偏差为代价，而不能用两种方法分别解决这两个问题，但在一定程度上这种方法是可行的。</p>
+<h2 id="5-归一化输入"><a href="#5-归一化输入" class="headerlink" title="5.  归一化输入"></a>5.  归一化输入</h2><p>归一化输入是一个很好的加速训练过程的方法，归一化的过程可以分为两步：均值归零化和方差归一化。均值归零化的公式为</p>
+<div align="right">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片26.png" style="zoom: 67%;">
+</div>
+
+<p>其中，<script type="math/tex">\mu</script>为数据的均值</p>
+<div align="right">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片27.png" style="zoom: 67%;">
+</div>
+
+<p>方差归一化的公式为</p>
+<div align="right">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片28.png" style="zoom: 67%;">
+</div>
+
+<p>其中，<script type="math/tex">σ^2</script>为数据的方差</p>
+<div align="right">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片29.png" style="zoom: 67%;">
+</div>
+
+<p>归一化输入使输入全部变为均值为0，方差为1的数据，该过程可形象地表现为图15的形式，为便于展示，假定该组数据只有两个特征向量。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片30.png" style="zoom: 100%;">
+</div>
+
+<center>图15 归一化输入</center>
+
+<p>下面说明归一化输入可以加速训练过程的原因，当使用未归一化的数据时，其不同特征向量的均值和方差可能有所不同，这将导致不同的特征向量对应的<script type="math/tex">W_i</script>的均值和方差不同，他们的范围可能相差数十甚至上百倍。现以一个二维的<script type="math/tex">W</script>为例，绘制其总代价函数，如图16(a)所示，这是未输入归一化的情形，两个维度存在较大范围差。当在其上进行梯度下降时，必须取很小的步长，而且是迂回下降的，因为这个函数是狭长的。而通过如图16(b)的归一化后的数据训练出的W对应的总代价函数为一个碗形，可以很容易地沿一条线进行梯度下降直至谷底，有效节省了训练时间。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片31.png" style="zoom: 100%;">
+</div>
+
+<center>图16 归一化前后总代价函数梯度下降</center>
+
+<h2 id="6-权重初始化"><a href="#6-权重初始化" class="headerlink" title="6. 权重初始化"></a>6. 权重初始化</h2><h3 id="6-1-梯度消失和梯度爆炸"><a href="#6-1-梯度消失和梯度爆炸" class="headerlink" title="6.1 梯度消失和梯度爆炸"></a>6.1 梯度消失和梯度爆炸</h3><p>当训练深度较深的深层神经网络时，通过反向传播计算出的梯度有时会变得特别大或特别小，甚至是以指数形式变化，这会极大地加大训练的难度，这就是梯度爆炸和梯度消失。当梯度变得特别小时，每次梯度下降的步长都变得很小，增加了达到谷底的迭代次数；当梯度变得特别大时，梯度下降法只能在谷底两次徘徊，而无法到达谷底，这都十分影响训练的速度和精度。<br>造成梯度消失和梯度爆炸的原因是：在深层神经网络的训练过程中中一般都会存在这一项 <script type="math/tex">∏_{(l=1)}^LW^{[l]} X</script>，深层网络中的<script type="math/tex">L</script>一般很大，只要<script type="math/tex">W^{[l]}</script> 略微大于1，该项将会变得非常大，反之亦然。这就导致了激活函数的输出很大或很小，同理，对应的梯度也会变得非常大或非常小。</p>
+<h3 id="6-2-权重初始化"><a href="#6-2-权重初始化" class="headerlink" title="6.2 权重初始化"></a>6.2 权重初始化</h3><p>缓解梯度消失和梯度爆炸的一种方法就是更谨慎地选择随机初始化参数，虽然这不能从根本上解决问题，但会有所帮助。对于一个神经元来说，其输出和输入有如下关系</p>
+<div align="right">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片32.png" style="zoom: 70%;">
+</div>
+
+<p>其中，<script type="math/tex">n</script>表示神经网络输入的特征数量。为了防止<script type="math/tex">Z</script>过大或过小，我们希望在<script type="math/tex">n</script>较大时减小<script type="math/tex">W_i</script>，在<script type="math/tex">n</script>较小时增大<script type="math/tex">W_i</script>，比较好的方法就是将<script type="math/tex">W_i</script>的方差<script type="math/tex">Var(W_i )</script>设置为<script type="math/tex">1⁄n</script>，我们要做的就是在对每层的权重随机初始化时，在其上乘<script type="math/tex">1/\sqrt{n^{[l-1]}}</script>。特别地，若使用<script type="math/tex">ReLu</script>函数作为激活函数，将<script type="math/tex">Var(W_i )</script>设置为<script type="math/tex">1⁄n</script>通常是更佳的，也就是在随机初始化的权重上乘2⁄√(n^[l-1]  )，对于tanh函数来说，1⁄n就是一个不错的选择。</p>
+<h3 id="6-3-几种权重初始化的实际效果测试"><a href="#6-3-几种权重初始化的实际效果测试" class="headerlink" title="6.3 几种权重初始化的实际效果测试"></a>6.3 几种权重初始化的实际效果测试</h3><p>这里使用和正则化时相同的训练验证集进行训练，模型仍为一个三层网络每层节点数分别为2、20、3、1，迭代15000次，依次使用零初始化、随机初始化（参数初始化很大）和He初始化对模型进行训练，对比三种情况的拟合效果。</p>
+<h4 id="6-3-1-零初始化"><a href="#6-3-1-零初始化" class="headerlink" title="6.3.1 零初始化"></a>6.3.1 零初始化</h4><p>将所有参数初始化为0，将训练到的分类器模型进行填图得到图17，训练验证集的准确度如图18所示。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片33.png" style="zoom: 100%;">
+</div>
+
+<center>图17 零初始化时的模型</center>
+
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片34.png" style="zoom: 100%;">
+</div>
+
+<center>图18 零初始化时训练验证集的准确度</center>
+
+<p>可见，这个模型是十分糟糕的，准确度仅在一半左右，将所有输入都预测为0，这验证了我们之前所说的，如果将参数初始化为0，整个网络的对称性会使得每个节点都在做同样的事，这使得每层都等效于只有一个节点，使得这个网络性能和线性的逻辑回归模型差不多，甚至更差。</p>
+<h4 id="6-3-2-随机初始化（参数初始化很大）"><a href="#6-3-2-随机初始化（参数初始化很大）" class="headerlink" title="6.3.2 随机初始化（参数初始化很大）"></a>6.3.2 随机初始化（参数初始化很大）</h4><p>为了模拟梯度爆炸的情况，我们将随机初始化的参数都乘10，其余设置都与6.3.1节相同。总代价随迭代次数的变化如图19所示，初始总代价很大，这是由初始权重很大造成的，其间总代价出现了几次上升，这正是图16(a)代表的情况，由于梯度爆炸，在谷底两侧不断徘徊。训练得到的模型如图20所示，训练验证集的准确度如图21所示。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片35.png" style="zoom: 100%;">
+</div>
+
+<center>图19 随机初始化总代价曲线（参数初始化很大）</center>
+
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片36.png" style="zoom: 100%;">
+</div>
+
+<center>图20 随机初始化时的模型</center>
+
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片37.png" style="zoom: 100%;">
+</div>
+
+<center>图21 随机初始化时训练验证集的准确度</center>
+
+<p>可见，梯度爆炸的情况下，训练过程被延长，并且模型效果不佳，应该设法避免这种情况发生。</p>
+<h4 id="6-3-3-He初始化"><a href="#6-3-3-He初始化" class="headerlink" title="6.3.3 He初始化"></a>6.3.3 <script type="math/tex">He</script>初始化</h4><p><script type="math/tex">He</script>初始化是用第一个使用它的作者命名的，就是之前提到的对激活函数是<script type="math/tex">ReLu</script>时的初始化方法，其在随机初始化的权重上乘<script type="math/tex">2⁄\sqrt{n^{[l-1]}}</script>。<script type="math/tex">He</script>初始化下总代价随迭代次数的变化如图22所示，总代价随迭代次数的衰减很快。训练得到的模型如图23所示，训练验证集的准确度如图24所示。</p>
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片38.png" style="zoom: 100%;">
+</div>
+
+<center>图22 $$He$$初始化总代价曲线</center>
+
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片39.png" style="zoom: 100%;">
+</div>
+
+<center>图23 $$He$$初始化时的模型</center>
+
+<div align="center">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片40.png" style="zoom: 100%;">
+</div>
+
+<center>图24 $$He$$初始化时训练验证集的准确度</center>
+
+<p>在这种初始化方式下，模型的准确度表现良好，可见好的初始化对缓解梯度消失或梯度爆炸的重要性。</p>
+<h2 id="7-梯度检验"><a href="#7-梯度检验" class="headerlink" title="7.  梯度检验"></a>7.  梯度检验</h2><p>在训练神经网络时，有时虽然程序能够正常运行，但很难检查反向传播是否完全正常工作。一种比较好的评估方法就是采用数值逼近，我们称其为梯度检验。梯度检验通过取代价函数上某点左右两侧十分临近的两点的函数值对该点的导数进行估计，这里采用双边公差的原因是其误差比单边公差小。<br>进行梯度检验要进行的第一件事就是将网络中的参数<script type="math/tex">W^{[1]}  、b^{[1]}  、W^{[2]}  、b^{[2]}  、⋯、W^{[L]}  、b^{[L]}</script> 转换成一个向量</p>
+<div align="right">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片41.png" style="zoom: 67%;">
+</div>
+
+<p>将<script type="math/tex">dW^{[1]}、db^{[1]}、dW^{[2]}、db^{[2]}、⋯、dW^{[L]}、db^{[L]}</script>转换成一个向量</p>
+<div align="right">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片42.png" style="zoom: 67%;">
+</div>
+
+<p>总代价函数<script type="math/tex">J</script>是<script type="math/tex">\theta</script>的函数，可以写成<script type="math/tex">J(θ_1,θ_2,θ_3,⋯)</script>，接下来要做的就是对每个组成元素<script type="math/tex">θ_i</script>使用双边估计得到</p>
+<div align="right">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片43.png" style="zoom: 67%;">
+</div>
+
+<p>最后对得到的两个向量<script type="math/tex">dθ</script>和<script type="math/tex">dθ_{approx}</script>进行比较来估计反向传播的正确性，这里采用下式对两向量进行比较</p>
+<div align="right">
+    <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片44.png" style="zoom: 67%;">
+</div>
+
+<p>如果计算得到的值为<script type="math/tex">10^{−7}</script>或更小，说明导数逼近很有可能是正确的；如果它的值在<script type="math/tex">10^{−5}</script>范围内，就应该引起注意，模型训练的过程中可能存在问题。发现网络存在问题时，应该仔细检查所有θ项，查看是否有某一个特定的<script type="math/tex">θ_i</script>使得<script type="math/tex">dθ</script>和<script type="math/tex">dθ_{approx}</script>相差较大，并用其追踪求导运算，然后进行调试，直到(18)式的计算结果达到<script type="math/tex">10^{−7}</script>的量级为止。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li>Post title：深度学习方法探析——训练过程优化</li>
+        <li>Post author：Sun Hao</li>
+        <li>Create time：2022-10-08 17:16:44</li>
+        <li>
+            Post link：http://example.com/2022/10/08/深度学习方法探析——训练过程优化/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B7%B1%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">深度学习方法探析——深层神经网络</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Sun Hao</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme
+            &nbsp;
+            <a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.8</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-up-right-and-down-left-from-center"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
