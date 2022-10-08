@@ -273,23 +273,24 @@
 <div align="center">
     <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片19.png" style="zoom: 100%;">
 </div>
-
-<center>图8 $$L^2$$正则化时的总代价曲线</center>
+<center>图8 L2正则化时的总代价曲线</center>
 
 <div align="center">
     <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片20.png" style="zoom: 100%;">
 </div>
+<center>图9 L2正则化时的测试验证集准确度</center>
 
-<center>图9 $$L^2$$正则化时的测试验证集准确度</center>
+可以看到，此时验证机误差和训练集误差十分接近，过拟合情况得到了改善。对模型进行颜色填图，得到的分类器模型如图10所示。该模型没有将特殊点拟合进去，实现了不错的二分类，可见$$L^2$$正则化的效果是不错的。
 
-<p>可以看到，此时验证机误差和训练集误差十分接近，过拟合情况得到了改善。对模型进行颜色填图，得到的分类器模型如图10所示。该模型没有将特殊点拟合进去，实现了不错的二分类，可见<script type="math/tex">L^2</script>正则化的效果是不错的。</p>
 <div align="center">
     <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片21.png" style="zoom: 100%;">
 </div>
+<center>图10 L2正则化时训练得到的模型</center>
 
-<center>图10 $$L^2$$正则化时训练得到的模型</center>
+#### 4.4.2 Dropout正则化
 
-<h4 id="4-4-2-Dropout正则化"><a href="#4-4-2-Dropout正则化" class="headerlink" title="4.4.2 Dropout正则化"></a>4.4.2 Dropout正则化</h4><p>现对最初的模型进行Dropout正则化，将所有节点的失活概率都设置为0.14，其余不变，得到的总代价曲线如图11所示，训练集和验证集准确度如图12所示。</p>
+现对最初的模型进行Dropout正则化，将所有节点的失活概率都设置为0.14，其余不变，得到的总代价曲线如图11所示，训练集和验证集准确度如图12所示。
+
 <div align="center">
     <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片22.png" style="zoom: 100%;">
 </div>
@@ -398,19 +399,19 @@
     <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片38.png" style="zoom: 100%;">
 </div>
 
-<center>图22 $$He$$初始化总代价曲线</center>
+<center>图22 He初始化总代价曲线</center>
 
 <div align="center">
     <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片39.png" style="zoom: 100%;">
 </div>
 
-<center>图23 $$He$$初始化时的模型</center>
+<center>图23 He初始化时的模型</center>
 
 <div align="center">
     <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%BC%98%E5%8C%96/图片40.png" style="zoom: 100%;">
 </div>
 
-<center>图24 $$He$$初始化时训练验证集的准确度</center>
+<center>图24 He初始化时训练验证集的准确度</center>
 
 <p>在这种初始化方式下，模型的准确度表现良好，可见好的初始化对缓解梯度消失或梯度爆炸的重要性。</p>
 <h2 id="7-梯度检验"><a href="#7-梯度检验" class="headerlink" title="7.  梯度检验"></a>7.  梯度检验</h2><p>在训练神经网络时，有时虽然程序能够正常运行，但很难检查反向传播是否完全正常工作。一种比较好的评估方法就是采用数值逼近，我们称其为梯度检验。梯度检验通过取代价函数上某点左右两侧十分临近的两点的函数值对该点的导数进行估计，这里采用双边公差的原因是其误差比单边公差小。<br>进行梯度检验要进行的第一件事就是将网络中的参数<script type="math/tex">W^{[1]}  、b^{[1]}  、W^{[2]}  、b^{[2]}  、⋯、W^{[L]}  、b^{[L]}</script> 转换成一个向量</p>
@@ -460,6 +461,21 @@
 
         
             <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">深度学习方法探析——优化算法</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
                 
                 
                     <div class="article-next">
@@ -616,20 +632,5 @@
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
