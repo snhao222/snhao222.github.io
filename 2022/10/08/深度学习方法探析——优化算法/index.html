@@ -155,10 +155,8 @@
         
 
         <div class="article-content markdown-body">
-            <ol>
-<li>引言<br>深层学习在应用于大量数据时需要花费大量的训练时间，这成为了阻碍深度学习发展的一个困难。本文总结了几种可以加速深度学习模型训练过程的优化算法，采用Mini-batch优化算法可以有效缓解迭代缓慢的问题，在部分数据处理的过程中持续更新参数；Momentum算法、RMSprop算法和Adam算法能够加速梯度的下降过程，减小梯度在不必要方向上的抖动。</li>
-<li>Mini-batch梯度下降法<br>之前我们在反向传播中所用的梯度下降算法，称为batch梯度下降法，在每次计算完毕所有样本对应的<script type="math/tex">dW</script>和<script type="math/tex">db</script>后，再将<script type="math/tex">W</script>和<script type="math/tex">b</script>的值进行更新。这对于数据量小的数据集没有问题，应用向量化的方式也可以很快地进行迭代，但当数据量巨大时，对每个矩阵的处理时间同样是巨大的，这意味着经过很长一段时间才能进行一次梯度下降，这会严重影响模型训练的速度。<br>Mini-batch的方法将很大的数据集分解为多个子训练集，如图1所示，将原来的大数据集随机打乱排序，再划分为具有相同数据量的子集，以保证数据的均匀性，本文将第t个子集表示为<script type="math/tex">X^{\{t\}}</script>，对应的标签为<script type="math/tex">Y^{\{t\}}</script>。</li>
-</ol>
+            <h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1.引言"></a>1.引言</h2><p>深层学习在应用于大量数据时需要花费大量的训练时间，这成为了阻碍深度学习发展的一个困难。本文总结了几种可以加速深度学习模型训练过程的优化算法，采用Mini-batch优化算法可以有效缓解迭代缓慢的问题，在部分数据处理的过程中持续更新参数；Momentum算法、RMSprop算法和Adam算法能够加速梯度的下降过程，减小梯度在不必要方向上的抖动。</p>
+<h2 id="2-Mini-batch梯度下降法"><a href="#2-Mini-batch梯度下降法" class="headerlink" title="2. Mini-batch梯度下降法"></a>2. Mini-batch梯度下降法</h2><p>之前我们在反向传播中所用的梯度下降算法，称为batch梯度下降法，在每次计算完毕所有样本对应的<script type="math/tex">dW</script>和<script type="math/tex">db</script>后，再将<script type="math/tex">W</script>和<script type="math/tex">b</script>的值进行更新。这对于数据量小的数据集没有问题，应用向量化的方式也可以很快地进行迭代，但当数据量巨大时，对每个矩阵的处理时间同样是巨大的，这意味着经过很长一段时间才能进行一次梯度下降，这会严重影响模型训练的速度。<br>Mini-batch的方法将很大的数据集分解为多个子训练集，如图1所示，将原来的大数据集随机打乱排序，再划分为具有相同数据量的子集，以保证数据的均匀性，本文将第t个子集表示为<script type="math/tex">X^{\{t\}}</script>，对应的标签为<script type="math/tex">Y^{\{t\}}</script>。</p>
 <div align="center">
     <img src="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/图片1.png" style="zoom: 100%;">
 </div>
