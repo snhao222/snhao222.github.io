@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Sun Hao">
+    
+    <title>
+        
+            深度学习方法探析——超参数调试和多分类模型 |
+        
+        SnSpace
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Slogo.svg">
+    
+<link rel="stylesheet" href="/fontawesome/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","logo":"/images/Slogo.svg","favicon":"/images/Slogo.svg","avatar":"/images/Slogo.svg","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"S  n  S  p  a  c  e","font_color":null,"hitokoto":{"enable":false}},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{},"code_block_tools":{"enable":false,"style":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.8"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/Slogo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               SnSpace
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">深度学习方法探析——超参数调试和多分类模型</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/Slogo.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Sun Hao</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-10-10 09:52:26</span>
+        <span class="mobile">2022-10-10 09:52</span>
+    </span>
+    
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="1-超参数调试"><a href="#1-超参数调试" class="headerlink" title="1. 超参数调试"></a>1. 超参数调试</h2><p>前面应用深层神经网络进行模型训练和推理的过程中遇到了这样一个情况：对一张猫的图片识别错误，概率仅为30%多，但在改变学习率后，概率变为了1，识别正确。这反应了超参数对神经网络模型训练的重要性，我们在训练神经网络的过程中常常需要不断改变各个超参数的值来对比前后性能的变化。因此，制定一套系统的超参数调试流程是十分有必要的。<br>由于神经网络有众多超参数，在调试过程中要有一个优先级。通常，学习率<script type="math/tex">\alpha</script>决定着模型训练的质量，需要优先考虑。其次，mini-batch的大小和隐藏单元的数目也会影响算法的运行，也需要考虑。对于Momentum梯度下降法和Adam算法中的参数<script type="math/tex">\beta</script>、模型的层数、学习率衰减率等超参数有时也会产生影响，但优先级较低。对于Adam算法中的<script type="math/tex">β_1</script>、<script type="math/tex">β_2</script>和<script type="math/tex">ε</script>，一般选用固定值<script type="math/tex">0.9</script>、<script type="math/tex">0.999</script>和<script type="math/tex">10^{-8}</script>，不对其进行调试。<br>如果在超参数的选择范围内均匀取值，只能覆盖少量数据，因此需要在划定的范围内随机取值。但仅仅均匀随机取样是不行的，对某些超参数来说，标尺的正确选择是必要的。对于模型层数和节点数这类超参数，在给定范围内均匀取值不会出现什么问题。但对于学习率<script type="math/tex">\alpha</script>、Adam算法中的β，例如在0.0001到1之间随机取值，那么90%的数据会落到0.1到1之间，0.0001到0.1之间只有10%的数据，这是不均衡的。这时应该将数据范围换成对数形式，从10-4到100，再在指数上进行平均随机选取，就可以兼顾每一个数量级的数据。<br>超参数的搜索过程可以分成两种：一种是在没有足够计算资源的情况下，可以一次只训练一个模型，并在训练的过程中不断修改超参数的值，看代价函数如何变化，进而选出最优超参数；另一种是在计算资源充足的情况下，可以同时训练多个模型，查看各模型的性能，选择代价函数最理想的模型对应的超参数。</p>
+<h2 id="2-Batch标准化-Batch-Normalization"><a href="#2-Batch标准化-Batch-Normalization" class="headerlink" title="2. Batch标准化 (Batch Normalization)"></a>2. Batch标准化 (Batch Normalization)</h2><p>在前面训练过程优化中有提到输入标准化的问题，输入标准化可以加快学习的过程。深层神经网络中有很多隐藏层，对每个隐藏层都有前一层的<script type="math/tex">A^{[l-1]}</script>输入，要想加快<script type="math/tex">W^{[l]}</script>和<script type="math/tex">b^{[l]}</script>的训练过程，就需要对每一层的输出<script type="math/tex">Z^{[l]}</script>进行标准化，这就是Batch归一化。Batch标准化的公式为</p>
+<div align="right">
+    <img src="/2022/10/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E8%AF%95%E5%92%8C%E5%A4%9A%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B/图片1.png" style="zoom: 67%;">
+</div>
+
+<p>有时我们可能希望隐藏层具有一些特别的分布，不希望是均值为0，方差为1的标准分布，这时可在Batch标准化中做如下操作</p>
+<div align="right">
+    <img src="/2022/10/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E8%AF%95%E5%92%8C%E5%A4%9A%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B/图片2.png" style="zoom: 67%;">
+</div>
+
+<p>由于会对每层的输出进行标准化，任何增加的常数都会被抵消，在使用Batch标准化时可以不考虑<script type="math/tex">b^{[l]}</script>这个参数。使用Batch标准化算法配合Mini-batch进行梯度下降的算法如下。</p>
+<div align="center">
+    <img src="/2022/10/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E8%AF%95%E5%92%8C%E5%A4%9A%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B/图片3.png" style="zoom: 100%;">
+</div>
+
+<p>除了可以加快学习的过程外，Batch标准化还可以使深层节点更好地抵抗输入数据分布的变化。在遇到训练集和测试集分布不同的情况时，对模型的推理将产生影响，这种情况被称为“Covariate shift”。Batch标准化使每层的输出保持恒定的均值和方差，当输入的分布改变时，每层的输出的变化程度就会减小，特别是对深层的节点来说，这有助于模型抵抗数据分布的改变。<br>Batch标准化还有一个附加作用：正则化，使用不同的mini-batch计算均值和方法时，由于数据的不统一会产生一些噪声，因此在标准化和从<script type="math/tex">z^{[l]}</script>到<script type="math/tex">\tilde{z}^{[l]}</script>的过程中都会产生一些噪声.这和Dropout正则化很像，区别在于Dropout的噪声使其对每个隐藏单元乘0或1，所以Batch标准化也会存在轻微的正则化效果。<br>在训练中运用Batch标准化时，<script type="math/tex">\mu</script>和<script type="math/tex">σ^2</script>是通过整个mini-batch计算出的。然而，在进行模型预测时，很多时候要逐一处理样本，这时对<script type="math/tex">\mu</script>和<script type="math/tex">σ^2</script>的计算就没有意义了。这时就需要采用指数加权平均的方法对每个mini-batch计算出的<script type="math/tex">\mu^{[l]}</script>和<script type="math/tex">σ^{2[l]}</script>进行运算，估计出每层的<script type="math/tex">\mu^{[l]}</script>和<script type="math/tex">σ^{2[l]}</script>，运用到单一样本的预测中。</p>
+<h2 id="3-Softmax回归-Softmax-regression"><a href="#3-Softmax回归-Softmax-regression" class="headerlink" title="3. Softmax回归 (Softmax regression)"></a>3. Softmax回归 (Softmax regression)</h2><h3 id="3-1-Softmax回归概念"><a href="#3-1-Softmax回归概念" class="headerlink" title="3.1 Softmax回归概念"></a>3.1 Softmax回归概念</h3><p>之前我们训练的全部为二分类模型，Softmax回归可以用来训练具有多个输出的模型。Softmax回归模型如图1所示，模型要对数据集分成几类就设置几个输出节点，类别的数目用<script type="math/tex">C</script>表示，每个输出层节点输出的值为该类别的概率。<br>Softmax回归的关键是Softmax激活函数，其对输出层的输出Z[l]起到的作用为：先对Z[l]进行指数变换</p>
+<div align="center">
+    <img src="/2022/10/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E8%AF%95%E5%92%8C%E5%A4%9A%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B/图片4.png" style="zoom: 67%;">
+</div>
+
+<p>然后对其进行归一化，使各节点的输出总和为1：</p>
+<div align="center">
+    <img src="/2022/10/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E8%AF%95%E5%92%8C%E5%A4%9A%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B/图片5.png" style="zoom: 67%;">
+</div>
+
+<p>此时的输出即为各类别的概率。</p>
+<div align="center">
+    <img src="/2022/10/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E8%AF%95%E5%92%8C%E5%A4%9A%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B/图片6.png" style="zoom: 100%;">
+</div>
+
+<center>图1 Softmax模型</center>
+Softmax回归的损失函数定义为
+
+<div align="center">
+    <img src="/2022/10/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E8%AF%95%E5%92%8C%E5%A4%9A%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B/图片7.png" style="zoom: 67%;">
+</div>
+
+当试图减小训练集的损失时，它可以让对应的 值尽可能大。整个训练集的总代价函数为
+
+<div align="center">
+    <img src="/2022/10/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E8%AF%95%E5%92%8C%E5%A4%9A%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B/图片8.png" style="zoom: 67%;">
+</div>
+
+### 3.2 编程实现Softmax回归
+
+本文采用Tensorflow深度学习框架，使用softmax回归实现了手部动作从0到5的识别。Tensorflow是一个不错的深度学习框架，它可以帮助我们省去很多程序的编写，特别是对于后向传播，Tensorflow可以根据编写的代价函数自动进行梯度下降，帮助我们解决了后向传播这一最复杂的问题。
+Tensorflow作为一种用于深度学习的编程框架，其主要包含两种目标类：Tensors和Operators，编程中应该遵守的步骤如下：
+
+<div align="center">
+    <img src="/2022/10/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E8%AF%95%E5%92%8C%E5%A4%9A%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B/图片9.png" style="zoom: 100%;">
+</div>
+
+本文训练集采用1080张64*64 pixels的有0到5手势的图片，如图2所示，测试集为相同规格的图片120张。本文采用三层模型，0到3层的节点数分别为12288、25、12、6，学习率0.0001，采用mini-batch迭代1500代，每个mini-batch大小为32。
+
+<div align="center">
+    <img src="/2022/10/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E8%AF%95%E5%92%8C%E5%A4%9A%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B/图片10.png" style="zoom: 100%;">
+</div>
+
+<center>图2 训练数据集示例</center>
+训练得到的总代价随迭代次数的变化如图3所示，图中的抖动是由于使用了mini-batch的方法，但总体逐渐下降，效果不错。
+
+<div align="center">
+    <img src="/2022/10/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E8%AF%95%E5%92%8C%E5%A4%9A%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B/图片11.png" style="zoom: 100%;">
+</div>
+
+<center>图3 总代价随迭代次数的变化</center>
+该模型对训练集和测试集的准确度如图4所示，测试集比训练集准确度低很多，说明模型存在高偏差，这是由于模型过于简单造成的，这里由于训练时间较长，选择了这个适中的模型。
+
+<div align="center">
+    <img src="/2022/10/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E8%AF%95%E5%92%8C%E5%A4%9A%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B/图片12.png" style="zoom: 100%;">
+</div>
+
+<center>图4 训练集和测试集的准确度</center>
+使用自己拍摄的0到5手势进行预测，得到的结果如表1所示，该模型具有多个输出，能够预测0到5的手势。但注意到，对于下表的测试数据，准确率不高，说明该模型确实如测试集的结果显示一样，具有较大的偏差，对新环境的适应能力不强，还有很大改进空间。
+
+<center><b>表1 模型对0到5手势的预测结果</b></center>
+
+<div align="center">
+    <img src="/2022/10/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E8%AF%95%E5%92%8C%E5%A4%9A%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B/图片13.png" style="zoom: 100%;">
+</div>
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li>Post title：深度学习方法探析——超参数调试和多分类模型</li>
+        <li>Post author：Sun Hao</li>
+        <li>Create time：2022-10-10 09:52:26</li>
+        <li>
+            Post link：http://example.com/2022/10/10/深度学习方法探析——超参数调试和多分类模型/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/10/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">深度学习方法探析——优化算法</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2022</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Sun Hao</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme
+            &nbsp;
+            <a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.8</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-up-right-and-down-left-from-center"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
