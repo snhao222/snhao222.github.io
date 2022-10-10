@@ -32,7 +32,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en"};
-    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","logo":"/images/Slogo.svg","favicon":"/images/Slogo.svg","avatar":"/images/Slogo.svg","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":{"enable":false}},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{},"code_block_tools":{"enable":false,"style":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.8"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","logo":"/images/Slogo.svg","favicon":"/images/Slogo.svg","avatar":"/images/Slogo.svg","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"SnSpace","font_color":null,"hitokoto":{"enable":false}},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{},"code_block_tools":{"enable":false,"style":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.8"};
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
   </script>
@@ -131,8 +131,6 @@
                 <div class="info">
                     <div class="author">
                         <span class="name">Sun Hao</span>
-                        
-                            <span class="author-label">Lv1</span>
                         
                     </div>
                     <div class="meta-info">
@@ -248,9 +246,8 @@
 </div>
 
 <p>其中，<script type="math/tex">A^{[0]}</script>相当于第0层的输入，即<strong><em>X</em></strong>。下面以第1层为例推导该过程的维度对应关系：</p>
-<center>$$W^{[1]}X=\begin{bmatrix}w_1^{[1]T}\\w_2^{[1]T}\\...\\w_{n_{hidden}}^{[1]T}\end{bmatrix}\cdot\begin{bmatrix}\vdots&\vdots&\vdots&\vdots\\x_1&x_2&x_3&\vdots\\\vdots&\vdots&\vdots&\vdots\end{bmatrix}=\begin{bmatrix}\vdots&\vdots&\vdots&\vdots\\w_1^{[1]T}&w_2^{[1]T}&w_3^{[1]T}&\vdots\\\vdots&\vdots&\vdots&\vdots\end{bmatrix}=\begin{bmatrix}\vdots&\vdots&\vdots&\vdots\\z_1^{[1]}&z_2^{[1]}&z_3^{[1]}&\vdots\\\vdots&\vdots&\vdots&\vdots\end{bmatrix}=Z^{[1]}$$</center>
-
-<h4 id="2-1-1-forward-propagation-正向传播"><a href="#2-1-1-forward-propagation-正向传播" class="headerlink" title="2.1.1 forward propagation(正向传播)"></a><strong>2.1.1</strong> <strong>forward propagation(</strong>正向传播<strong>)</strong></h4><p>只有2层的浅层神经网络的正向传播可由以下4个式子求得</p>
+<script type="math/tex; mode=display">
+W^{[1]}X=\begin{bmatrix}w_1^{[1]T}\\w_2^{[1]T}\\...\\w_{n_{hidden}}^{[1]T}\end{bmatrix}\cdot\begin{bmatrix}\vdots&\vdots&\vdots&\vdots\\x_1&x_2&x_3&\vdots\\\vdots&\vdots&\vdots&\vdots\end{bmatrix}=\begin{bmatrix}\vdots&\vdots&\vdots&\vdots\\w_1^{[1]T}&w_2^{[1]T}&w_3^{[1]T}&\vdots\\\vdots&\vdots&\vdots&\vdots\end{bmatrix}=\begin{bmatrix}\vdots&\vdots&\vdots&\vdots\\z_1^{[1]}&z_2^{[1]}&z_3^{[1]}&\vdots\\\vdots&\vdots&\vdots&\vdots\end{bmatrix}=Z^{[1]}</script><h4 id="2-1-1-forward-propagation-正向传播"><a href="#2-1-1-forward-propagation-正向传播" class="headerlink" title="2.1.1 forward propagation(正向传播)"></a><strong>2.1.1</strong> <strong>forward propagation(</strong>正向传播<strong>)</strong></h4><p>只有2层的浅层神经网络的正向传播可由以下4个式子求得</p>
 <div align="center">
     <img src="/2022/10/07/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%8E%A2%E6%9E%90%E2%80%94%E2%80%94%E6%B5%85%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/图片12.png" style="zoom:67%;">
 </div>
@@ -400,7 +397,7 @@ dZ^{[1]}=W^{[2]T}*g^{[1]'}(Z^{[1]})</script><h4 id="2-1-3-浅层神经网络训�
         <div class="copyright-info info-item">
             &copy;
             
-                <span>2020</span> -
+                <span>2022</span> -
             
             2022
             
@@ -519,5 +516,20 @@ dZ^{[1]}=W^{[2]T}*g^{[1]'}(Z^{[1]})</script><h4 id="2-1-3-浅层神经网络训�
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
