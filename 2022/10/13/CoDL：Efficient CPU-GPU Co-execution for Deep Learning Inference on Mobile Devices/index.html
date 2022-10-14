@@ -189,7 +189,7 @@
         <div class="article-content markdown-body">
             <blockquote>
 <p> 来        源：MobiSys ‘22: Proceedings of the 20th Annual International Conference on Mobile Systems, Applications and ServicesJune 2022 Pages 209–221<a class="link" target="_blank" rel="noopener" href="https://doi.org/10.1145/3498361.3538932">https://doi.org/10.1145/3498361.3538932<i class="fas fa-external-link-alt"></i></a></p>
-<p> 原文速递：<a href="./CoDL：Efficient CPU-GPU Co-execution for Deep Learning Inference on Mobile Devices/CoDL efficient CPU-GPU co-execution for deep learning inference on mobile devices.pdf" title="点击直接下载原文">CoDL：Efficient CPU-GPU Co-execution for Deep Learning Inference on Mobile Devices</a></p>
+<p> 原文速递：<a href="./CoDL efficient CPU-GPU co-execution for deep learning inference on mobile devices.pdf" title="点击直接下载原文">CoDL：Efficient CPU-GPU Co-execution for Deep Learning Inference on Mobile Devices</a></p>
 </blockquote>
 <h2 id="1-Background-amp-Motivation"><a href="#1-Background-amp-Motivation" class="headerlink" title="1.Background &amp; Motivation"></a>1.Background &amp; Motivation</h2><p>当前，深度学习已经成为众多移动应用的支柱。由于隐私性，网络弹性和云计算开销上的优势，在边缘设备上进行推理成为一种趋势。然而，边缘设备的性能有限，只有在推理轻量小模型时才能获得能够容忍的推理速度，比如在移动处理器上运行YOLO目标检测网络具有超200ms的延时。为了能够在移动设备上缩短大模型推理的时延，该文致力于同时利用移动设备上的CPU和GPU来加速推理。该方案可行的两个主要原因是：</p>
 <blockquote>
@@ -293,10 +293,10 @@
 </blockquote>
 <p>本文准确且轻量的时延预测器通过以下方法实现。</p>
 <blockquote>
-<p>1）引入所有数据共享的开销，<script type="math/tex">T=T_{trans}+T_{map}+T_{psync}+max(T_{comp}^{cpu},T_{comp}^{gpu}))</script>；</p>
+<p>1）引入所有数据共享的开销，<script type="math/tex">T=T_{trans}+T_{map}+T_{psync}+max(T_{comp}^{cpu},T_{comp}^{gpu})</script>；</p>
 <p>2）通过分析性地对由平台特征引起的非线性延迟响应建模，降低学习的难度。基于对非线性延迟响应的分析，该文建立了如下时延预测的模型</p>
 <script type="math/tex; mode=display">
-T_{kernel}=\lceil\frac{Size_{output}}{Size_{block}\cdot Core \sharp} \rceil \cdot \lceil\frac{Size_{block}}{Size_{basicUnit}} \rceil \cdot t_{basicUnit}</script><p>由于非线性已经被提取，只需使用轻量的线性回归模型学习给定处理器执行一个基本单元的时延即可</p>
+T_{kernel}=\lceil\frac{Size_{output}}{Size_{block}\cdot Core \sharp} \rceil \cdot \lceil\frac{Size_{block}}{Size_{basicUnit}} \rceil \cdot t_{basicUnit}</script><p>由于非线性已经被提取，只需使用轻量的线性回归模型学习给定处理器执行一个基本单元的时延即可。</p>
 </blockquote>
 <h2 id="4-Comments"><a href="#4-Comments" class="headerlink" title="4. Comments"></a>4. Comments</h2><p>本文提出了一个在移动设备的CPU和GPU上协同执行模型推理的系统架构和方法，许多方法的提出基于作者对大量实验现象的观察。通过联系实验现象和系统基本特性，该文实现了针对于移动设备的准确且轻量的时延预测。同时，该文数据分割和算子链的设计也具有启发意义。</p>
 
