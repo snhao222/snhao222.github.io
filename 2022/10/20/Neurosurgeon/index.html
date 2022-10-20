@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Sun Hao">
+    
+    <title>
+        
+            Neurosurgeon：Collaborative Intelligence Between the Cloud and Mobile Edge |
+        
+        SnSpace
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Slogo.svg">
+    
+<link rel="stylesheet" href="/fontawesome/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"snhao222.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","logo":"/images/Slogo.svg","favicon":"/images/Slogo.svg","avatar":"/images/Slogo.svg","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"S  n  S  p  a  c  e","font_color":null,"hitokoto":{"enable":false}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block_tools":{"enable":true,"style":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.8"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/Slogo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               SnSpace
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Neurosurgeon：Collaborative Intelligence Between the Cloud and Mobile Edge</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/Slogo.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Sun Hao</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-10-20 10:28:06</span>
+        <span class="mobile">2022-10-20 10:28</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Paper-Notes/">Paper Notes</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <blockquote>
+<p> 来        源：ASPLOS ‘17: Proceedings of the Twenty-Second International Conference on Architectural Support for Programming Languages and Operating Systems - April 2017 - Pages 615–629<a class="link" target="_blank" rel="noopener" href="https://doi.org/10.1145/3037697.3037698">https://doi.org/10.1145/3037697.3037698<i class="fas fa-external-link-alt"></i></a></p>
+<p> 原文速递：<a href="./Neurosurgeon：Collaborative Intelligence Between the Cloud and Mobile Edge.pdf" title="点击直接下载原文">Neurosurgeon: Collaborative Intelligence Between the Cloud and Mobile Edge</a></p>
+</blockquote>
+<h2 id="1-Background-amp-Motivation"><a href="#1-Background-amp-Motivation" class="headerlink" title="1. Background &amp; Motivation"></a>1. Background &amp; Motivation</h2><p>当前的智能应用，比如Apple Siri，Google Now和Microsoft Cortana，计算过程完全在云端进行。这种云计算范式通过网络传输用户原始到云数据中心，不仅对数据中心造成了很大的压力，还存在很高的通信时延。随着手机等移动设备的计算能力增强，能否将一部分数据计算从云端移至移动设备上进行值得研究。</p>
+<h3 id="1-1-云中心计算现状"><a href="#1-1-云中心计算现状" class="headerlink" title="1.1 云中心计算现状"></a>1.1 云中心计算现状</h3><div align="center">
+    <img src="/2022/10/20/Neurosurgeon/图片1.png" style="zoom: 90%;">
+</div>
+
+<center>图1 AlexNet延迟分解</center>
+
+<div align="center">
+    <img src="/2022/10/20/Neurosurgeon/图片2.png" style="zoom: 90%;">
+</div>
+
+<center>图2 AlextNet能耗分解</center>
+
+<blockquote>
+<p>1）对于3G和LTE网络，数据传输时延往往高于移动设备计算时延；</p>
+<p>2）云计算具备很大的计算优势，但经常由于数据传输时延高而失去优势；</p>
+<p>3）移动设备本地计算往往获得更低的时延和能耗，但在快速WiFi网络中，云计算的性能更佳。</p>
+</blockquote>
+<h3 id="1-2-计算分配"><a href="#1-2-计算分配" class="headerlink" title="1.2 计算分配"></a>1.2 计算分配</h3><p>基于对云中心计算现状的研究，同时考虑到DNN的层结构很适合进行计算分割，该文考虑云端间的层级计算分配。</p>
+<div align="center">
+    <img src="/2022/10/20/Neurosurgeon/图片3.png" style="zoom: 100%;">
+</div>
+
+<center>图3 AlexNet每层的执行时间和输出数据尺寸</center>
+
+<div align="center">
+    <img src="/2022/10/20/Neurosurgeon/图片4.png" style="zoom: 100%;">
+</div>
+
+<center>图4 选择不同分割点时的时延和能耗</center>
+
+<blockquote>
+<p>1）由于每层的类型和在模型中所处的位置不同，具备不同的计算和数据需求；</p>
+<p>2）卷积和池化层的计算时延较小，而全连接层的时延较高；</p>
+<p>3）卷积和池化层往往在模型的前部，全连接层在后部；</p>
+<p>4）卷积层增加输出数据量，池化层减少输出数据量。前几层的数据量逐渐减小，后几层的数据量小于原始输入；</p>
+<p>5）“前几层的数据量逐渐减小，后几层的计算时延逐渐增加”的发现说明：在模型中部进行计算分割并由云端协同执行推理能够取得性能增益。</p>
+</blockquote>
+<h2 id="2-Contributions"><a href="#2-Contributions" class="headerlink" title="2. Contributions"></a>2. Contributions</h2><blockquote>
+<p>1）<b>深入的现状分析。</b>对云中心计算方案进行分析，发现数据的无线网络传输时现有方法的瓶颈，在移动端进行DNN推理往往可以获得更低的时延和能耗；</p>
+<p>2）<b>DNN计算和数据量研究。</b>深入研究8种DNN的层级别时延和数据量特性，发现DNN的不同层具有不同的计算量和数据尺寸特性；</p>
+<p>3）<b>云-端DNN计算分配。</b>发现层级别的DNN分割能够获得性能增益，设计了一个系统方法在不同应用的DNN中寻找最优分割点来减小时延和能耗；</p>
+<p>4）<b>设计Neurosurgeon运行时系统和层性能预测模型。</b></p>
+</blockquote>
+<h2 id="3-Design-Details"><a href="#3-Design-Details" class="headerlink" title="3. Design Details"></a>3. Design Details</h2><p>Neurosurgeon由一个部署阶段和一个用来管理云-端分割的运行时系统组成，如图5。</p>
+<div align="center">
+    <img src="/2022/10/20/Neurosurgeon/图片5.png" style="zoom: 100%;">
+</div>
+
+<center>图5 Neurosurgeon系统组成</center>
+
+<p><b>在部署阶段-</b>Neurosurgeon通过分析移动设备和服务器生成各种DNN层类型的预测模型，该分析过程与DNN应用无关，对于移动设备和服务器平台只需进行一次，之后模型将被储存在移动设备和服务器上用于对每层的时延和能耗进行预测。</p>
+<p><b>在运行时-</b>Neurosurgeon动态地决定DNN的最佳分割点，如图5所示，该过程分为以下步骤：1）Neurosurgeon分析并提取DNN每层的类型和配置；2）系统使用存储的层性能模型估计在云和移动设备上执行每一层的时延和能耗；3）综合考虑每个预测结果和当前无线连接带宽及数据中心负载情况，Neuro surgeon选择针对时延或能耗的最佳分割点；4）Neurosurgeon在云-端间协同执行DNN。</p>
+<h3 id="3-1-性能预测模型"><a href="#3-1-性能预测模型" class="headerlink" title="3.1 性能预测模型"></a>3.1 性能预测模型</h3><p>对于每种层类型，Neurosurgeon基于该层的配置建立一个回归模型预测时延和能耗，使用GFLOPS（每秒千兆浮点运算）作为性能预测的量度。</p>
+<p><b>1）卷积层和池化层</b></p>
+<p>对卷积层的回归模型基于两个参数变量：输入特征图的特征数量和输入特征图每个像素的计算量（<script type="math/tex">(filter\ size / stride)^2 \times(＃\ of\ filters)</script>）。对于池化层，使用输入、输出特征图的尺寸作为回归模型的参数变量.</p>
+<p><b>2）全连接层</b></p>
+<p>对于全连接层，使用输入神经元和输出神经元的数量作为回归模型的参数。对于Softmax和argmax层的处理类似。</p>
+<p><b>3）激活层</b></p>
+<p>激活层的参数较少，只有输入输出数据的一对一映射，因此使用神经元的数量作为回归模型的参数变量。对于标准化层的操作类似。</p>
+<h3 id="3-2-动态DNN分割"><a href="#3-2-动态DNN分割" class="headerlink" title="3.2 动态DNN分割"></a>3.2 动态DNN分割</h3><p>Neurosurgeon的DNN分割算法如下，Neurosurgeon首先分析组成目标DNN的各层<script type="math/tex">(L_i)</script>，并使用性能预测器获得每层在移动设备和服务器上计算的时延<script type="math/tex">(TM_i)、(TC_i)</script>和能耗<script type="math/tex">(PM_i)、(PU\times TU_i)</script>。由于线性模型是十分简单的，该DNN分割算法是轻量且高效的。</p>
+<div align="center">
+    <img src="/2022/10/20/Neurosurgeon/图片6.png" style="zoom: 100%;">
+</div>
+
+<h2 id="4-Comments"><a href="#4-Comments" class="headerlink" title="4. Comments"></a>4. Comments</h2><p>Neurosurgeon是一个云-端协同的协同推理系统，能够相较云计算减少传输数据量，相较单机边缘计算提升计算速度，从而提高DNN推理的响应速度。然而，该系统存在许多不足之处：</p>
+<blockquote>
+<p><b>1）性能预测器准确度无法保证。</b>该系统的性能预测器仅仅针对对不同层参数构建简单的线性或指数回归模型，虽然该模型执行很快，但如此简单的预测方法难以获得高预测精度，而较低的预测精度势必影响DNN分割算法的效果；</p>
+<p><b>2）对多层网络的性能预测不准确。</b>该文仅使用每层网络时延和能耗的加和表示多层的性能，而实验表明运行多层网络的时延和能耗往往低于每层网络的加和，由错误的性能预测数据确定DNN分割点很难得到最优方案；</p>
+<p><b>3）云-端协同的方案受到一些限制。</b>首先，云-端协同仍然受到网络条件限制，在网络环境较差时即便转为单机推理也存在时延增加的问题。其次，该方案仅适用于一台移动设备和一台服务器的协同推理，参与节点较少，灵活性较差。</p>
+</blockquote>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li>Post title：Neurosurgeon：Collaborative Intelligence Between the Cloud and Mobile Edge</li>
+        <li>Post author：Sun Hao</li>
+        <li>Create time：2022-10-20 10:28:06</li>
+        <li>
+            Post link：https://snhao222.github.io/2022/10/20/Neurosurgeon/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/10/13/CoDL%EF%BC%9AEfficient%20CPU-GPU%20Co-execution%20for%20Deep%20Learning%20Inference%20on%20Mobile%20Devices/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CoDL：Efficient CPU-GPU Co-execution for Deep Learning Inference on Mobile Devices</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'AIhtvUXrzUWmPIOmYNjrGExW-gzGzoHsz',
+                    appKey: 'e4HGIfsWiHCnIXco4g7xtuAA',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: 'Add your comments',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Sun Hao';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2022</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Sun Hao</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme
+            &nbsp;
+            <a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.8</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-up-right-and-down-left-from-center"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Background-amp-Motivation"><span class="nav-text">1. Background &amp; Motivation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E4%BA%91%E4%B8%AD%E5%BF%83%E8%AE%A1%E7%AE%97%E7%8E%B0%E7%8A%B6"><span class="nav-text">1.1 云中心计算现状</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E8%AE%A1%E7%AE%97%E5%88%86%E9%85%8D"><span class="nav-text">1.2 计算分配</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Contributions"><span class="nav-text">2. Contributions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Design-Details"><span class="nav-text">3. Design Details</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%80%A7%E8%83%BD%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B"><span class="nav-text">3.1 性能预测模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%8A%A8%E6%80%81DNN%E5%88%86%E5%89%B2"><span class="nav-text">3.2 动态DNN分割</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Comments"><span class="nav-text">4. Comments</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block-tools.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
