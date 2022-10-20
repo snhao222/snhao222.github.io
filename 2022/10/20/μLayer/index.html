@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Sun Hao">
+    
+    <title>
+        
+            µLayer：Low Latency On-Device Inference Using Cooperative Single-Layer Acceleration and Processor-Friendly Quantization |
+        
+        SnSpace
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Slogo.svg">
+    
+<link rel="stylesheet" href="/fontawesome/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"snhao222.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","logo":"/images/Slogo.svg","favicon":"/images/Slogo.svg","avatar":"/images/Slogo.svg","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"S  n  S  p  a  c  e","font_color":null,"hitokoto":{"enable":false}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block_tools":{"enable":true,"style":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.8"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/Slogo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               SnSpace
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">µLayer：Low Latency On-Device Inference Using Cooperative Single-Layer Acceleration and Processor-Friendly Quantization</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/Slogo.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Sun Hao</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-10-20 15:52:42</span>
+        <span class="mobile">2022-10-20 15:52</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Paper-Notes/">Paper Notes</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <blockquote>
+<p> 来        源：EuroSys ‘19: Proceedings of the Fourteenth EuroSys Conference 2019 - March 2019 - Article No.: 45 - Pages 1–15 <a class="link" target="_blank" rel="noopener" href="https://doi.org/10.1145/3302424.3303950">https://doi.org/10.1145/3302424.3303950<i class="fas fa-external-link-alt"></i></a></p>
+<p>原文速递：<a href="./µLayer：Low Latency On-Device Inference Using Cooperative Single-Layer Acceleration and Processor-Friendly Quantization.pdf" title="点击直接下载原文">µLayer: Low Latency On-Device Inference Using Cooperative Single-Layer Acceleration and Processor-Friendly Quantization</a></p>
+</blockquote>
+<h2 id="1-Background-amp-Motivation"><a href="#1-Background-amp-Motivation" class="headerlink" title="1. Background &amp; Motivation"></a>1. Background &amp; Motivation</h2><p>随着神经网络（NN）的发展，移动服务供应商在移动设备上部署了许多服务，比如Google的手写转文字功能、Google的即时翻译、YouTube的视频分割以及Google、Apple等公司的虚拟助手。而为满足这些应用的时延要求，传统的做法是依赖于丰富的云端资源实现的。然而，随着高性能的移动端SoC的出现，完全依赖移动端设备进行神经网络推理成为可能。由于强响应性对移动服务至关重要，高效利用移动设备资源是十分必要的。</p>
+<p>通过更好地利用移动设备硬件资源，对轻量神经网络的几乎实时响应成为可能，但由于时延问题，大部分移动服务仍然依赖云端资源，比如所有实际的虚拟助手都将工作卸载到云端进行语音识别。而现在的Soc上具有多种资源，实现快速准确的设备上推理是可行的。</p>
+<h2 id="2-Contributions"><a href="#2-Contributions" class="headerlink" title="2. Contributions"></a>2. Contributions</h2><blockquote>
+<p>1）<b>发现协同实现神经网络单层加速的潜力。</b>该文发现现代SoC上的CPU和GPU具有平衡的吞吐量，使CPU-GPU协同神经网络加速成为可能；</p>
+<p>2）<b>提出新的协同单层加速机制。</b>通过从多维度对神经网络执行进行优化，获得相比先进方法的时延降低；</p>
+<p>3）<b>设计μLayer系统。</b>提出一个优化的神经网络架构μLayer用于减小神经网络的执行时延。</p>
+</blockquote>
+<h2 id="3-Design-Details"><a href="#3-Design-Details" class="headerlink" title="3. Design Details"></a>3. Design Details</h2><h3 id="3-1-协同单层加速"><a href="#3-1-协同单层加速" class="headerlink" title="3.1 协同单层加速"></a>3.1 协同单层加速</h3><p>如图1(a)、(b)所示，现有移动神经网络框架由于只利用单一处理器限制了性能，而本文提出的框架能够在CPU和GPU上协同执行神经网络中的层。</p>
+<div align="center">
+    <img src="/2022/10/20/%CE%BCLayer/图片1.png" style="zoom: 100%;">
+</div>
+
+<center>图1 设备上推理机制对比</center>
+
+<p>该文提出通道级工作负载分配方法如图2所示，其可以避免引入CPU和GPU间的冗余计算。</p>
+<div align="center">
+    <img src="/2022/10/20/%CE%BCLayer/图片2.png" style="zoom: 90%;">
+</div>
+
+<center>图2 一层的通道级工作负载分配</center>
+
+<p>对于卷积层和全连接层，filter被以<script type="math/tex">p:(1-p)</script>的比例分配给各处理器，完整的输入数据将被分配给各处理器进行计算，最后计算出的输出通道被合并生成输出数据。对于池化层，输入数据被分配给各处理器，每个处理器对自己的数据部分使用全局函数进行计算，最后的结果将被合并。</p>
+<h3 id="3-2-针对处理器的量化"><a href="#3-2-针对处理器的量化" class="headerlink" title="3.2 针对处理器的量化"></a>3.2 针对处理器的量化</h3><p>为了优化每个处理器的性能表现，该文考虑了2种量化方案：16位半精度浮点数（F16）和8位线性量化（QUInt8）。因为GPU在实现高吞吐量的浮点运算方面有本地硬件支持，对GPU使用16位半精度浮点数量化。CPU更擅长处理QUInt8类型的数据，因此对其使用8位线性量化。</p>
+<h3 id="3-3-分支分配"><a href="#3-3-分支分配" class="headerlink" title="3.3 分支分配"></a>3.3 分支分配</h3><p>现有的一些神经网络（如GoogLeNet）包含分支结构，如图3。这些分支可能会影响通道级工作负载分配的性能。而多分支结构的时延可通过并行运行多个分支来隐藏，即同一分支上的多个层将在一个处理器上运行。</p>
+<div align="center">
+    <img src="/2022/10/20/%CE%BCLayer/图片3.png" style="zoom: 100%;">
+</div>
+
+<center>图3 多分支结构神经网络示例</center>
+
+<h3 id="3-4-μLayer运行时架构"><a href="#3-4-μLayer运行时架构" class="headerlink" title="3.4 μLayer运行时架构"></a>3.4 μLayer运行时架构</h3><p>如图4，μLayer由3个部件组成：一个神经网络分割器、一个时延预测器和一个神经网络执行器。</p>
+<div align="center">
+    <img src="/2022/10/20/%CE%BCLayer/图片4.png" style="zoom: 80%;">
+</div>
+
+<center>图4 μLayer运行时架构</center>
+
+<p>神经网络分割器负责协同执行计划的生成，对于每一层，神经网络分割器决定通道分割的比例<script type="math/tex">p(0\leq p \leq 1)</script>，神经网络分割器根据时延预测器找出最优的<script type="math/tex">p</script>值。</p>
+<p>时延预测器能够根据每层神经网络的参数（如输入尺寸和filter尺寸）以及<script type="math/tex">p</script>值预测该层的执行时延。该文在Neurosurgeon<a href="./Neurosurgeon：Collaborative Intelligence Between the Cloud and Mobile Edge.pdf" title="Neurosurgeon">(Paper Link)</a>设计的时延预测器基础上引入参数<script type="math/tex">p</script>，首先对CPU和GPU独立执行运用指数回归方法拟合模型，然后通过给定的<script type="math/tex">p</script>值调整时延预测值。时延预测器将时延预测值反馈给神经网络分割器选出分割方案，最后神经网络执行器根据最优分割方案在CPU和GPU间协同进行神经网络推理。</p>
+<h2 id="4-Comments"><a href="#4-Comments" class="headerlink" title="4. Comments"></a>4. Comments</h2><p>该文致力于通过CPU-GPU协同执行的方式进行高效神经网络推理，设计了一种层级协同推理方法，能够取得一定的性能提升，但仍存在一些问题：</p>
+<blockquote>
+<p>1）该系统中的时延预测器采用机器学习拟合函数，与Neurosurgeon相同，存在精度低的问题；</p>
+<p>2）该CPU-GPU协同方法是层粒度的，存在高频同步的问题，而由于时延预测器的不准确性会造成CPU，GPU的运行差异，同步开销可能会成为时延的主体部分。</p>
+</blockquote>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li>Post title：µLayer：Low Latency On-Device Inference Using Cooperative Single-Layer Acceleration and Processor-Friendly Quantization</li>
+        <li>Post author：Sun Hao</li>
+        <li>Create time：2022-10-20 15:52:42</li>
+        <li>
+            Post link：https://snhao222.github.io/2022/10/20/μLayer/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/10/20/Neurosurgeon/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Neurosurgeon：Collaborative Intelligence Between the Cloud and Mobile Edge</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'AIhtvUXrzUWmPIOmYNjrGExW-gzGzoHsz',
+                    appKey: 'e4HGIfsWiHCnIXco4g7xtuAA',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: 'Add your comments',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Sun Hao';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2022</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Sun Hao</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme
+            &nbsp;
+            <a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.8</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-up-right-and-down-left-from-center"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Background-amp-Motivation"><span class="nav-text">1. Background &amp; Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Contributions"><span class="nav-text">2. Contributions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Design-Details"><span class="nav-text">3. Design Details</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%8D%8F%E5%90%8C%E5%8D%95%E5%B1%82%E5%8A%A0%E9%80%9F"><span class="nav-text">3.1 协同单层加速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E9%92%88%E5%AF%B9%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E9%87%8F%E5%8C%96"><span class="nav-text">3.2 针对处理器的量化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E5%88%86%E6%94%AF%E5%88%86%E9%85%8D"><span class="nav-text">3.3 分支分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%CE%BCLayer%E8%BF%90%E8%A1%8C%E6%97%B6%E6%9E%B6%E6%9E%84"><span class="nav-text">3.4 μLayer运行时架构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Comments"><span class="nav-text">4. Comments</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block-tools.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
