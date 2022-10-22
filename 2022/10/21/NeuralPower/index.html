@@ -9,7 +9,7 @@
     
     <title>
         
-            µLayer：Low Latency On-Device Inference Using Cooperative Single-Layer Acceleration and Processor-Friendly Quantization |
+            NeuralPower |
         
         SnSpace
     </title>
@@ -141,7 +141,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">µLayer：Low Latency On-Device Inference Using Cooperative Single-Layer Acceleration and Processor-Friendly Quantization</span>
+            <span class="title-hover-animation">NeuralPower</span>
         </div>
 
         
@@ -158,8 +158,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-10-20 15:52:42</span>
-        <span class="mobile">2022-10-20 15:52</span>
+        <span class="pc">2022-10-21 18:26:12</span>
+        <span class="mobile">2022-10-21 18:26</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -188,52 +188,110 @@
 
         <div class="article-content markdown-body">
             <blockquote>
-<p> 来        源：EuroSys ‘19: Proceedings of the Fourteenth EuroSys Conference 2019 - March 2019 - Article No.: 45 - Pages 1–15 <a class="link" target="_blank" rel="noopener" href="https://doi.org/10.1145/3302424.3303950">https://doi.org/10.1145/3302424.3303950<i class="fas fa-external-link-alt"></i></a></p>
-<p>原文速递：<a href="./µLayer：Low Latency On-Device Inference Using Cooperative Single-Layer Acceleration and Processor-Friendly Quantization.pdf" title="点击直接下载原文">µLayer: Low Latency On-Device Inference Using Cooperative Single-Layer Acceleration and Processor-Friendly Quantization</a></p>
+<p>来        源：Proceedings of The 9th Asian Conference on Machine Learning, ACML 2017, Seoul, Korea, November 15-17, 2017</p>
+<p>原文速递：<a href="./NeuralPower：Predict and Deploy Energy-Efficient Convolutional Neural Networks.pdf" title="点击直接下载原文">NeuralPower: Predict and Deploy Energy-Efficient Convolutional Neural Networks</a></p>
 </blockquote>
-<h2 id="1-Background-amp-Motivation"><a href="#1-Background-amp-Motivation" class="headerlink" title="1. Background &amp; Motivation"></a>1. Background &amp; Motivation</h2><p>随着神经网络（NN）的发展，移动服务供应商在移动设备上部署了许多服务，比如Google的手写转文字功能、Google的即时翻译、YouTube的视频分割以及Google、Apple等公司的虚拟助手。而为满足这些应用的时延要求，传统的做法是依赖于丰富的云端资源实现的。然而，随着高性能的移动端SoC的出现，完全依赖移动端设备进行神经网络推理成为可能。由于强响应性对移动服务至关重要，高效利用移动设备资源是十分必要的。</p>
-<p>通过更好地利用移动设备硬件资源，对轻量神经网络的几乎实时响应成为可能，但由于时延问题，大部分移动服务仍然依赖云端资源，比如所有实际的虚拟助手都将工作卸载到云端进行语音识别。而现在的Soc上具有多种资源，实现快速准确的设备上推理是可行的。</p>
+<h2 id="1-Background-amp-Motivation"><a href="#1-Background-amp-Motivation" class="headerlink" title="1. Background &amp; Motivation"></a>1. Background &amp; Motivation</h2><p>具有相近性能的网络模型运行时可能存在高达40倍的能耗（图1），为了设计节能的CNN网络，进行准确的时延、能耗预测是至关重要的。然而该文发现现有的性能预测方法存在一些不足：1）通常使用的CNN复杂度指标（如FLOPs）太粗略以至于无法预测真实平台的能耗，运行CNN的能耗不仅与网络结构有关，还需要考虑软硬件平台；2）未能定量地捕捉到CNN架构变化对运行时间、功率和能耗地影响。</p>
+<div align="center">
+    <img src="/2022/10/21/NeuralPower/图片1.png" style="zoom: 100%;">
+</div>
+
+<center>图1 多种CNN架构的测试误差和能耗</center>
+
+<p>该文提出一种CNN时延、功率、能耗预测框架——NeuralPower，不需要在目标平台上实际运行CNN网络就可以在部署阶段预测网络的时延、功率和能耗。</p>
+<div align="center">
+    <img src="/2022/10/21/NeuralPower/图片2.png" style="zoom: 100%;">
+</div>
+
+<center>图2 NeuralPower预测过程</center>
+
 <h2 id="2-Contributions"><a href="#2-Contributions" class="headerlink" title="2. Contributions"></a>2. Contributions</h2><blockquote>
-<p>1）<b>发现协同实现神经网络单层加速的潜力。</b>该文发现现代SoC上的CPU和GPU具有平衡的吞吐量，使CPU-GPU协同神经网络加速成为可能；</p>
-<p>2）<b>提出新的协同单层加速机制。</b>通过从多维度对神经网络执行进行优化，获得相比先进方法的时延降低；</p>
-<p>3）<b>设计μLayer系统。</b>提出一个优化的神经网络架构μLayer用于减小神经网络的执行时延。</p>
+<p>1)提出基于学习的多项式回归方法<em>NeuralPower</em>，是第一个预测CNN能耗的框架；</p>
+<p>2）NeuralPower能够预测CNN运行时间，相比现有方法取得68.5%的准确度提升；</p>
+<p>3）除了网络总体运行时延和能耗的预测，NeuralPower能够分析网络不同部分（每层）的时延和能耗，帮助模型设计人员分析模型瓶颈，更好地平衡精度和能耗。</p>
 </blockquote>
-<h2 id="3-Design-Details"><a href="#3-Design-Details" class="headerlink" title="3. Design Details"></a>3. Design Details</h2><h3 id="3-1-协同单层加速"><a href="#3-1-协同单层加速" class="headerlink" title="3.1 协同单层加速"></a>3.1 协同单层加速</h3><p>如图1(a)、(b)所示，现有移动神经网络框架由于只利用单一处理器限制了性能，而本文提出的框架能够在CPU和GPU上协同执行神经网络中的层。</p>
+<h2 id="3-Design-Details"><a href="#3-Design-Details" class="headerlink" title="3. Design Details"></a>3. Design Details</h2><h3 id="3-1-单层时延和能耗模型"><a href="#3-1-单层时延和能耗模型" class="headerlink" title="3.1 单层时延和能耗模型"></a>3.1 单层时延和能耗模型</h3><p>与其他工作不同，该文的目标是在不需要了解平台详细信息的情况下，使预测模型能够灵活应用到各种软硬件平台。该文提出一个基于学习的多项式回归模型用于学习不同CNN层类型的系数。</p>
+<p><b>层级时延模型：</b>CNN模型一层的运行时延可以被表示为：</p>
 <div align="center">
-    <img src="/2022/10/20/%CE%BCLayer/图片1.png" style="zoom: 100%;">
+    <img src="/2022/10/21/NeuralPower/图片3.png" style="zoom: 80%;">
 </div>
 
-<center>图1 设备上推理机制对比</center>
-
-<p>该文提出通道级工作负载分配方法如图2所示，其可以避免引入CPU和GPU间的冗余计算。</p>
+<p>该模型由两部分组成，第一部分是对输入向量<script type="math/tex">X_T\in \mathbb{R}^{D_T}</script>的多项式函数，<script type="math/tex">x_i</script>是<script type="math/tex">X_T</script>的第<script type="math/tex">i</script>项，<script type="math/tex">q_{ij}</script>是多项式第<script type="math/tex">j</script>项对于<script type="math/tex">x_i</script>的指数，<script type="math/tex">c_j</script>是要学习的系数。<script type="math/tex">X_T</script>包含的层配置参数（如batch尺寸、输入输出尺寸等），对不同层类型，<script type="math/tex">X_T</script>的维度<script type="math/tex">D_T</script>有所不同。第二部分是特殊的多项式项<script type="math/tex">\digamma</script>，封装了每层的物理操作（如内存访问的总次数和浮点运算的总次数），特殊多项式的项数根据层类型变化，<script type="math/tex">c_s^\prime</script>是需要学习的参数。</p>
+<p><b>层级能耗模型：</b>层能耗预测同样使用基于多项式的方法：</p>
 <div align="center">
-    <img src="/2022/10/20/%CE%BCLayer/图片2.png" style="zoom: 90%;">
+    <img src="/2022/10/21/NeuralPower/图片4.png" style="zoom: 80%;">
 </div>
 
-<center>图2 一层的通道级工作负载分配</center>
-
-<p>对于卷积层和全连接层，filter被以<script type="math/tex">p:(1-p)</script>的比例分配给各处理器，完整的输入数据将被分配给各处理器进行计算，最后计算出的输出通道被合并生成输出数据。对于池化层，输入数据被分配给各处理器，每个处理器对自己的数据部分使用全局函数进行计算，最后的结果将被合并。</p>
-<h3 id="3-2-针对处理器的量化"><a href="#3-2-针对处理器的量化" class="headerlink" title="3.2 针对处理器的量化"></a>3.2 针对处理器的量化</h3><p>为了优化每个处理器的性能表现，该文考虑了2种量化方案：16位半精度浮点数（F16）和8位线性量化（QUInt8）。因为GPU在实现高吞吐量的浮点运算方面有本地硬件支持，对GPU使用16位半精度浮点数量化。CPU更擅长处理QUInt8类型的数据，因此对其使用8位线性量化。</p>
-<h3 id="3-3-分支分配"><a href="#3-3-分支分配" class="headerlink" title="3.3 分支分配"></a>3.3 分支分配</h3><p>现有的一些神经网络（如GoogLeNet）包含分支结构，如图3。这些分支可能会影响通道级工作负载分配的性能。而多分支结构的时延可通过并行运行多个分支来隐藏，即同一分支上的多个层将在一个处理器上运行。</p>
+<p>该模型同样由两部分组成，第一部分是输入向量<script type="math/tex">X_P</script>的多项式函数，<script type="math/tex">m_{ij}</script>是多项式第<script type="math/tex">j</script>项对于<script type="math/tex">x_i</script>的指数，<script type="math/tex">z_j</script>是要学习的系数。在模型的第二部分，<script type="math/tex">z_k^\prime</script>为第<script type="math/tex">k</script>项需要学习的系数。</p>
+<p>该文注意到能耗的固有限制（计算负载增加时，能耗不再线性增长，存在一定上限），该文引入输入特征的对数项应对这种趋势以提高准确度。</p>
+<h3 id="3-2-完整模型时延和能耗模型"><a href="#3-2-完整模型时延和能耗模型" class="headerlink" title="3.2 完整模型时延和能耗模型"></a>3.2 完整模型时延和能耗模型</h3><p><b>完整模型时延模型：</b>对于一个<script type="math/tex">N</script>层串行模型，模型总时延可通过<script type="math/tex">n</script>层时延预测值<script type="math/tex">\hat{T}_n</script>的加和获得：</p>
 <div align="center">
-    <img src="/2022/10/20/%CE%BCLayer/图片3.png" style="zoom: 100%;">
+    <img src="/2022/10/21/NeuralPower/图片5.png" style="zoom: 80%;">
 </div>
 
-<center>图3 多分支结构神经网络示例</center>
-
-<h3 id="3-4-μLayer运行时架构"><a href="#3-4-μLayer运行时架构" class="headerlink" title="3.4 μLayer运行时架构"></a>3.4 μLayer运行时架构</h3><p>如图4，μLayer由3个部件组成：一个神经网络分割器、一个时延预测器和一个神经网络执行器。</p>
+<p><b>完整模型功耗模型：</b>平均功耗<script type="math/tex">\hat{P}_{avg}</script>可由下式获得：</p>
 <div align="center">
-    <img src="/2022/10/20/%CE%BCLayer/图片4.png" style="zoom: 80%;">
+    <img src="/2022/10/21/NeuralPower/图片6.png" style="zoom: 80%;">
 </div>
 
-<center>图4 μLayer运行时架构</center>
+<p><b>完整模型能耗模型：</b>整个网络的能耗<script type="math/tex">\hat{E}_{total}</script>可由下式获得：</p>
+<div align="center">
+    <img src="/2022/10/21/NeuralPower/图片7.png" style="zoom: 80%;">
+</div>
 
-<p>神经网络分割器负责协同执行计划的生成，对于每一层，神经网络分割器决定通道分割的比例<script type="math/tex">p(0\leq p \leq 1)</script>，神经网络分割器根据时延预测器找出最优的<script type="math/tex">p</script>值。</p>
-<p>时延预测器能够根据每层神经网络的参数（如输入尺寸和filter尺寸）以及<script type="math/tex">p</script>值预测该层的执行时延。该文在Neurosurgeon<a href="./Neurosurgeon：Collaborative Intelligence Between the Cloud and Mobile Edge.pdf" title="Neurosurgeon">(Paper Link)</a>设计的时延预测器基础上引入参数<script type="math/tex">p</script>，首先对CPU和GPU独立执行运用指数回归方法拟合模型，然后通过给定的<script type="math/tex">p</script>值调整时延预测值。时延预测器将时延预测值反馈给神经网络分割器选出分割方案，最后神经网络执行器根据最优分割方案在CPU和GPU间协同进行神经网络推理。</p>
-<h2 id="4-Comments"><a href="#4-Comments" class="headerlink" title="4. Comments"></a>4. Comments</h2><p>该文致力于通过CPU-GPU协同执行的方式进行高效神经网络推理，设计了一种层级协同推理方法，能够取得一定的性能提升，但仍存在一些问题：</p>
-<blockquote>
-<p>1）该系统中的时延预测器采用机器学习拟合函数，与Neurosurgeon相同，存在精度低的问题；</p>
-<p>2）该CPU-GPU协同方法是层粒度的，存在高频同步的问题，而由于时延预测器的不准确性会造成CPU，GPU的运行差异，同步开销可能会成为时延的主体部分。</p>
+<h3 id="3-3-模型选择"><a href="#3-3-模型选择" class="headerlink" title="3.3 模型选择"></a>3.3 模型选择</h3><p><b>（1）运行时间模型</b></p>
+<p>NeuralPower通过改变多项式模型的次数调整特征空间的尺度，应用Lasso压缩估计为每个多项式模型选择最佳模型，选择具有最低交叉验证均方根误差(RMSE)的模型，如图3，此时选择次数为2的模型更加合理。</p>
+<div align="center">
+    <img src="/2022/10/21/NeuralPower/图片8.png" style="zoom: 100%;">
+</div>
+
+<center>图3 针对全连接层的最优多项式模型和其他多项式次数模型对比</center>
+
+<p><b>卷积层：</b>卷积层是最耗时间和能耗的CNN部件，该文使用3次的多项式模型对该层建模，选择的特征向量包括：batch尺寸、输入tensor尺寸、卷积和尺寸、步长、padding尺寸和输出tensor尺寸。对于特殊项，使用能表示总计算量和内存访问量的多项式。</p>
+<p><b>全连接层：</b>该文使用2次多项式回归模型，特征向量为：batch尺寸、输入tensor尺寸和输出tensor尺寸。</p>
+<p><b>池化层：</b>该文使用3次多项式回归模型，输入的特征向量为：输入tensor尺寸、步长、卷积核尺寸和输出tensor尺寸。</p>
+<p><b>（2）能耗模型</b></p>
+<p>该文使用原始特征的对数形式作为多项式模型的特殊特征，并发现使用2次多项式模型对三种CNN层类型能取得最优交叉验证误差。</p>
+<h3 id="3-4-模型评估"><a href="#3-4-模型评估" class="headerlink" title="3.4 模型评估"></a>3.4 模型评估</h3><p><b>（1）层级运行时间模型</b></p>
+<center><b>表1 NeuralPower的层级时延模型与SOTA方法对比</b></center>
+
+<div align="center">
+    <img src="/2022/10/21/NeuralPower/图片9.png" style="zoom: 100%;">
+</div>
+
+<p><b>（2）层级能耗模型</b></p>
+<center><b>表2 CNN通用层的能耗模型</b></center>
+
+<div align="center">
+    <img src="/2022/10/21/NeuralPower/图片11.png" style="zoom: 67%;">
+</div>
+
+<p><b>（3）完整模型运行时间模型</b></p>
+<p>该文完整模型运行时间的计算建模为各层时延的加和：</p>
+<center><b>表3 完整模型时延预测性能对比</b></center>
+
+<div align="center">
+    <img src="/2022/10/21/NeuralPower/图片12.png" style="zoom: 100%;">
+</div>
+
+<p>该文发现<b>各层运行时延的加和与完整模型运行时延相近。</b></p>
+<p><b>（4）完整模型能耗模型</b></p>
+<center><b>表4 完整模型功耗预测性能</b></center>
+
+<div align="center">
+    <img src="/2022/10/21/NeuralPower/图片13.png" style="zoom: 100%;">
+</div>
+
+<center><b>表5 完整模型能耗预测性能</b></center>
+
+<div align="center">
+    <img src="/2022/10/21/NeuralPower/图片14.png" style="zoom: 100%;">
+</div>
+
+<h2 id="4-Comments"><a href="#4-Comments" class="headerlink" title="4. Comments"></a>4. Comments</h2><blockquote>
+<p>1）该文考虑到其他基于单网络复杂度指标（e.g. FLOPs）方法的局限性，该文提出基于多项式模型的模型性能预测方法；</p>
+<p>2）该文不仅进行了模型运行时延预测，还设计了能耗的预测方法；</p>
+<p>3）该文的完整模型时延预测是对各层时延的加和，实验发现各层运行时延的加和与完整模型运行时延相近，该说法是否可靠还待考究。</p>
 </blockquote>
 
         </div>
@@ -242,11 +300,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul class="copyright-info-content">
-        <li>Post title：µLayer：Low Latency On-Device Inference Using Cooperative Single-Layer Acceleration and Processor-Friendly Quantization</li>
+        <li>Post title：NeuralPower</li>
         <li>Post author：Sun Hao</li>
-        <li>Create time：2022-10-20 15:52:42</li>
+        <li>Create time：2022-10-21 18:26:12</li>
         <li>
-            Post link：https://snhao222.github.io/2022/10/20/μLayer/
+            Post link：https://snhao222.github.io/2022/10/21/NeuralPower/
         </li>
         <li>
             Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
@@ -262,29 +320,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/10/21/NeuralPower/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">NeuralPower</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/10/20/Neurosurgeon/"
+                           href="/2022/10/20/%CE%BCLayer/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Neurosurgeon：Collaborative Intelligence Between the Cloud and Mobile Edge</span>
+                                <span class="post-nav-title-item">µLayer：Low Latency On-Device Inference Using Cooperative Single-Layer Acceleration and Processor-Friendly Quantization</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -484,7 +527,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Background-amp-Motivation"><span class="nav-text">1. Background &amp; Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Contributions"><span class="nav-text">2. Contributions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Design-Details"><span class="nav-text">3. Design Details</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%8D%8F%E5%90%8C%E5%8D%95%E5%B1%82%E5%8A%A0%E9%80%9F"><span class="nav-text">3.1 协同单层加速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E9%92%88%E5%AF%B9%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E9%87%8F%E5%8C%96"><span class="nav-text">3.2 针对处理器的量化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E5%88%86%E6%94%AF%E5%88%86%E9%85%8D"><span class="nav-text">3.3 分支分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%CE%BCLayer%E8%BF%90%E8%A1%8C%E6%97%B6%E6%9E%B6%E6%9E%84"><span class="nav-text">3.4 μLayer运行时架构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Comments"><span class="nav-text">4. Comments</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Background-amp-Motivation"><span class="nav-text">1. Background &amp; Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Contributions"><span class="nav-text">2. Contributions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Design-Details"><span class="nav-text">3. Design Details</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%8D%95%E5%B1%82%E6%97%B6%E5%BB%B6%E5%92%8C%E8%83%BD%E8%80%97%E6%A8%A1%E5%9E%8B"><span class="nav-text">3.1 单层时延和能耗模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%AE%8C%E6%95%B4%E6%A8%A1%E5%9E%8B%E6%97%B6%E5%BB%B6%E5%92%8C%E8%83%BD%E8%80%97%E6%A8%A1%E5%9E%8B"><span class="nav-text">3.2 完整模型时延和能耗模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9"><span class="nav-text">3.3 模型选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0"><span class="nav-text">3.4 模型评估</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Comments"><span class="nav-text">4. Comments</span></a></li></ol>
     </div>
 </div>
         </aside>
