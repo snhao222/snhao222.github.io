@@ -420,7 +420,6 @@
 <h4 id="5-2-1-ImageFolder"><a href="#5-2-1-ImageFolder" class="headerlink" title="5.2.1 ImageFolder"></a>5.2.1 ImageFolder</h4><p>当文件依据标签处于不同文件下时，如：<br>─── data<br>    ├── zhangliu<br>    │   ├── 001.jpg<br>    │   └── 002.jpg<br>    ├── wuhua<br>    │   ├── 001.jpg<br>    │   └── 002.jpg<br>    ……………..<br>可以利用torchvision.datasets.ImageFolder来直接构造出dataset：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">loader = datasets.ImageFolder(path, transform=<span class="literal">None</span>)</span><br><span class="line">loader = data.DataLoader(dataset)</span><br></pre></td></tr></table></figure>
 <p>ImageFolder会将目录中的文件夹名自动转化成序列，当DataLoader载入时，标签自动就是整数序列了。</p>
-<p>ImageFolder会将目录中的文件夹名自动转化成序列，当DataLoader载入时，标签自动就是整数序列了。</p>
 <h4 id="5-2-2-transforms"><a href="#5-2-2-transforms" class="headerlink" title="5.2.2 transforms"></a>5.2.2 transforms</h4><p>transforms提供了对PIL Image对象和Tensor对象的常用操作。</p>
 <p>（1）对PIL Image的常见操作</p>
 <blockquote>
