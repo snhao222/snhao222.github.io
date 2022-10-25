@@ -271,6 +271,7 @@ body {
   font-family: Optima-Regular, Optima, -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial;
   line-height: 22px;
   background: var(--background-color);
+  text-decoration: none;
 }
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
@@ -546,7 +547,7 @@ button {
   display: block;
   box-sizing: border-box;
   max-width: 100%;
-  box-shadow: 0 0 0.2rem var(--shadow-color);
+  box-shadow: 0 0 0rem var(--shadow-color);
   cursor: zoom-in;
   transition-delay: 0s, 0s, 0s, 0s, 0s, 0s;
   transition-timing-function: ease, ease, ease, ease, linear, linear;
@@ -2161,6 +2162,7 @@ pre .javascript .function {
   padding: 2rem;
   background: var(--background-color);
   border-radius: 5px;
+  text-decoration: none;
   margin-bottom: 2rem;
   box-shadow: 2px 2px 5px var(--shadow-color);
 }
@@ -2293,6 +2295,7 @@ pre .javascript .function {
   padding: 2rem;
   background: var(--background-color);
   border-radius: 5px;
+  text-decoration: none;
   box-shadow: 2px 2px 5px var(--shadow-color);
 }
 @media (max-width: 780px) {
@@ -2444,6 +2447,7 @@ pre .javascript .function {
   padding: 28px;
   background: var(--background-color);
   border-radius: 5px;
+  text-decoration: none;
   margin-bottom: 38px;
   box-shadow: 2px 2px 5px var(--shadow-color);
   transition-delay: 0s, 0s, 0s, 0s, 0s;
@@ -2558,6 +2562,7 @@ pre .javascript .function {
   padding: 2rem;
   background: var(--background-color);
   border-radius: 5px;
+  text-decoration: none;
   margin-bottom: 2rem;
   box-shadow: 2px 2px 5px var(--shadow-color);
 }
@@ -2588,6 +2593,7 @@ pre .javascript .function {
   padding: 2rem;
   background: var(--background-color);
   border-radius: 5px;
+  text-decoration: none;
   margin-bottom: 2rem;
   box-shadow: 2px 2px 5px var(--shadow-color);
 }
@@ -2746,6 +2752,7 @@ pre .javascript .function {
   padding: 10px;
   background: var(--background-color);
   border-radius: 5px;
+  text-decoration: none;
   box-shadow: 2px 2px 5px var(--shadow-color);
   transition-delay: 0s, 0s, 0s, 0s, 0s;
   transition-timing-function: ease, ease, ease, ease, linear;
@@ -2831,6 +2838,7 @@ pre .javascript .function {
   padding: 2rem;
   background: var(--background-color);
   border-radius: 5px;
+  text-decoration: none;
   margin-bottom: 2rem;
   box-shadow: 2px 2px 5px var(--shadow-color);
 }
@@ -2882,6 +2890,7 @@ pre .javascript .function {
   padding: 2rem;
   background: var(--background-color);
   border-radius: 5px;
+  text-decoration: none;
   margin-bottom: 2rem;
   box-shadow: 2px 2px 5px var(--shadow-color);
 }
@@ -2933,6 +2942,7 @@ pre .javascript .function {
   padding: 1.5rem;
   background: var(--background-color);
   border-radius: 5px;
+  text-decoration: none;
   box-shadow: 2px 2px 5px var(--shadow-color);
 }
 @media (max-width: 780px) {
