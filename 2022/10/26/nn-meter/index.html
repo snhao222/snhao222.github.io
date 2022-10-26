@@ -9,7 +9,7 @@
     
     <title>
         
-            Topic1：Is Accurate and Light-weight DNN Multi-layer Latency Prediction Possible? |
+            nn-Meter：Towards Accurate Latency Prediction of Deep-Learning Model Inference on Diverse Edge Devices |
         
         SnSpace
     </title>
@@ -141,7 +141,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Topic1：Is Accurate and Light-weight DNN Multi-layer Latency Prediction Possible?</span>
+            <span class="title-hover-animation">nn-Meter：Towards Accurate Latency Prediction of Deep-Learning Model Inference on Diverse Edge Devices</span>
         </div>
 
         
@@ -158,8 +158,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-10-22 17:40:11</span>
-        <span class="mobile">2022-10-22 17:40</span>
+        <span class="pc">2022-10-26 16:30:20</span>
+        <span class="mobile">2022-10-26 16:30</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -167,7 +167,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/Topic-Corner/">Topic Corner</a>&nbsp;
+                        <a href="/categories/Paper-Notes/">Paper Notes</a>&nbsp;
                     </li>
                 
             </ul>
@@ -191,129 +191,52 @@
         
 
         <div class="article-content markdown-body">
-            <html lang="en">
+            <blockquote>
+<p>来        源：MobiSys ‘21: Proceedings of the 19th Annual International Conference on Mobile Systems, Applications, and ServicesJune 2021 Pages 81–93<a class="link" target="_blank" rel="noopener" href="https://doi.org/10.1145/3458864.3467882">https://doi.org/10.1145/3458864.3467882<i class="fas fa-external-link-alt"></i></a></p>
+<p>原文速递：<a href="./nn-Meter-Towards-Accurate-Latency-Prediction-of-Deep-Learning-Model-Inference-on-Diverse-Edge-Devices.pdf" title="点击直接下载原文">nn-Meter：Towards Accurate Latency Prediction of Deep-Learning Model</a></p>
+</blockquote>
+<center>（2021 MobiSys Best Paper）</center>
 
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <style>
-        .head{
-            position: relative;
-            padding: 10px;
-        }
-        .bl{
-            box-shadow: 0 4px 8px 0 #1D2088;
-            font-size: 20px;
-            text-align: left;
-            background-color: #fff;
-            border-radius: 7px;
-            position: relative;
-            margin: 0px;
-            padding: 20px;
-            line-height: 1.5em;
-            text-decoration: none;
-            a{ text-decoration: none};
-        }
+<h2 id="1-Background-amp-Motivation"><a href="#1-Background-amp-Motivation" class="headerlink" title="1. Background &amp; Motivation"></a>1. Background &amp; Motivation</h2><p>设计一个高准确度、高效的DNN模型，需要得到准确的不同模型在部署中的推理时延。然而，测量DNN模型的推理时延是繁琐且昂贵的，推理时延可能会受到设备类型、模型框架的影响，模型推理时延的预测成为了一种重要的手段。但直接进行模型级别的预测，其搜索空间又太大：假设一个具有N个节点的模型，每个节点有D个特征，在模型DAG图中最多存在N×(N-1)条边，则整个预测空间中一共有多达DN×N×(N-1)个模型，这就需要寻找更细粒度的方法。<br>尽管DNN网络大量出现，但基础算子类型仍然很少，比如卷积、激活函数、全连接层、BatchNorm和element-wise算子。虽然算子级预测是一种细粒度方法，但它并不能捕捉不同设备上的图级别（graph level）优化，如图1所示。这些较稳定的基础算子又进一步根据推理平台的优化构成了内核（kernel），任何DNN的都是由这些基础内核构成的。</p>
+<div align="center">
+ <img src="/2022/10/26/nn-meter/图片1.png" style="zoom: 60%;">
+</div>
 
-        .button {
-          display: inline-block;
-          padding: 5px 15px;
-          font-size: 14px;
-          cursor: pointer;
-          text-align: center;   
-          text-decoration: none;
-          outline: none;
-          color: #000000;
-          background-color: #C9D7F3;
-          border: 0px solid #ffffff;
-          border-radius: 8px;
-          box-shadow: 0 4px 4px  #1D2088;
-          a { text-decoration: none};
-        }
-        .button:hover {background-color: #B4C7EE
-        text-decoration: none;
-        a { text-decoration: none}; 
-        }
+<center>图1 DNN框架的图优化</center>
 
-        .button:active {
-          background-color: #ffffff;
-          box-shadow: 0 3px 4px #1D2088;
-          transform: translateY(2px);
-          text-decoration: none;
-          a { text-decoration: none};
-        }
-        p {font-size: 14px;};
-        a { text-decoration: none;} ;
-        a: hover{ text-decoration: none;};
-    </style>
-</head>
-<body>
-    <div class="head">
-        <img src="/2022/10/22/Topic1/图片1.png" style="zoom: 100%;">
-        
-    <div><br>
-    <div class="bl">
-        <b>CoDL：Efficient CPU-GPU Co-execution for Deep Learning Inference on Mobile Devices</b>
-        <hr>
-        <p>本文提出了一个在移动设备的CPU和GPU上协同执行模型推理的系统架构和方法，许多方法的提出基于作者对大量实验现象的观察。通过联系实验现象和系统基本特性，该文实现了针对于移动设备的准确且轻量的时延预测。同时，该文数据分割和算子链的设计也具有启发意义。</p>
+<h2 id="2-Contributions"><a href="#2-Contributions" class="headerlink" title="2. Contributions"></a>2. Contributions</h2><blockquote>
+<p>1）提出了nn-Meter，一种在边缘设备上准确预测CNN模型推理时延的系统；</p>
+<p>2）设计了nn-Meter的两个关键技术：内核检测器，用于捕获边缘设备上的各种算子融合行为。自适应采样，用于减少构建时延预测器的计算量；</p>
+<p>3）使用nn-Meter在手机CPU、手机GPU和Intel VPU上进行实验，结果显示，nn-Meter在多种设备和模型上都取得了相比现有方法更好的预测准确度。</p>
+</blockquote>
+<h2 id="3-Design-Details"><a href="#3-Design-Details" class="headerlink" title="3. Design Details"></a>3. Design Details</h2><p>图2为nn-Meter的系统结构，包括内核检测和自适应数据采样，它离线检测了算子融合规则并且构建了内核级的预测器。</p>
+<div align="center">
+ <img src="/2022/10/26/nn-meter/图片2.png" style="zoom: 60%;">
+</div>
 
-​        
+<center>图2 nn-Meter系统结构</center>
 
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/13/CoDL%EF%BC%9AEfficient%20CPU-GPU%20Co-execution%20for%20Deep%20Learning%20Inference%20on%20Mobile%20Devices/">
-        <button class="button">Paper Note</button></a>
-        &nbsp
-        <a href="./CoDL efficient CPU-GPU co-execution for deep learning inference on mobile devices.pdf">
-        <button class="button">Paper Link</button></a>
-    </div>
-    <br>
-    <div class="bl">
-        <b>Neurosurgeon：Collaborative Intelligence Between the Cloud and Mobile Edge</b>
-        <hr>
-        <p>1）性能预测器准确度无法保证。该系统的性能预测器仅仅针对对不同层参数构建简单的线性或指数回归模型，虽然该模型执行很快，但如此简单的预测方法难以获得高预测精度，而较低的预测精度势必影响DNN分割算法的效果；<br>
+<h3 id="3-1-内核检测"><a href="#3-1-内核检测" class="headerlink" title="3.1 内核检测"></a>3.1 内核检测</h3><p>内核检测可以自动识别部署平台的算子融合规则，从而基于这些规则检测模型中的所有内核。nn-Meter 会离线收集所有融合规则，进行在线模型预测时，内核搜索算法则会将这些规则递归地应用于目标模型来找到所有内核，图3为内核检测的一个示例。</p>
+<div align="center">
+ <img src="/2022/10/26/nn-meter/图片3.png" style="zoom: 60%;">
+</div>
 
-2）对多层网络的性能预测不准确。该文仅使用每层网络时延和能耗的加和表示多层的性能，而实验表明运行多层网络的时延和能耗往往低于每层网络的加和，由错误的性能预测数据确定DNN分割点很难得到最优方案。</p>
+<center>图3 ResNet18内核检测示例</center>
 
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/20/Neurosurgeon/">
-        <button class="button">Paper Note</button></a>
-        &nbsp
-        <a href="./Neurosurgeon：Collaborative Intelligence Between the Cloud and Mobile Edge.pdf">
-        <button class="button">Paper Link</button></a>
-    </div>
+<h3 id="3-2-自适应数据采样"><a href="#3-2-自适应数据采样" class="headerlink" title="3.2 自适应数据采样"></a>3.2 自适应数据采样</h3><p>自适应数据采样用于训练内核级时延预测器，由于某些内核所具有的数据采样空间巨大，例如 Conv+bn+relu 的采样空间已达到千万数量级，该方法通过迭代采样过程对最有益的配置进行采样，离线为目标设备上的所有内核构建机器学习预测器。</p>
+<div align="center">
+ <img src="/2022/10/26/nn-meter/图片4.png" style="zoom: 60%;">
+</div>
 
-    <br>
-    <div class="bl">
-        <b>µLayer：Low Latency On-Device Inference Using Cooperative Single-Layer Acceleration and Processor-Friendly Quantization</b>
-        <hr>
-        <p>该文致力于通过CPU-GPU协同执行的方式进行高效神经网络推理，设计了一种层级协同推理方法，能够取得一定的性能提升，但仍存在一些问题：<br>
-        1）该系统中的时延预测器采用机器学习拟合函数，与Neurosurgeon相同，存在精度低的问题；<br>
+<center>图4 多种输出通道数下Conv+bn+relu内核的推理时延</center>
 
-2）该CPU-GPU协同方法是层粒度的，存在高频同步的问题，而由于时延预测器的不准确性会造成CPU，GPU的运行差异，同步开销可能会成为时延的主体部分。</p>
+<p>如图4所示，随机采样会丢失很多真实的细节信息，该方法采用自适应采样在误差较大的点附近进行更细粒度的数据采样。最后，nn-Meter采用了随机森林回归来预测非线性的内核级延迟，使用内核的延迟总和计算整个模型的延迟</p>
+<div align="center">
+ <img src="/2022/10/26/nn-meter/图片5.png" style="zoom: 70%;">
+</div>
 
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/20/%CE%BCLayer/">
-        <button class="button">Paper Note</button></a>
-        &nbsp
-        <a href="./µLayer：Low Latency On-Device Inference Using Cooperative Single-Layer Acceleration and Processor-Friendly Quantization.pdf">
-        <button class="button">Paper Link</button></a>
-    </div>
+<h2 id="4-Comments"><a href="#4-Comments" class="headerlink" title="4. Comments"></a>4. Comments</h2><p>该文章考虑了内核级别的时延估计，相比之前的工作更加深入研究了模型在实际设备上的推理机制，考虑了框架和设备对模型的加速优化问题，该方法不仅能够用来预测整个模型的推理时延，也可以预测任意几层的推理时延。但部分工作中提到nn-meter存在内存占用量大的问题，难以在移动设备上装载。</p>
 
-    <br>
-    <div class="bl">
-        <b>NeuralPower：Predict and Deploy Energy-Efficient Convolutional Neural Networks</b>
-        <hr>
-        <p>1）该文考虑到其他基于单网络复杂度指标（e.g. FLOPs）方法的局限性，该文提出基于多项式模型的模型性能预测方法；<br>
-
-2）该文不仅进行了模型运行时延预测，还设计了能耗的预测方法；<br>
-
-3）该文的完整模型时延预测是对各层时延的加和，实验发现各层运行时延的加和与完整模型运行时延相近，该说法是否可靠还待考究。</p>
-
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/21/NeuralPower/">
-        <button class="button">Paper Note</button></a>
-        &nbsp
-        <a href="./NeuralPower：Predict and Deploy Energy-Efficient Convolutional Neural Networks.pdf">
-        <button class="button">Paper Link</button></a>
-    </div>
-</div></div></body>
-</html>
         </div>
 
         
@@ -335,29 +258,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/10/26/nn-meter/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">nn-Meter：Towards Accurate Latency Prediction of Deep-Learning Model Inference on Diverse Edge Devices</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/10/22/PyTorch%E5%9F%BA%E7%A1%80/"
+                           href="/2022/10/22/Topic1/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">PyTorch基础</span>
+                                <span class="post-nav-title-item">Topic1：Is Accurate and Light-weight DNN Multi-layer Latency Prediction Possible?</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -568,7 +476,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Background-amp-Motivation"><span class="nav-text">1. Background &amp; Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Contributions"><span class="nav-text">2. Contributions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Design-Details"><span class="nav-text">3. Design Details</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%86%85%E6%A0%B8%E6%A3%80%E6%B5%8B"><span class="nav-text">3.1 内核检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E8%87%AA%E9%80%82%E5%BA%94%E6%95%B0%E6%8D%AE%E9%87%87%E6%A0%B7"><span class="nav-text">3.2 自适应数据采样</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Comments"><span class="nav-text">4. Comments</span></a></li></ol>
     </div>
 </div>
         </aside>
