@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Sun Hao">
+    
+    <title>
+        
+            Linux基础 |
+        
+        SnSpace
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Slogo.svg">
+    
+<link rel="stylesheet" href="/fontawesome/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"snhao222.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","logo":"/images/Slogo.svg","favicon":"/images/Slogo.svg","avatar":"/images/HeadImage.svg","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"S  n  S  p  a  c  e","font_color":null,"hitokoto":{"enable":false}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block_tools":{"enable":true,"style":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.8"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/Slogo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               SnSpace
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Linux基础</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/HeadImage.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Sun Hao</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-10-29 09:02:17</span>
+        <span class="mobile">2022-10-29 09:02</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Learning-Materials/">Learning Materials</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1. 引言"></a>1. 引言</h2><p>Linux内核最初是由李纳斯·托瓦兹（Linus Torvalds）在赫尔辛基大学读书时出于个人爱好而编写的，当时他觉得教学用的迷你版UNIX操作系统Minix太难用了，于是决定自己开发一个操作系统。第一个版本于1991年9月发布，当时仅有10000行代码。</p>
+<p>李纳斯·托瓦兹没有保留Linux源代码的版权，公开了代码，并邀请他人一起完善Linux。与Windows及其他有专利权的操作系统不同，Linux开放源代码，任何人都可以免费使用它。</p>
+<p>据估计，现在只有2%的Linux核心代码是由李纳斯·托瓦兹自己编写的，虽然他仍然拥有Linux内核（操作系统的核心部分），并且保留了选择新代码和需要合并的新方法的最终裁定权。现在大家所使用的Linux，笔者更倾向于说是由李纳斯·托瓦兹和后来陆续加入的众多Linux爱好者共同开发完成的。</p>
+<p>Linux受到广大计算机爱好者的喜爱，主要原因有两个：一是它属于开源软件，用户不用支付任何费用就可以获得它和它的源代码，并且可以根据自己的需要对它进行必要的修改，无偿使用，无约束地继续传播；二是它具有UNIX的全部功能，任何使用UNIX操作系统或想要学习UNIX操作系统的人都可以从Linux中获益。</p>
+<p>开源软件是不同于商业软件的一种模式，从字面上理解，就是开放源代码，大家不用担心里面会搞什么猫腻，这会带来软件的革新和安全。</p>
+<p>另外，开源其实并不等同于免费，而是一种新的软件盈利模式。目前很多软件都是开源软件，对计算机行业与互联网影响深远。</p>
+<p>UNIX/Linux系统可以粗糙地抽象为3个层次（所谓粗糙，就是不够细致、精准，但是便于初学者抓住重点理解），如图1所示。底层是UNIX/Linux操作系统，一般称之为系统内核（Kernel）；中间层是Shell层，即命令解释层；高层则是应用层。</p>
+<div align="center">
+    <img src="/2022/10/29/Linux%E5%9F%BA%E7%A1%80/图片1.png" style="zoom: 40%;">
+</div>
+
+<center>图1 UNIX/Linux系统结构层次概要</center>
+
+<h3 id="1-1-内核层"><a href="#1-1-内核层" class="headerlink" title="1.1 内核层"></a>1.1 内核层</h3><p>内核层是UNIX/Linux系统的核心和基础，它直接附着在硬件平台之上，控制和管理系统内各种资源（硬件资源和软件资源），有效地组织进程的运行，从而扩展硬件的功能，提高资源的利用效率，为用户提供方便、高效、安全、可靠的应用环境。</p>
+<h3 id="1-2-Shell层"><a href="#1-2-Shell层" class="headerlink" title="1.2 Shell层"></a>1.2 Shell层</h3><p>Shell层是与用户直接交互的界面。用户可以在提示符下输入命令行，由Shell解释执行并输出相应结果或者有关信息，所以我们也把Shell称作命令解释器，利用系统提供的丰富命令可以快捷而简便地完成许多工作。</p>
+<h3 id="1-3-应用层"><a href="#1-3-应用层" class="headerlink" title="1.3 应用层"></a>1.3 应用层</h3><p>应用层提供基于X Window协议的图形环境。X Window协议定义了一个系统所必须具备的功能（就如同TCP/IP是一个协议，定义软件所应具备的功能），任何系统能满足此协议及符合X协会其他的规范，便可称为X Window。</p>
+<p>现在大多数的UNIX系统上（包括Solaris、HP-UX、AIX等）都可以运行CDE（Common Desktop Environment，通用桌面环境，是运行于UNIX的商业桌面环境）的用户界面；而在Linux上广泛应用的有Gnome、KDE等。</p>
+<p>X Window与微软的Windows图形环境有很大的区别：UNIX/Linux系统与X Window没有必然捆绑的关系，也就是说，UNIX/Linux可以安装X Window，也可以不安装；而微软的Windows图形环境与内核捆绑密切。UNIX/Linux系统不依赖图形环境，依然可以通过命令行完成100%的功能，而且因为不使用图形环境还会节省大量的系统资源。</p>
+<h2 id="2-Linux常用命令"><a href="#2-Linux常用命令" class="headerlink" title="2. Linux常用命令"></a>2. Linux常用命令</h2><h3 id="2-1-命令的基本格式"><a href="#2-1-命令的基本格式" class="headerlink" title="2.1 命令的基本格式"></a>2.1 命令的基本格式</h3><h4 id="2-1-1-命令提示符"><a href="#2-1-1-命令提示符" class="headerlink" title="2.1.1 命令提示符"></a>2.1.1 命令提示符</h4><p>登录系统后，第一眼看到的内容是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]#</span><br></pre></td></tr></table></figure>
+<p>这就是Linux系统的命令提示符。</p>
+<blockquote>
+<p>●[]：这是提示符的分隔符号，没有特殊含义。<br>●root：显示的是当前的登录用户，超哥现在使用的是root用户登录。<br>●@：分隔符号，没有特殊含义。<br>●localhost：当前系统的简写主机名（完整主机名是localhost.localdomain）。<br>●~：代表用户当前所在的目录，此例中用户当前所在的目录是家目录。<br>●#：命令提示符，Linux用这个符号标识登录的用户权限等级。如果是超级用户，提示符就是#；如果是普通用户，提示符就是$。<br>家目录是什么？Linux系统是纯字符界面，用户登录后，要有一个初始登录的位置，这个初始登录位置就称为用户的家。<br>●超级用户的home目录：/root/。<br>●普通用户的home目录：/home/用户名/。</p>
+</blockquote>
+<p>用户在自己的home目录中拥有完整权限，现在切换一下用户所在目录，看看有什么效果。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cd /usr/local/</span><br><span class="line">[root@localhost local]#</span><br></pre></td></tr></table></figure>
+<p>如果切换用户所在目录，那么命令提示符中的“~”会变成用户当前所在目录的最后一个目录（不显示完整的所在目录/usr/local/，只显示最后一个目录local）。</p>
+<h4 id="2-1-2命令的基本格式"><a href="#2-1-2命令的基本格式" class="headerlink" title="2.1.2命令的基本格式"></a>2.1.2命令的基本格式</h4><p>Linux命令的基本格式为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# 命令 [选项] [参数]</span><br></pre></td></tr></table></figure>
+<p>命令格式中的[]代表可选项，也就是有些命令可以不写选项或参数，也能执行。下面用Linux中最常见的ls命令来解释一下命令的格式。如果按照命令的分类，那么ls命令应该属于目录操作命令。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ls</span><br><span class="line">anaconda-ks.cfg  install.log  install.log.syslog</span><br></pre></td></tr></table></figure>
+<p><b>1）选项的作用</b><br>ls命令之后不加选项和参数也能执行，不过只能执行最基本的功能，即显示当前目录下的文件名。那么加入一个选项，会出现什么结果？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ls -l</span><br><span class="line">总用量 44</span><br><span class="line">-rw-------. 1 root root  1207 1月  14 18:18 anaconda-ks.cfg</span><br><span class="line">-rw-r--r--. 1 root root 24772 1月  14 18:17 install.log</span><br><span class="line">-rw-r--r--. 1 root root  7690 1月  14 18:17 install.log.syslog</span><br></pre></td></tr></table></figure>
+<p>如果加一个“-l”选项，则可以看到显示的内容明显增多了。“-l”是长格式（long list）的意思，也就是显示文件的详细信息。至于“-l”选项的具体含义，我们稍后再详细讲解。可以看到选项的作用是调整命令功能。如果没有选项，那么命令只能执行最基本的功能；而一旦有选项，则可以显示更加丰富的数据。</p>
+<p>Linux的选项又分为短格式选项（-l）和长格式选项（—all）。短格式选项是英文的简写，一般用一个减号调用，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ls -l</span><br></pre></td></tr></table></figure>
+<p>而长格式选项是英文完整单词，一般用两个减号调用，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ls --all</span><br></pre></td></tr></table></figure>
+<p>一般情况下，短格式选项是长格式选项的缩写，也就是一个短格式选项会有对应的长格式选项。当然也有例外，比如ls命令的短格式选项-l就没有对应的长格式选项。所以具体的命令选项可以通过后面我们要学习的帮助命令来进行查询。</p>
+<p><b>2）参数的作用</b></p>
+<p>参数是命令的操作对象，一般文件、目录、用户和进程等可以作为参数被命令操作。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> [root@localhost ~]# ls -l anaconda-ks.cfg</span><br><span class="line">-rw-------. 1 root root 1207 1月  14 18:18 anaconda-ks.cfg</span><br></pre></td></tr></table></figure>
+<p>但是为什么一开始ls命令可以省略参数？那是因为有默认参数。命令一般都需要加入参数，用于指定命令操作的对象是谁。如果可以省略参数，则一般都有默认参数。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@localhost ~]# ls</span><br><span class="line">anaconda-ks.cfg  install.log  install.log.syslog</span><br></pre></td></tr></table></figure>
+<p>这个ls命令后面没有指定参数，默认参数是当前所在位置，所以会显示当前目录下的文件名。</p>
+<blockquote>
+<p>总结一下：命令的选项用于调整命令功能，而命令的参数是这个命令的操作对象。</p>
+</blockquote>
+<h3 id="2-2-目录操作命令"><a href="#2-2-目录操作命令" class="headerlink" title="2.2 目录操作命令"></a>2.2 目录操作命令</h3><h4 id="2-2-1-ls命令"><a href="#2-2-1-ls命令" class="headerlink" title="2.2.1 ls命令"></a>2.2.1 ls命令</h4><p>ls是最常见的目录操作命令，主要作用是显示目录下的内容。这个命令的基本信息如下：</p>
+<blockquote>
+<p>●命令名称：ls。<br>●英文原意：list。<br>●所在路径：/bin/ls。<br>●执行权限：所有用户。<br>●功能描述：显示目录下的内容。</p>
+</blockquote>
+<p><b>1）命令格式</b></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]#ls [选项] [文件名或目录名]</span><br><span class="line">选项：</span><br><span class="line">    -a:             显示所有文件</span><br><span class="line">    --color=when:   支持颜色输出，when的值默认是always（总显示颜色），也可以是</span><br><span class="line">                    never（从不显示颜色）和auto（自动）</span><br><span class="line">    -d:            显示目录信息，而不是目录下的文件</span><br><span class="line">    -h:            人性化显示，按照我们习惯的单位显示文件大小</span><br><span class="line">    -i:            显示文件的i节点号</span><br><span class="line">    -l:            长格式显示</span><br></pre></td></tr></table></figure>
+<p><b>2）常见用法</b></p>
+<p>“-l”选项</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ls -l</span><br><span class="line">总用量 44</span><br><span class="line">-rw-------. 1 root root  1207 1月  14 18:18 anaconda-ks.cfg</span><br><span class="line">-rw-r--r--. 1 root root 24772 1月  14 18:17 install.log</span><br><span class="line">-rw-r--r--. 1 root root  7690 1月  14 18:17 install.log.syslog</span><br><span class="line">#权限   引用计数所有者所属组大小文件修改时间  文件名</span><br></pre></td></tr></table></figure>
+<p>我们已经知道“-l”选项用于显示文件的详细信息，那么“-l”选项显示的这7列分别是什么含义？</p>
+<blockquote>
+<p>●第一列：权限。具体权限的含义将在4.5节中讲解。<br>●第二列：引用计数。文件的引用计数代表该文件的硬链接个数，而目录的引用计数代表该目录有多少个一级子目录。<br>●第三列：所有者，也就是这个文件属于哪个用户。默认所有者是文件的建立用户<br>●第四列：所属组。默认所属组是文件建立用户的有效组，一般情况下就是建立用户的所在组。<br>●第五列：大小。默认单位是字节。<br>●第六列：文件修改时间。文件状态修改时间或文件数据修改时间都会更改这个时间，注意这个时间不是文件的创建时间。<br>●第七列：文件名。</p>
+</blockquote>
+<h4 id="2-2-2-cd命令"><a href="#2-2-2-cd命令" class="headerlink" title="2.2.2 cd命令"></a>2.2.2 cd命令</h4><p>cd是切换所在目录的命令，这个命令的基本信息如下。</p>
+<blockquote>
+<p>●命令名称：cd。<br>●英文原意：change directory。<br>●所在路径：Shell内置命令。<br>●执行权限：所有用户。<br>●功能描述：切换所在目录。</p>
+</blockquote>
+<p>Linux的命令按照来源方式分为两种：Shell内置命令和外部命令。所谓Shell内置命令，就是Shell自带的命令，这些命令是没有执行文件的；而外部命令就是由程序员单独开发的，是外来命令，所以会有命令的执行文件。Linux中的绝大多数命令是外部命令，而cd命令是一个典型的Shell内置命令，所以cd命令没有执行文件所在路径。<br><b>1）命令格式</b></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]#cd [目录名]</span><br></pre></td></tr></table></figure>
+<p><b>2）常见用法</b></p>
+<p>例1：基本用法</p>
+<p>cd命令切换目录只需在命令后加目录名称即可。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cd /usr/local/src/</span><br><span class="line">[root@localhost src]#</span><br><span class="line">#进入/usr/local/src/目录</span><br></pre></td></tr></table></figure>
+<p>通过命令提示符，我们可以确定当前所在目录已经切换。</p>
+<p>例2：简化用法</p>
+<p>cd命令可以识别一些特殊符号，用于快速切换所在目录，这些符号如表1所示。</p>
+<center><b>表1 cd命令简化用法</b></center>
+
+<div align="center">
+    <img src="/2022/10/29/Linux%E5%9F%BA%E7%A1%80/图片2.jpg" style="zoom: 100%;">
+</div>
+
+<p>“cd ~”命令可以快速回到用户的家目录。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost src]# cd ~</span><br><span class="line">[root@localhost ~]#</span><br></pre></td></tr></table></figure>
+<p>cd命令直接按回车键也是快速切换到家目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cd /etc/</span><br><span class="line">[root@localhost etc]# cd</span><br><span class="line">[root@localhost ~]#</span><br><span class="line">#直接使用cd命令，也回到了家目录</span><br></pre></td></tr></table></figure>
+<p>再试试“cd -”命令。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cd /usr/local/src/</span><br><span class="line">#进入/usr/local/src/目录    [root@localhost src]# cd -</span><br><span class="line">/root</span><br><span class="line">[root@localhost ~]#</span><br><span class="line">#“cd –”命令回到进入src目录之前的家目录    [root@localhost ~]# cd -</span><br><span class="line">/usr/local/src</span><br><span class="line">[root@localhost src]#</span><br><span class="line">#再执行一遍“cd –”命令，又回到了/usr/local/src/目录</span><br></pre></td></tr></table></figure>
+<p>再来试试“.”和“..”。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cd /usr/local/src/</span><br><span class="line">#进入测试目录    [root@localhost src]# cd ..</span><br><span class="line">#进入上级目录    [root@localhost local]# pwd</span><br><span class="line">/usr/local</span><br><span class="line">#pwd是查看当前所在目录的命令，可以看到我们进入了上级目录/usr/local/    [root@localhost local]# cd .</span><br><span class="line">#进入当前目录    [root@localhost local]# pwd</span><br><span class="line">/usr/local</span><br><span class="line">#这个命令不会有目录的改变，只是告诉大家“.”代表当前目录</span><br></pre></td></tr></table></figure>
+<h4 id="2-2-3-mkdir命令"><a href="#2-2-3-mkdir命令" class="headerlink" title="2.2.3 mkdir命令"></a>2.2.3 mkdir命令</h4><p>mkdir是创建目录的命令，其基本信息如下。</p>
+<blockquote>
+<p>●命令名称：mkdir。<br>●英文原意：make directories。<br>●所在路径：/bin/mkdir。<br>●执行权限：所有用户。<br>●功能描述：创建空目录。</p>
+</blockquote>
+<p><b>1）命令格式</b></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkdir [选项] 目录名</span><br><span class="line">选项：</span><br><span class="line">    -p:    递归建立所需目录</span><br></pre></td></tr></table></figure>
+<p>mkdir也是一个非常简单的命令，其主要作用就是新建一个空目录。</p>
+<p><b>2）常见用法</b></p>
+<p>例1：建立目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]#mkdir cangls</span><br><span class="line">[root@localhost ~]# ls</span><br><span class="line">anaconda-ks.cfg  cangls install.log  install.log.syslog</span><br></pre></td></tr></table></figure>
+<p>我们建立一个名为cangls的目录，通过ls命令可以查看到这个目录已经建立。</p>
+<p>例2：递归建立目录</p>
+<p>如果想建立一串空目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkdir lm/movie/jp/cangls</span><br><span class="line">mkdir: 无法创建目录&quot;lm/movie/jp/cangls&quot;: 没有那个文件或目录</span><br></pre></td></tr></table></figure>
+<p>这条命令报错，没有正确执行。这是因为这4个目录都是不存在的，mkdir默认只能在已经存在的目录中建立新目录。而如果需要建立一系列的新目录，则需要加入“-p”选项，递归建立才可以。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkdir -p lm/movie/jp/cangls</span><br><span class="line">[root@localhost ~]# ls</span><br><span class="line">anaconda-ks.cfg  cangls  install.log  install.log.syslog  lm</span><br><span class="line">[root@localhost ~]# ls lm/</span><br><span class="line">movie</span><br><span class="line">#这里只查看一级子目录，其实后续的jp目录、cangls目录都已经建立</span><br></pre></td></tr></table></figure>
+<p>所谓的递归建立，就是一级一级地建立目录。</p>
+<h4 id="2-2-4-rmdir命令"><a href="#2-2-4-rmdir命令" class="headerlink" title="2.2.4 rmdir命令"></a>2.2.4 rmdir命令</h4><p>既然有建立目录的命令，就一定会有删除目录的命令rmdir，其基本信息如下。</p>
+<blockquote>
+<p>●命令名称：rmdir。<br>●英文原意：remove empty directories。<br>●所在路径：/bin/rmdir。<br>●执行权限：所有用户。<br>●功能描述：删除空目录。</p>
+</blockquote>
+<p><b>1）命令格式</b></p>
+<p>[root@localhost ~]# rmdir [选项] 目录名<br>选项：<br>    -p:    递归删除目录</p>
+<p><b>2）常见用法</b></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]#rmdir cangls</span><br></pre></td></tr></table></figure>
+<p>就这么简单，命令后面加目录名称即可。既然可以递归建立目录，当然也可以递归删除目录。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rmdir -p lm/movie/jp/cangls/</span><br></pre></td></tr></table></figure>
+<p>但rmdir命令的作用十分有限，因为只能删除空目录，所以一旦目录中有内容，就会报错。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkdir test</span><br><span class="line">#建立测试目录    </span><br><span class="line"></span><br><span class="line">[root@localhost ~]# touch test/boduo</span><br><span class="line">[root@localhost ~]# touch test/longze</span><br><span class="line">#在测试目录中建立两个文件    </span><br><span class="line"></span><br><span class="line">[root@localhost ~]# rmdir test/</span><br><span class="line">rmdir: 删除 &quot;test/&quot; 失败： 目录非空</span><br></pre></td></tr></table></figure>
+<p>这个命令比较“笨”，所以我们不太常用。后续我们不论删除的是文件还是目录，都会使用rm命令。</p>
+<h3 id="2-3-文件操作命令"><a href="#2-3-文件操作命令" class="headerlink" title="2.3 文件操作命令"></a>2.3 文件操作命令</h3><h4 id="2-3-1-touch命令"><a href="#2-3-1-touch命令" class="headerlink" title="2.3.1 touch命令"></a>2.3.1 touch命令</h4><p>touch的意思是触摸，如果文件不存在，则会建立空文件；如果文件已经存在，则会修改文件的时间戳（访问时间、数据修改时间、状态修改时间都会改变）。千万不要把touch命令当成新建文件的命令，牢牢记住这是触摸的意思。这个命令的基本信息如下。</p>
+<blockquote>
+<p>●命令名称：touch。<br>●英文原意：change file timestamps。<br>●所在路径：/bin/touch。<br>●执行权限：所有用户。<br>●功能描述：修改文件的时间戳。</p>
+</blockquote>
+<p><b>1）命令格式</b></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# touch [选项] 文件名或目录名</span><br><span class="line">选项：</span><br><span class="line">    -a:    只修改文件的访问时间（Access Time）</span><br><span class="line">    -c:    如果文件不存在，则不建立新文件</span><br><span class="line">    -d:    把文件的时间改为指定的时间</span><br><span class="line">    -m:    只修改文件的数据修改时间（Modify Time）</span><br></pre></td></tr></table></figure>
+<p><b>2）常见用法</b></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]#touch bols</span><br><span class="line">#建立名为bols的空文件</span><br></pre></td></tr></table></figure>
+<p>如果文件不存在，则会建立文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]#touch bols</span><br><span class="line">[root@localhost ~]#touch bols</span><br><span class="line">#而如果文件已经存在，则也不会报错，只是会修改文件的访问时间</span><br></pre></td></tr></table></figure>
+<h4 id="2-3-2-cat命令"><a href="#2-3-2-cat命令" class="headerlink" title="2.3.2 cat命令"></a>2.3.2 cat命令</h4><p>cat命令用看来查看文件内容，这个命令地基本信息如下。</p>
+<blockquote>
+<p>●命令名称：cat。<br>●英文原意：concatenate files and print on the standard output。<br>●所在路径：/bin/cat。<br>●执行权限：所有用户。<br>●功能描述：合并文件并打印输出到标准输出。</p>
+</blockquote>
+<p><b>1）命令格式</b></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat [选项] 文件名</span><br><span class="line">选项：</span><br><span class="line">    -A： 相当于-vET选项的整合，用于列出所有隐藏符号</span><br><span class="line">    -E： 列出每行结尾的回车符$</span><br><span class="line">    -n： 显示行号</span><br><span class="line">    -T： 把Tab键用^I显示出来</span><br><span class="line">    -v： 列出特殊字符</span><br></pre></td></tr></table></figure>
+<p><b>2）常见用法</b></p>
+<p>cat命令用于查看文件内容，不论文件内容有多少，都会一次性显示。如果文件非常大，那么文件开头的内容就看不到了。不过Linux可以使用“PgUp+上箭头”向上翻页，但是这种翻页是有极限的，如果文件足够长，那么还是无法看全文件的内容。所以cat命令适合查看不太大的文件。当然，在Linux中是可以使用其他的命令或方法来查看大文件的，我们以后再来学习。cat命令本身非常简单，我们可以直接查看文件的内容。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat anaconda-ks.cfg</span><br><span class="line"># Kickstart file automatically generated by anaconda.</span><br><span class="line">#version=DEVEL</span><br><span class="line">install</span><br><span class="line">cdrom</span><br><span class="line">lang zh_CN.UTF-8</span><br><span class="line">…省略部分内容…</span><br></pre></td></tr></table></figure>
+<p>而如果使用“-n”选项，则会显示行号。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat -n anaconda-ks.cfg</span><br><span class="line">    1  # Kickstart file automatically generated by anaconda.</span><br><span class="line">    2</span><br><span class="line">    3</span><br><span class="line">    4  #version=DEVEL</span><br><span class="line">    5  install</span><br><span class="line">    6  cdrom</span><br><span class="line">…省略部分内容…</span><br></pre></td></tr></table></figure>
+<p>如果使用“-A”选项，则相当于使用了“-vET”选项，可以查看文本中的所有隐藏符号，包括回车符（$）、Tab键（^I）等。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat -A anaconda-ks.cfg</span><br><span class="line"># Kickstart file automatically generated by anaconda.$</span><br><span class="line">$</span><br><span class="line">$</span><br><span class="line">#version=DEVEL$</span><br><span class="line">install$</span><br><span class="line">cdrom$</span><br><span class="line">…省略部分内容…</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-目录和文件都能操作的命令"><a href="#2-4-目录和文件都能操作的命令" class="headerlink" title="2.4 目录和文件都能操作的命令"></a>2.4 目录和文件都能操作的命令</h3><h4 id="2-4-1-rm命令"><a href="#2-4-1-rm命令" class="headerlink" title="2.4.1 rm命令"></a>2.4.1 rm命令</h4><p>rm是强大的删除命令，不仅可以删除文件，也可以删除目录。这个命令的基本信息如下。</p>
+<blockquote>
+<p>●命令名称：rm。<br>●英文原意：remove files or directories。<br>●所在路径：/bin/rm。<br>●执行权限：所有用户。<br>●功能描述：删除文件或目录。</p>
+</blockquote>
+<p><b>1）命令格式</b></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rm [选项] 文件或目录</span><br><span class="line">选项：</span><br><span class="line">    -f:    强制删除（force）</span><br><span class="line">    -i:    交互删除，在删除之前会询问用户</span><br><span class="line">    -r:    递归删除，可以删除目录（recursive）</span><br></pre></td></tr></table></figure>
+<p><b>2）常见用法</b></p>
+<p>例1：基本用法</p>
+<p>rm命令如果任何选项都不加，则默认执行的是“rm -i文件名”，也就是在删除一个文件之前会先询问是否删除。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# touch cangls</span><br><span class="line">[root@localhost ~]# rm cangls</span><br><span class="line">rm：是否删除普通空文件 &quot;cangls&quot;? y</span><br><span class="line">#删除前会询问是否删除</span><br></pre></td></tr></table></figure>
+<p>例2：删除目录</p>
+<p>如果需要删除目录，则需要使用“-r”选项。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkdir -p /test/lm/movie/jp/</span><br><span class="line">#递归建立测试目录    [root@localhost ~]# rm /test/</span><br><span class="line">rm: 无法删除&quot;/test/&quot;: 是一个目录</span><br><span class="line">#如果不加“-r”选项，则会报错    [root@localhost ~]# rm -r /test/</span><br><span class="line">rm：是否进入目录&quot;/test&quot;? y</span><br><span class="line">rm：是否进入目录&quot;/test/lm&quot;? y</span><br><span class="line">rm：是否进入目录&quot;/test/lm/movie&quot;? y</span><br><span class="line">rm：是否删除目录 &quot;/test/lm/movie/jp&quot;? y</span><br><span class="line">rm：是否删除目录 &quot;/test/lm/movie&quot;? y</span><br><span class="line">rm：是否删除目录 &quot;/test/lm&quot;? y</span><br><span class="line">rm：是否删除目录 &quot;/test&quot;? y</span><br><span class="line">#会分别询问是否进入子目录、是否删除子目录</span><br></pre></td></tr></table></figure>
+<p>大家会发现，如果每级目录和每个文件都需要确认，那么在实际使用中简直是灾难！</p>
+<p>例3：强制删除</p>
+<p>如果要删除的目录中有1万个子目录或子文件，那么普通的rm删除最少需要确认1万次。所以，在真正删除文件的时候，我们会选择强制删除。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkdir -p /test/lm/movie/jp/</span><br><span class="line">#重新建立测试目录    </span><br><span class="line">[root@localhost ~]# rm -rf /test/</span><br><span class="line">#强制删除</span><br></pre></td></tr></table></figure>
+<p>加入了强制功能之后，删除就会变得很简单，但是需要注意：</p>
+<blockquote>
+<p>●数据强制删除之后无法恢复，除非依赖第三方的数据恢复工具，如extundelete等。但要注意，数据恢复很难恢复完整的数据，一般能恢复70%～80%就很难得了。所以，与其把宝压在数据恢复上，不如养成良好的操作习惯。</p>
+<p>●虽然“-rf”选项是用来删除目录的，但是删除文件也不会报错。所以，为了使用方便，一般不论是删除文件还是删除目录，都会直接使用“-rf”选项。</p>
+</blockquote>
+<h4 id="2-4-2-cp命令"><a href="#2-4-2-cp命令" class="headerlink" title="2.4.2 cp命令"></a>2.4.2 cp命令</h4><p>cp是用于复制的命令，其基本信息如下：</p>
+<blockquote>
+<p>●命令名称：cp。<br>●英文原意：copy files and directories。<br>●所在路径：/bin/cp。<br>●执行权限：所有用户。<br>●功能描述：复制文件和目录。</p>
+</blockquote>
+<p><b>1）命令格式</b></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cp [选项] 源文件 目标文件</span><br><span class="line">选项：</span><br><span class="line">    -a:    相当于-dpr选项的集合</span><br><span class="line">    -d:    如果源文件为软链接（对硬链接无效），则复制出的目标文件也为软链接</span><br><span class="line">    -i:    询问，如果目标文件已经存在，则会询问是否覆盖</span><br><span class="line">    -l:    把目标文件建立为源文件的硬链接文件，而不是复制源文件</span><br><span class="line">    -s:    把目标文件建立为源文件的软链接文件，而不是复制源文件</span><br><span class="line">    -p:    复制后目标文件保留源文件的属性（包括所有者、所属组、权限和时间）</span><br><span class="line">    -r:    递归复制，用于复制目录</span><br></pre></td></tr></table></figure>
+<p><b>2）常见用法</b></p>
+<p>例：基本用法</p>
+<p>cp命令既可以复制文件，也可以复制目录。我们先来看看如何复制文件，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# touch cangls</span><br><span class="line">#建立源文件    </span><br><span class="line">[root@localhost ~]# cp cangls  /tmp/</span><br><span class="line">#把源文件不改名复制到/tmp/目录下</span><br></pre></td></tr></table></figure>
+<p>如果需要改名复制，则命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cp cangls  /tmp/bols</span><br><span class="line">#改名复制</span><br></pre></td></tr></table></figure>
+<p>如果复制的目标位置已经存在同名的文件，则会提示是否覆盖，因为cp命令默认执行的是“cp -i”的别名，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cp cangls  /tmp/</span><br><span class="line">cp：是否覆盖&quot;/tmp/cangls&quot;? y</span><br><span class="line">#目标位置有同名文件，所以会提示是否覆盖</span><br></pre></td></tr></table></figure>
+<p>接下来我们看看如何复制目录，其实复制目录只需使用“-r”选项即可，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkdir movie</span><br><span class="line">#建立测试目录    [root@localhost ~]# cp -r /root/movie/ /tmp/</span><br><span class="line">#目录原名复制</span><br></pre></td></tr></table></figure>
+<h4 id="2-4-3-mv命令"><a href="#2-4-3-mv命令" class="headerlink" title="2.4.3 mv命令"></a>2.4.3 mv命令</h4><p>mv是用来剪切的命令，其基本信息如下。</p>
+<blockquote>
+<p>●命令名称：mv。<br>●英文原意：move (rename) files。<br>●所在路径：/bin/mv。<br>●执行权限：所有用户。<br>●功能描述：移动文件或改名。</p>
+</blockquote>
+<p><b>1）命令格式</b></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mv [选项] 源文件 目标文件</span><br><span class="line">选项：</span><br><span class="line">    -f:    强制覆盖，如果目标文件已经存在，则不询问，直接强制覆盖</span><br><span class="line">    -i:    交互移动，如果目标文件已经存在，则询问用户是否覆盖（默认选项）</span><br><span class="line">    -n:    如果目标文件已经存在，则不会覆盖移动，而且不询问用户</span><br><span class="line">    -v:    显示详细信息</span><br></pre></td></tr></table></figure>
+<p><b>2）常见用法</b><br>例1：移动文件或目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mv cangls /tmp/</span><br><span class="line">#移动之后，源文件会被删除，类似剪切</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# mkdir movie</span><br><span class="line">[root@localhost ~]# mv movie/ /tmp/</span><br><span class="line">#也可以移动目录。和rm、cp不同的是，mv移动目录不需要加入“-r”选项</span><br></pre></td></tr></table></figure>
+<p>如果移动的目标位置已经存在同名的文件，则同样会提示是否覆盖，因为mv命令默认执行的也是“mv -i”的别名，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# touch cangls</span><br><span class="line">#重新建立文件    [root@localhost ~]# mv cangls /tmp/</span><br><span class="line">mv：是否覆盖&quot;/tmp/cangls&quot;? y</span><br><span class="line">#由于/tmp/目录下已经存在cangls文件，所以会提示是否覆盖，需要手工输入y覆盖移动</span><br></pre></td></tr></table></figure>
+<p>例2：强制移动</p>
+<p>之前说过，如果目标目录下已经存在同名文件，则会提示是否覆盖，需要手工确认。这时如果移动的同名文件较多，则需要一个一个文件进行确认，很不方便。如果我们确认需要覆盖已经存在的同名文件，则可以使用“-f”选项进行强制移动，这就不再需要用户手工确认了。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# touch cangls</span><br><span class="line">#重新建立文件</span><br><span class="line">[root@localhost ~]# mv -f cangls /tmp/</span><br><span class="line">#就算/tmp/目录下已经存在同名的文件，由于“-f”选项的作用，所以会强制覆盖</span><br></pre></td></tr></table></figure>
+<p>例3：不覆盖移动</p>
+<p>既然可以强制覆盖移动，那也有可能需要不覆盖的移动。如果需要移动几百个同名文件，但是不想覆盖，这时就需要“-n”选项的帮助了。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ls /tmp/*ls</span><br><span class="line">/tmp/bols  /tmp/cangls</span><br><span class="line">#在/tmp/目录下已经存在bols、cangls文件了</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# mv -vn bols cangls lmls  /tmp/</span><br><span class="line">&quot;lmls&quot; -&gt; &quot;/tmp/lmls&quot;</span><br><span class="line">#再向/tmp/目录中移动同名文件，如果使用了“-n”选项，则可以看到只移动了lmls，而同名的bols    和cangls并没有移动（“-v”选项用于显示移动过程）</span><br></pre></td></tr></table></figure>
+<p>例4：改名</p>
+<p>如果源文件和目标文件在同一个目录中，那就是改名。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mv bols lmls</span><br><span class="line">#把bols改名为lmls</span><br></pre></td></tr></table></figure>
+<p>目录也可以按照同样的方法改名。</p>
+<p>例5：显示移动过程</p>
+<p>如果我们想要知道在移动过程中到底有哪些文件进行了移动，则可以使用“-v”选项来查看详细的移动信息。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# touch test1.txt test2.txt test3.txt</span><br><span class="line">#建立三个测试文件    [root@localhost ~]# mv -v *.txt /tmp/</span><br><span class="line">&quot;test1.txt&quot; -&gt; &quot;/tmp/test1.txt&quot;</span><br><span class="line">&quot;test2.txt&quot; -&gt; &quot;/tmp/test2.txt&quot;</span><br><span class="line">&quot;test3.txt&quot; -&gt; &quot;/tmp/test3.txt&quot;</span><br><span class="line">#加入“-v”选项，可以看到有哪些文件进行了移动</span><br></pre></td></tr></table></figure>
+<h3 id="2-5-帮助命令"><a href="#2-5-帮助命令" class="headerlink" title="2.5 帮助命令"></a>2.5 帮助命令</h3><h4 id="2-5-1-man命令"><a href="#2-5-1-man命令" class="headerlink" title="2.5.1 man命令"></a>2.5.1 man命令</h4><p>man是最常见的帮助命令，也是Linux最主要的帮助命令，其基本信息如下。</p>
+<blockquote>
+<p>●命令名称：man。<br>●英文原意：format and display the on-line manual pages。<br>●所在路径：/usr/bin/man。<br>●执行权限：所有用户。<br>●功能描述：显示联机帮助手册。</p>
+</blockquote>
+<p><b>1）命令格式</b></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# man [选项] 命令</span><br><span class="line">选项：</span><br><span class="line">    -f：    查看命令拥有哪个级别的帮助</span><br><span class="line">    -k：    查看和命令相关的所有帮助</span><br></pre></td></tr></table></figure>
+<p>man命令比较简单，下面举个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# man ls</span><br><span class="line">#获取ls命令的帮助信息</span><br></pre></td></tr></table></figure>
+<p>这就是man命令的基本使用方法，非常简单。但是帮助命令的重点不是命令如何使用，而是帮助信息应该如何查询。这些信息较多，下面将详细讲解。<br><b>2）man命令的使用方法</b></p>
+<p>还是查看ls命令的帮助，我们看看这个帮助信息的详细内容。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# man ls</span><br><span class="line">LS(1)                        User Commands                       LS(1)</span><br><span class="line">NAME</span><br><span class="line">      ls - list directory contents</span><br><span class="line">      #命令名称及英文原意   </span><br><span class="line">SYNOPSIS</span><br><span class="line">ls [OPTION]... [FILE]...</span><br><span class="line">      #命令的格式    </span><br><span class="line">DESCRIPTION</span><br><span class="line">#开始详细介绍命令选项的作用    </span><br><span class="line">	  List  information  about  the  FILEs  (the current directory by default).  Sort</span><br><span class="line">entries alphabetically if none of -cftuvSUX nor --sort.</span><br><span class="line">      Mandatory arguments to long options are mandatory for short options too.</span><br><span class="line">      -a, --all</span><br><span class="line">			 do not ignore entries starting with .</span><br><span class="line">      -A, --almost-all</span><br><span class="line">		     do not list implied . and ..</span><br><span class="line">…省略部分内容…</span><br><span class="line">AUTHOR</span><br><span class="line">Written by Richard M. Stallman and David MacKenzie.</span><br><span class="line">      #作者</span><br><span class="line">REPORTING BUGS</span><br><span class="line">#bug的报告地址 Report ls bugs to bug-coreutils@gnu.org</span><br><span class="line">      GNU coreutils home page: &lt;http://www.gnu.org/software/coreutils/&gt;</span><br><span class="line">      General help using GNU software: &lt;http://www.gnu.org/gethelp/&gt;</span><br><span class="line">      Report ls translation bugs to http://translationproject.org/team/</span><br><span class="line">COPYRIGHT</span><br><span class="line">#著作权受GPL规则保护</span><br><span class="line">      Copyright  2010 Free Software Foundation, Inc.  License GPLv3+: GNU GPL</span><br><span class="line">version  3  or later&lt;http://gnu.org/licenses/gpl.html&gt;.</span><br><span class="line">      This  is  free  software: you are free to change and redistribute it.  There is NO</span><br><span class="line">WARRANTY, to the extent permitted by law.</span><br><span class="line">SEE ALSO</span><br><span class="line">#可以通过其他哪些命令查看到ls的相关信息</span><br><span class="line">      The full documentation for ls is maintained as a Texinfo manual.  If the  info</span><br><span class="line">and  ls programs are properly installed at your site, the command info coreutils &#x27;ls invocation&#x27; should give you access to the complete manual.</span><br><span class="line">GNU coreutils 8.4                June 2012                         LS(1)</span><br></pre></td></tr></table></figure>
+<p>虽然不同命令的man信息有一些区别，但是每个命令man信息的整体结构皆如演示这样。在帮助信息中，我们主要查看的就是命令的格式和选项的详细作用。</p>
+<p>不过大家请注意，在man信息的最后，可以看到还有哪些命令可以查看到此命令的相关信息。这是非常重要的提示，不同的帮助信息记录的侧重点是不太一样的。所以，如果在man信息中找不到想要的内容，则可以尝试查看其他相关帮助命令。</p>
+<p><b>3）man命令的快捷键</b><br>man命令的快捷键可以参考表2。</p>
+<center><b>表2 man命令的快捷键</b></center>
+
+<div align="center">
+    <img src="/2022/10/29/Linux%E5%9F%BA%E7%A1%80/图片3.jpg" style="zoom: 100%;">
+</div>
+
+<h4 id="2-5-2-info命令"><a href="#2-5-2-info命令" class="headerlink" title="2.5.2 info命令"></a>2.5.2 info命令</h4><p>info命令也可以获取命令的帮助。和man命令不同的是，info命令的帮助信息是一套完整的资料，每个单独命令的帮助信息只是这套完整资料中的某一个小章节。大家可以把info帮助信息看成一部独立的电子书，所以每个命令的帮助信息都会和书籍一样，拥有章节编号。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# info ls</span><br><span class="line">File: coreutils.info,  Node: ls invocation,  Next: dir invocation,  Up: Directory</span><br><span class="line">listing</span><br><span class="line">10.1 &#x27;ls&#x27;: List directory contents</span><br><span class="line">==================================</span><br><span class="line">The &#x27;ls&#x27; program lists information about files (of any type, including</span><br><span class="line">directories).  Options and file arguments can be intermixed</span><br><span class="line">arbitrarily, as usual.</span><br><span class="line">…省略部分内容…</span><br></pre></td></tr></table></figure>
+<p>可以看到，ls命令的帮助只是整个info帮助信息中的第10.1节。在这个帮助信息中，如果标题的前面有“*”符号，则代表这是一个可以进入查看详细信息的子页面，只要按下回车键就可以进入。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# info ls</span><br><span class="line">…省略部分内容…</span><br><span class="line">    Also see *note Common options::.</span><br><span class="line">  * Menu:</span><br><span class="line">  * Which files are listed::</span><br><span class="line">  * What information is listed::</span><br><span class="line">  * Sorting the output::</span><br><span class="line">  * Details about version sort::</span><br><span class="line">  * General output formatting::</span><br><span class="line">  * Formatting file timestamps::</span><br><span class="line">  * Formatting the file names::</span><br><span class="line">    …省略部分内容…</span><br></pre></td></tr></table></figure>
+<p>这是ls命令的info帮助信息中可以查看详细的子页面的标题。info命令主要是靠快捷键来进行操作的，我们来看看常用的快捷键，如表3所示。</p>
+<center><b>表3 info命令的常用快捷键</b></center>
+
+<div align="center">
+    <img src="/2022/10/29/Linux%E5%9F%BA%E7%A1%80/图片4.jpg" style="zoom: 100%;">
+</div>
+
+<h3 id="2-6-压缩和解压缩命令"><a href="#2-6-压缩和解压缩命令" class="headerlink" title="2.6 压缩和解压缩命令"></a>2.6 压缩和解压缩命令</h3><p>在系统中，如果需要有大量的文件进行复制和保存，那么把它们打成压缩包是不错的选择。打包压缩作为常规操作，在Windows和Linux中都比较常见。Windows中常见的压缩包格式主要有“.zip”“.rar”和“.7z”等。、</p>
+<p>在Linux中也是一样的，可以识别的常见压缩格式有十几种，比如“.zip”“.gz”“.bz2”“.tar”“.tar.gz”“.tar.bz2”等。我们也不需要知道这些压缩格式的具体区别，只要对应的压缩包会解压缩、想要压缩的时候会操作即可。</p>
+<p>为什么还要区分是“.gz”还是“.bz2”的扩展名呢？这是因为，在Linux中，不同的压缩方法对应的解压缩方法也是不同的，这里的扩展名并不是Linux系统一定需要的（Linux不区分扩展名），而是用来给用户标识压缩格式的。只有知道了正确的压缩格式，才能采用正确的解压缩命令。</p>
+<h4 id="2-6-1-“zip”格式"><a href="#2-6-1-“zip”格式" class="headerlink" title="2.6.1 “zip”格式"></a>2.6.1 “zip”格式</h4><p>“.zip”是Windows中最常用的压缩格式，Linux也可以正确识别“.zip”格式，这可以方便地和Windows系统通用压缩文件。<br><b>1）“.zip”格式的压缩命令</b><br>压缩命令就是zip，其基本信息如下。</p>
+<blockquote>
+<p>●命令名称：zip。<br>●英文原意：package and compress (archive) files。<br>●所在路径：/usr/bin/zip。<br>●执行权限：所有用户。<br>●功能描述：压缩文件或目录。</p>
+</blockquote>
+<p>命令格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# zip [选项] 压缩包名 源文件或源目录</span><br><span class="line">选项：</span><br><span class="line">    -r:    压缩目录</span><br></pre></td></tr></table></figure>
+<p>zip压缩命令需要手工指定压缩之后的压缩包名，注意写清楚扩展名，以方便解压缩时使用。举个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# zip ana.zip anaconda-ks.cfg</span><br><span class="line">adding: anaconda-ks.cfg (deflated 37%)</span><br><span class="line">#压缩    </span><br><span class="line">[root@localhost ~]# ll ana.zip</span><br><span class="line">-rw-r--r-- 1 root root 935 6月  17 16:00 ana.zip</span><br><span class="line">#压缩文件生成</span><br></pre></td></tr></table></figure>
+<p>所有的压缩命令都可以同时压缩多个文件，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# zip test.zip install.log install.log.syslog</span><br><span class="line">adding: install.log (deflated 72%)</span><br><span class="line">adding: install.log.syslog (deflated 85%)</span><br><span class="line">#同时压缩多个文件到test.zip压缩包中    </span><br><span class="line">[root@localhost ~]# ll test.zip</span><br><span class="line">-rw-r--r-- 1 root root 8368 6月  17 16:03 test.zip</span><br><span class="line">#压缩文件生成</span><br></pre></td></tr></table></figure>
+<p>如果想要压缩目录，则需要使用“-r”选项，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkdir dir1</span><br><span class="line">#建立测试目录    </span><br><span class="line">[root@localhost ~]# zip -r dir1.zip dir1</span><br><span class="line">adding: dir1/ (stored 0%)</span><br><span class="line">#压缩目录    </span><br><span class="line">[root@localhost ~]# ls -dl dir1.zip</span><br><span class="line">-rw-r--r-- 1 root root 160 6月  17 16:22 dir1.zip</span><br><span class="line">#压缩文件生成</span><br></pre></td></tr></table></figure>
+<p><b>2）“.zip”格式的解压缩命令</b><br>“.zip”格式的解压缩命令是unzip，其基本信息如下。</p>
+<blockquote>
+<p>●命令名称：unzip。<br>●英文原意：list, test and extract compressed files in a ZIP archive。<br>●所在路径：/usr/bin/unzip。<br>●执行权限：所有用户。<br>●功能描述：列表、测试和提取压缩文件中的文件。</p>
+</blockquote>
+<p>命令格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# unzip [选项] 压缩包名</span><br><span class="line">选项：</span><br><span class="line">    -d:    指定解压缩位置</span><br></pre></td></tr></table></figure>
+<p>不论是文件压缩包，还是目录压缩包，都可以直接解压缩，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# unzip dir1.zip</span><br><span class="line">Archive:  dir1.zip</span><br><span class="line">creating: dir1/</span><br><span class="line">#解压缩</span><br></pre></td></tr></table></figure>
+<p>也可以手工指定解压缩位置，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# unzip -d /tmp/ ana.zip</span><br><span class="line">Archive:  ana.zip</span><br><span class="line">inflating: /tmp/anaconda-ks.cfg</span><br><span class="line">#把压缩包解压到指定位置</span><br></pre></td></tr></table></figure>
+<h4 id="2-6-2-“-gz”格式"><a href="#2-6-2-“-gz”格式" class="headerlink" title="2.6.2 “.gz”格式"></a>2.6.2 “.gz”格式</h4><p><b>1）“.gz”格式的压缩命令</b><br>“.gz”格式是Linux中最常用的压缩格式，使用gzip命令进行压缩，其基本信息如下。</p>
+<blockquote>
+<p>●命令名称：gzip。<br>●英文原意：compress or expand files。<br>●所在路径：/bin/gzip。<br>●执行权限：所有用户。<br>●功能描述：压缩文件或目录。</p>
+</blockquote>
+<p>这个命令的格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# gzip [选项] 源文件</span><br><span class="line">选项：</span><br><span class="line">    -c:    将压缩数据输出到标准输出中，可以用于保留源文件</span><br><span class="line">    -d:    解压缩</span><br><span class="line">    -r:    压缩目录</span><br><span class="line">    -v:    显示压缩文件的信息</span><br><span class="line">    -数字：  用于指定压缩等级，-1压缩等级最低，压缩比最差；-9压缩比最高。默认压缩比是-6</span><br></pre></td></tr></table></figure>
+<p>例1：基本压缩</p>
+<p>gzip压缩命令非常简单，甚至不需要指定压缩之后的压缩包名，只需指定源文件名即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# gzip install.log</span><br><span class="line">#压缩install.log文件    [root@localhost ~]# ls</span><br><span class="line">anaconda-ks.cfg  install.log.gz  install.log.syslog</span><br><span class="line">#压缩文件生成，但是源文件也消失了</span><br></pre></td></tr></table></figure>
+<p>例2：保留源文件压缩</p>
+<p>在使用gzip命令压缩文件时，源文件会消失，从而生成压缩文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# gzip -c anaconda-ks.cfg anaconda-ks.cfg.gz</span><br><span class="line">#使用-c选项，但是不让压缩数据输出到屏幕上，而是重定向到压缩文件中    </span><br><span class="line">#这样可以在压缩文件的同时不删除源文件    </span><br><span class="line">[root@localhost ~]# ls</span><br><span class="line">anaconda-ks.cfg  anaconda-ks.cfg.gz  install.log.gz  install.log.syslog</span><br><span class="line">#可以看到压缩文件和源文件都存在</span><br></pre></td></tr></table></figure>
+<p>例子3：压缩目录</p>
+<p>我们可能会想当然地认为gzip命令可以压缩目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkdir test</span><br><span class="line">[root@localhost ~]# touch test/test1</span><br><span class="line">[root@localhost ~]# touch test/test2</span><br><span class="line">[root@localhost ~]# touch test/test3</span><br><span class="line">#建立测试目录，并在里面建立几个测试文件    </span><br><span class="line">[root@localhost ~]# gzip -r test/</span><br><span class="line">#压缩目录，并没有报错    </span><br><span class="line">[root@localhost ~]# ls</span><br><span class="line">anaconda-ks.cfg  anaconda-ks.cfg.gz  install.log.gz  install.log.syslog  test</span><br><span class="line">#但是查看发现test目录依然存在，并没有变为压缩文件    </span><br><span class="line">[root@localhost ~]# ls test/</span><br><span class="line">test1.gz  test2.gz  test3.gz</span><br><span class="line">#原来gzip命令不会打包目录，而是把目录下所有的子文件分别压缩</span><br></pre></td></tr></table></figure>
+<p>在Linux中，打包和压缩是分开处理的。而gzip命令只会压缩，不能打包，所以才会出现没有打包目录，而只把目录下的文件进行压缩的情况。</p>
+<p><b>2）“.gz”格式的解压缩命令</b><br>如果要解压缩“.gz”格式，那么使用“gzip -d压缩包”和“gunzip压缩包”命令都可以。我们先看看gunzip命令的基本信息。</p>
+<blockquote>
+<p>●命令名称：gunzip。<br>●英文原意：compress or expand files。<br>●所在路径：/bin/gunzip。<br>●执行权限：所有用户。<br>●功能描述：解压缩文件或目录。</p>
+</blockquote>
+<p>常规用法就是直接解压缩文件，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# gunzip install.log.gz</span><br></pre></td></tr></table></figure>
+<p>如果要解压缩目录下的内容，则依然使用“-r”选项，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# gunzip -r test/</span><br></pre></td></tr></table></figure>
+<p>当然，“gunzip -r”依然只会解压缩目录下的文件，而不会解打包。要想解压缩“.gz”格式，还可以使用“gzip -d”命令，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# gzip -d anaconda-ks.cfg.gz</span><br></pre></td></tr></table></figure>
+<p><b>3）查看“.gz”格式压缩的文本文件内容</b><br>如果我们压缩的是一个纯文本文件，则可以直接使用zcat命令在不解压缩的情况下查看这个文本文件中的内容。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# zcat anaconda-ks.cfg.gz</span><br></pre></td></tr></table></figure>
+<h4 id="2-6-3-“-bz2”格式"><a href="#2-6-3-“-bz2”格式" class="headerlink" title="2.6.3 “.bz2”格式"></a>2.6.3 “.bz2”格式</h4><p><b>1）“.bz2”格式的压缩命令</b><br>“.bz2”格式是Linux的另一种压缩格式，从理论上来讲，“.bz2”格式的算法更先进、压缩比更好；而“.gz”格式相对来讲压缩的时间更快。<br>“.bz2”格式的压缩命令是bzip2，这个命令的基本信息为：</p>
+<blockquote>
+<p>●命令名称：bzip2。<br>●英文原意：a block-sorting file compressor。<br>●所在路径：/usr/bin/bzip2。<br>●执行权限：所有用户。<br>●功能描述：.bz2格式的压缩命令。</p>
+</blockquote>
+<p>来看看bzip2命令的格式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# bzip2 [选项] 源文件</span><br><span class="line">选项：</span><br><span class="line">    -d:    解压缩</span><br><span class="line">    -k:    压缩时，保留源文件</span><br><span class="line">    -v:    显示压缩的详细信息</span><br><span class="line">    -数字：  这个参数和gzip命令的作用一样，用于指定压缩等级，-1压缩等级最低，压缩比最差；-9压缩比最高</span><br></pre></td></tr></table></figure>
+<p>值得注意的是，gzip只是不会打包目录，但是如果使用“-r”选项，则可以分别压缩目录下的每个文件；而bzip2命令则根本不支持压缩目录，也没有“-r”选项。</p>
+<p>例1：基本压缩命令</p>
+<p>在压缩文件命令后面直接指定源文件即可，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# bzip2 anaconda-ks.cfg</span><br><span class="line">#压缩成“.bz2”格式</span><br></pre></td></tr></table></figure>
+<p>这个压缩命令依然会在压缩的同时删除源文件。</p>
+<p>例2：压缩的同时保留源文件</p>
+<p>bzip2命令可以直接使用“-k”选项来保留源文件，而不用像gzip命令一样使用输出重定向来保留源文件。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# bzip2 -k install.log.syslog</span><br><span class="line">#压缩    [root@localhost ~]</span><br><span class="line"># ls</span><br><span class="line">anaconda-ks.cfg.bz2</span><br><span class="line">install.loginstall.log.syslog  install.log.syslog.bz2    </span><br><span class="line">#压缩文件和源文件都存在</span><br></pre></td></tr></table></figure>
+<p><b>2）“.bz2”格式的解压缩命令</b></p>
+<p>“.bz2”格式可以使用“bzip2 -d压缩包”命令来进行解压缩，也可以使用“bunzip2压缩包”命令来进行解压缩。先看看bunzip2命令的基本信息。</p>
+<blockquote>
+<p>●命令名称：bunzip2。<br>●英文原意：a block-sorting file compressor。<br>●所在路径：/usr/bin/bunzip2。<br>●执行权限：所有用户。<br>●功能描述：.bz2格式的解压缩命令。</p>
+</blockquote>
+<p>命令格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# bunzip2 [选项] 源文件</span><br><span class="line">选项：</span><br><span class="line">    -k:    解压缩时，保留源文件</span><br></pre></td></tr></table></figure>
+<p>先试试使用gunzip2命令来进行解压缩，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# bunzip2 anaconda-ks.cfg.bz2</span><br></pre></td></tr></table></figure>
+<p>“.bz2”格式也可以使用“bzip2 -d压缩包”命令来进行解压缩，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# bzip2 -d install.log.syslog.bz2</span><br></pre></td></tr></table></figure>
+<p><b>3）查看“.bz2”格式压缩的文本文件内容</b></p>
+<p>和“.gz”格式一样，“.bz2”格式压缩的纯文本文件也可以不解压缩直接查看，使用的命令是bzcat。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# bzcat install.log.syslog.bz2</span><br></pre></td></tr></table></figure>
+<h4 id="2-6-4-“-tar”格式"><a href="#2-6-4-“-tar”格式" class="headerlink" title="2.6.4 “.tar”格式"></a>2.6.4 “.tar”格式</h4><p>通过前面的学习，我们发现，不论是gzip命令还是bzip2命令，好像都比较笨，gzip命令不能打包目录，而只能单独压缩目录下的子文件；bzip2命令干脆就不支持目录的压缩。</p>
+<p>在Linux中，对打包和压缩是区别对待的。也就是说，在Linux中，如果想把多个文件或目录打包到一个文件包中，则使用的是tar命令；而压缩才使用gzip或bzip2命令。</p>
+<p><b>1）“.tar”格式的打包命令</b><br>“.tar”格式的打包和解打包都使用tar命令，区别只是选项不同。我们先看看tar命令的基本信息。</p>
+<blockquote>
+<p>●命令名称：tar。<br>●英文原意：tar。<br>●所在路径：/bin/tar。<br>●执行权限：所有用户。<br>●功能描述：打包与解打包命令。</p>
+</blockquote>
+<p>命令的基本格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# tar [选项] [-f 压缩包名] 源文件或目录</span><br><span class="line">选项：</span><br><span class="line">    -c:    打包</span><br><span class="line">    -f:    指定压缩包的文件名。压缩包的扩展名是用来给管理员识别格式的，所以一定</span><br><span class="line">            要正确指定扩展名</span><br><span class="line">    -v:    显示打包文件过程</span><br></pre></td></tr></table></figure>
+<p>例1：基本使用</p>
+<p>现在先打包一个文件练练手。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# tar -cvf anaconda-ks.cfg.tar anaconda-ks.cfg</span><br><span class="line">#把anaconda-ks.cfg打包为anaconda-ks.cfg.tar文件</span><br></pre></td></tr></table></figure>
+<p>选项“-cvf”一般是习惯用法，记住打包时需要指定打包之后的文件名，而且要用“.tar”作为扩展名。那打包目录呢？我们也试试：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ll -d test/</span><br><span class="line">drwxr-xr-x 2 root root 4096 6月  17 21:09 test/</span><br><span class="line">#test是我们之前的测试目录    </span><br><span class="line"></span><br><span class="line">[root@localhost ~]# tar -cvf test.tar test/</span><br><span class="line">test/</span><br><span class="line">test/test3</span><br><span class="line">test/test2</span><br><span class="line">test/test1</span><br><span class="line">#把目录打包为test.tar文件</span><br></pre></td></tr></table></figure>
+<p>tar命令也可以打包多个文件或目录，只要用空格分开即可。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# tar -cvf ana.tar anaconda-ks.cfg /tmp/</span><br><span class="line">#把anaconda-ks.cfg文件和/tmp目录打包成ana.tar文件包</span><br></pre></td></tr></table></figure>
+<p>例2：打包压缩目录</p>
+<p>我们已经解释过了，压缩命令不能直接压缩目录，我们就先用tar命令把目录打成数据包，然后再用gzip命令或bzip2命令压缩。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ll -d test test.tar</span><br><span class="line">drwxr-xr-x 2 root root  4096 6月  17 21:09 test</span><br><span class="line">-rw-r--r-- 1 root root 10240 6月  18 01:06 test.tar</span><br><span class="line">#我们之前已经把test目录打包成test.tar文件    </span><br><span class="line">[root@localhost ~]# gzip  test.tar</span><br><span class="line">[root@localhost ~]# ll test.tar.gz</span><br><span class="line">-rw-r--r-- 1 root root 176 6月  18 01:06 test.tar.gz</span><br><span class="line">#gzip命令会把test.tar压缩成test.tar.gz    </span><br><span class="line">[root@localhost ~]# gzip -d test.tar.gz</span><br><span class="line">#解压缩，把test.tar.gz解压缩为test.tar    </span><br><span class="line">[root@localhost ~]# bzip2 test.tar</span><br><span class="line">[root@localhost ~]# ll test.tar.bz2</span><br><span class="line">-rw-r--r-- 1 root root 164 6月  18 01:06 test.tar.bz2</span><br><span class="line">#bzip2命令会把test.tar压缩为test.tar.bz2格式</span><br></pre></td></tr></table></figure>
+<p><b>2）“.tar”格式的解打包命令</b></p>
+<p>“.tar”格式的解打包也需要使用tar命令，但是选项不太一样。命令格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# tar [选项] 压缩包</span><br><span class="line">选项：</span><br><span class="line">    -x:        解打包</span><br><span class="line">    -f:        指定压缩包的文件名</span><br><span class="line">    -v:        显示打包文件过程</span><br><span class="line"></span><br><span class="line">    -t:        测试，就是不解打包，只是查看包中有哪些文件</span><br><span class="line">    -C 目录：    指定解打包位置</span><br></pre></td></tr></table></figure>
+<p>其实解打包和打包相比，只是把打包选项“-cvf”更换为“-xvf”。我们来试试：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# tar -xvf anaconda-ks.cfg.tar</span><br><span class="line">#解打包到当前目录下</span><br></pre></td></tr></table></figure>
+<p>如果使用“-xvf”选项，则会把包中的文件解压到当前目录下。如果想要指定解压位置，则需要使用“-C（大写）”选项。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# tar -xvf test.tar -C /tmp</span><br><span class="line">#把文件包test.tar解打包到/tmp/目录下</span><br></pre></td></tr></table></figure>
+<p>如果只想查看文件包中有哪些文件，则可以把解打包选项“-x”更换为测试选项“-t”。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# tar -tvf test.tar</span><br><span class="line">drwxr-xr-x root/root        02016-06-17 21:09 test/</span><br><span class="line">-rw-r--r-- root/root        02016-06-17 17:51 test/test3</span><br><span class="line">-rw-r--r-- root/root        02016-06-17 17:51 test/test2</span><br><span class="line">-rw-r--r-- root/root        02016-06-17 17:51 test/test1</span><br><span class="line">#会用长格式显示test.tar文件包中文件的详细信息</span><br></pre></td></tr></table></figure>
+<h4 id="2-6-5-“-tar-gz”和“-tar-bz2”格式"><a href="#2-6-5-“-tar-gz”和“-tar-bz2”格式" class="headerlink" title="2.6.5 “.tar.gz”和“.tar.bz2”格式"></a>2.6.5 “.tar.gz”和“.tar.bz2”格式</h4><p>你可能会觉得Linux实在太不智能了，一个打包压缩，居然还要先打包成“.tar”格式，再压成“.tar.gz”或“.tar.bz2”格式。其实tar命令是可以同时打包压缩的，前面的讲解之所以把打包和压缩分开，是为了让大家了解在Linux中打包和压缩的不同。<br>使用tar命令直接打包压缩。命令格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# tar [选项] 压缩包 源文件或目录</span><br><span class="line">选项：</span><br><span class="line">    -z:    压缩和解压缩“.tar.gz”格式</span><br><span class="line">    -j:    压缩和解压缩“.tar.bz2”格式</span><br></pre></td></tr></table></figure>
+<p>例1：压缩与解压缩“.tar.gz”格式</p>
+<p>我们先来看看如何压缩“.tar.gz”格式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# tar -zcvf tmp.tar.gz /tmp/</span><br><span class="line">#把/tmp/目录直接打包压缩为“.tar.gz”格式，通过“-z”来识别格式，“-cvf”和打包选项一致</span><br></pre></td></tr></table></figure>
+<p>解压缩也只是在解打包选项“-xvf”前面加了一个“-z”选项。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# tar -zxvf tmp.tar.gz</span><br><span class="line">#解压缩与解打包“.tar.gz”格式</span><br></pre></td></tr></table></figure>
+<p>前面讲的选项“-C”用于指定解压位置、“-t”用于查看压缩包内容，在这里同样适用。</p>
+<p>例2：压缩与解压缩“.tar.bz2”格式</p>
+<p>和“.tar.gz”格式唯一的不同就是“-zcvf”选项换成了“-jcvf”。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# tar -jcvf tmp.tar.bz2 /tmp/</span><br><span class="line">#打包压缩为“.tar.bz2”格式，注意压缩包文件名    [root@localhost ~]# tar -jxvf tmp.tar.bz2</span><br><span class="line">#解压缩与解打包“.tar.bz2”格式</span><br></pre></td></tr></table></figure>
+<p>把文件直接压缩成“.tar.gz”和“.tar.bz2”格式，才是Linux中最常用的压缩方式，这是一定要掌握的压缩和解压缩方法。</p>
+<h3 id="2-7-常用网络命令"><a href="#2-7-常用网络命令" class="headerlink" title="2.7 常用网络命令"></a>2.7 常用网络命令</h3><h4 id="2-7-1-ifconfig命令"><a href="#2-7-1-ifconfig命令" class="headerlink" title="2.7.1 ifconfig命令"></a>2.7.1 ifconfig命令</h4><p>ifconfig是Linux中查看和临时修改IP地址的命令，其基本信息如下。</p>
+<blockquote>
+<p>●命令名称：ifconfig。<br>●英文原意：configure a network interface。<br>●所在路径：/sbin/ifconfig。<br>●执行权限：超级用户。<br>●功能描述：配置网络接口。</p>
+</blockquote>
+<p><b>1）查看IP地址信息</b></p>
+<p>ifconfig命令最主要的作用就是查看IP地址的信息，直接输入ifconfig命令即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ifconfig</span><br><span class="line">eth0     Link encap:Ethernet  HWaddr 00:0C:29:C5:FB:AA</span><br><span class="line">#eth0网卡信息       网络类型为以太网      MAC地址    inet addr:192.168.44.3  Bcast:192.168.44.255  Mask:255.255.255.0</span><br><span class="line">        #IP地址                广播地址             子网掩码    inet6 addr: fe80::20c:29ff:fec5:fbaa/64 Scope:Link</span><br><span class="line">        #IPv6的地址（目前不生效）            UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span><br><span class="line">        #网络参数           最大传输单元 数据包转送次数     RX packets:881 errors:0 dropped:0 overruns:0 frame:0</span><br><span class="line">        #接收到的数据包情况            TX packets:853 errors:0 dropped:0 overruns:0 carrier:0</span><br><span class="line">        #发送的数据包情况    collisions:0 txqueuelen:1000</span><br><span class="line">        #数据包碰撞    数据缓冲区长度            RX bytes:82229 (80.3 KiB)  TX bytes:273463 (267.0 KiB)</span><br><span class="line">        #接收包的大小                   发送包的大小            Interrupt:19 Base address:0x2000</span><br><span class="line">        #IRQ中断          内存地址    lo       Link encap:Local Loopback</span><br><span class="line">        #本地回环网卡信息    inet addr:127.0.0.1  Mask:255.0.0.0</span><br><span class="line">inet6 addr: ::1/128 Scope:Host</span><br><span class="line">        UP LOOPBACK RUNNING  MTU:16436  Metric:1</span><br><span class="line">        RX packets:12 errors:0 dropped:0 overruns:0 frame:0</span><br><span class="line">        TX packets:12 errors:0 dropped:0 overruns:0 carrier:0 collisions:0 txqueuelen:0</span><br><span class="line">        RX bytes:840 (840.0 b)  TX bytes:840 (840.0 b)</span><br></pre></td></tr></table></figure>
+<p>ifconfig命令主要用于查看IP地址、子网掩码和MAC地址这三类信息，其他信息我们有所了解即可。</p>
+<p>lo网卡是Loopback的缩写，也就是本地回环网卡，这个网卡的IP地址是127.0.0.1。它只代表我们的网络协议正常，就算不插入网线也可以ping通，所以基本没有实际使用价值，了解即可。</p>
+<h4 id="2-7-2-ping命令"><a href="#2-7-2-ping命令" class="headerlink" title="2.7.2 ping命令"></a>2.7.2 ping命令</h4><p>ping是常用的网络命令，主要通过ICMP协议进行网络探测，测试网络中主机的通信情况。ping命令的基本信息如下。</p>
+<blockquote>
+<p>●命令名称：ping。<br>●英文原意：send ICMP ECHO_REQUEST to network hosts。<br>●所在路径：/bin/ping。<br>●执行权限：所有用户。<br>●功能描述：向网络主机发送ICMP请求。</p>
+</blockquote>
+<p>命令的基本格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ping [选项] IP</span><br><span class="line">选项：</span><br><span class="line">    -b:        后面加入广播地址，用于对整个网段进行探测</span><br><span class="line">    -c 次数：    用于指定ping的次数</span><br><span class="line">    -s 字节：    指定探测包的大小</span><br></pre></td></tr></table></figure>
+<p>例1：探测与指定主机通信</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ping 192.168.103.151</span><br><span class="line">PING 192.168.103.151 (192.168.103.151) 56(84) bytes of data.</span><br><span class="line">64 bytes from 192.168.103.151: icmp_seq=1 ttl=128 time=0.300 ms</span><br><span class="line">64 bytes from 192.168.103.151: icmp_seq=2 ttl=128 time=0.481 ms</span><br><span class="line">…省略部分内容…</span><br><span class="line">#探测与指定主机是否通信</span><br></pre></td></tr></table></figure>
+<p>Linux是一个比较实在的操作系统，这个ping命令如果不使用“Ctrl+C”快捷键强行中止，就会一直ping下去，直到天荒地老……</p>
+<p>例2：指定ping的次数</p>
+<p>既然ping这么“实在”，如果不想一直ping下去，则可以使用“-c”选项指定ping的次数。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ping -c 3192.168.103.151</span><br><span class="line">#只探测3次，就中止ping命令</span><br></pre></td></tr></table></figure>
+<p>例3：探测网段中的可用主机</p>
+<p>在ping命令中，可以使用“-b”选项，后面加入广播地址，探测整个网段。我们可以使用这个选项知道整个网络中有多少主机是可以和我们通信的，而不用一个一个IP地址地进行探测。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ping -b -c 3192.168.103.255</span><br><span class="line">WARNING: pinging broadcast address</span><br><span class="line">PING 192.168.103.255 (192.168.103.255) 56(84) bytes of data.</span><br><span class="line">64 bytes from 192.168.103.199: icmp_seq=1 ttl=64 time=1.95 ms</span><br><span class="line">64 bytes from 192.168.103.168: icmp_seq=1 ttl=64 time=1.97 ms (DUP! )</span><br><span class="line">64 bytes from 192.168.103.252: icmp_seq=1 ttl=64 time=2.29 ms (DUP! )</span><br><span class="line">…省略部分内容…</span><br><span class="line">#探测192.168.103.0/24网段中有多少可以通信的主机</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/10/26/group1/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">group：DNN Latency Prediction</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'AIhtvUXrzUWmPIOmYNjrGExW-gzGzoHsz',
+                    appKey: 'e4HGIfsWiHCnIXco4g7xtuAA',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: 'Add your comments',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Sun Hao';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2022</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Sun Hao</a>
+            
+        </div>
+        
+            <script async 
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme
+            &nbsp;
+            <a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.8</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-up-right-and-down-left-from-center"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%BC%95%E8%A8%80"><span class="nav-text">1. 引言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%86%85%E6%A0%B8%E5%B1%82"><span class="nav-text">1.1 内核层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Shell%E5%B1%82"><span class="nav-text">1.2 Shell层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%BA%94%E7%94%A8%E5%B1%82"><span class="nav-text">1.3 应用层</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">2. Linux常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%91%BD%E4%BB%A4%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F"><span class="nav-text">2.1 命令的基本格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6"><span class="nav-text">2.1.1 命令提示符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2%E5%91%BD%E4%BB%A4%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F"><span class="nav-text">2.1.2命令的基本格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="nav-text">2.2 目录操作命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-ls%E5%91%BD%E4%BB%A4"><span class="nav-text">2.2.1 ls命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-cd%E5%91%BD%E4%BB%A4"><span class="nav-text">2.2.2 cd命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3-mkdir%E5%91%BD%E4%BB%A4"><span class="nav-text">2.2.3 mkdir命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-4-rmdir%E5%91%BD%E4%BB%A4"><span class="nav-text">2.2.4 rmdir命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="nav-text">2.3 文件操作命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-touch%E5%91%BD%E4%BB%A4"><span class="nav-text">2.3.1 touch命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-cat%E5%91%BD%E4%BB%A4"><span class="nav-text">2.3.2 cat命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E7%9B%AE%E5%BD%95%E5%92%8C%E6%96%87%E4%BB%B6%E9%83%BD%E8%83%BD%E6%93%8D%E4%BD%9C%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="nav-text">2.4 目录和文件都能操作的命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-rm%E5%91%BD%E4%BB%A4"><span class="nav-text">2.4.1 rm命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2-cp%E5%91%BD%E4%BB%A4"><span class="nav-text">2.4.2 cp命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-3-mv%E5%91%BD%E4%BB%A4"><span class="nav-text">2.4.3 mv命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-%E5%B8%AE%E5%8A%A9%E5%91%BD%E4%BB%A4"><span class="nav-text">2.5 帮助命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-1-man%E5%91%BD%E4%BB%A4"><span class="nav-text">2.5.1 man命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-2-info%E5%91%BD%E4%BB%A4"><span class="nav-text">2.5.2 info命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%91%BD%E4%BB%A4"><span class="nav-text">2.6 压缩和解压缩命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-1-%E2%80%9Czip%E2%80%9D%E6%A0%BC%E5%BC%8F"><span class="nav-text">2.6.1 “zip”格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-2-%E2%80%9C-gz%E2%80%9D%E6%A0%BC%E5%BC%8F"><span class="nav-text">2.6.2 “.gz”格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-3-%E2%80%9C-bz2%E2%80%9D%E6%A0%BC%E5%BC%8F"><span class="nav-text">2.6.3 “.bz2”格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-4-%E2%80%9C-tar%E2%80%9D%E6%A0%BC%E5%BC%8F"><span class="nav-text">2.6.4 “.tar”格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-5-%E2%80%9C-tar-gz%E2%80%9D%E5%92%8C%E2%80%9C-tar-bz2%E2%80%9D%E6%A0%BC%E5%BC%8F"><span class="nav-text">2.6.5 “.tar.gz”和“.tar.bz2”格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-%E5%B8%B8%E7%94%A8%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4"><span class="nav-text">2.7 常用网络命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-1-ifconfig%E5%91%BD%E4%BB%A4"><span class="nav-text">2.7.1 ifconfig命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-2-ping%E5%91%BD%E4%BB%A4"><span class="nav-text">2.7.2 ping命令</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block-tools.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

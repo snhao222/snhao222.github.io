@@ -9,7 +9,7 @@
     
     <title>
         
-            Topic1：Is Accurate and Light-weight DNN Multi-layer Latency Prediction Possible? |
+            group：DNN Latency Prediction |
         
         SnSpace
     </title>
@@ -141,7 +141,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Topic1：Is Accurate and Light-weight DNN Multi-layer Latency Prediction Possible?</span>
+            <span class="title-hover-animation">group：DNN Latency Prediction</span>
         </div>
 
         
@@ -158,8 +158,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-10-22 17:40:11</span>
-        <span class="mobile">2022-10-22 17:40</span>
+        <span class="pc">2022-10-26 19:47:12</span>
+        <span class="mobile">2022-10-26 19:47</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -167,7 +167,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/Topic-Corner/">Topic Corner</a>&nbsp;
+                        <a href="/categories/Paper-Notes/">Paper Notes</a>&nbsp;
                     </li>
                 
             </ul>
@@ -191,218 +191,94 @@
         
 
         <div class="article-content markdown-body">
-            <html lang="en">
+            <h2 id="BRP-NAS-Prediction-based-NAS-using-GCNs"><a href="#BRP-NAS-Prediction-based-NAS-using-GCNs" class="headerlink" title="BRP-NAS: Prediction-based NAS using GCNs"></a>BRP-NAS: Prediction-based NAS using GCNs</h2><blockquote>
+<p> 来        源：34th Conference on Neural Information Processing Systems (NeurIPS 2020), Vancouver, Canada</p>
+<p>原文速递：<a href="./BRP-NAS：Prediction-based NAS using GCNs.pdf" title="点击直接下载原文">BRP-NAS：Prediction-based NAS using GCNs</a></p>
+</blockquote>
+<p>与层级时延预测不同，该工作将模型的结构信息也作为时延预测的一个参量，直接预测完整模型的时延。对于图<script type="math/tex">g=(V,E)</script>，（<script type="math/tex">V</script>是<script type="math/tex">N</script>个具有<script type="math/tex">D</script>个特征的节点集，<script type="math/tex">E</script>是边集），将一个特征描述<script type="math/tex">X\in \mathbb{R}^{N\times D}</script>通过一个邻接矩阵<script type="math/tex">A\in \mathbb{R}^{N\times N}</script>进行编码作为图卷积网络（GCN）的输入。对于一个L层GCN，层间的传播规则为：</p>
+<script type="math/tex; mode=display">
+H^{l+1}=f(H^l,A)=\sigma(AH^lW^l)</script><p>其中，<script type="math/tex">H^l</script>和<script type="math/tex">W^l</script>分别是第<script type="math/tex">l</script>层的特征图和权重矩阵，<script type="math/tex">\sigma(\bullet)</script>是一个非线性激活函数。</p>
+<p>该文使用一个4层GCN模型，每层有600个隐藏单元，引入一个全局节点（连接所有节点）汇总所有节点级信息进行图嵌入。</p>
+<blockquote>
+<p>1）考虑整个网络的特性，而非是对单层时延预测值的简单加和，准确度更高；</p>
+<p>2）未考虑设备特性，是完全黑盒的预测，模型尺寸可能比较大；</p>
+<p>3）泛化能力差，对新模型的支持性差。</p>
+</blockquote>
+<HR>
 
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <style>
-        .head{
-            position: relative;
-            padding: 10px;
-        }
-        .bl{
-            box-shadow: 0 4px 8px 0 #1D2088;
-            font-size: 20px;
-            text-align: left;
-            background-color: #fff;
-            border-radius: 7px;
-            position: relative;
-            margin: 0px;
-            padding: 20px;
-            line-height: 1.5em;
-            text-decoration: none;
-            a{ text-decoration: none};
-        }
+<h2 id="Learned-TPU-Cost-Model-for-XLA-Tensor-Programs"><a href="#Learned-TPU-Cost-Model-for-XLA-Tensor-Programs" class="headerlink" title="Learned TPU Cost Model for XLA Tensor Programs"></a>Learned TPU Cost Model for XLA Tensor Programs</h2><blockquote>
+<p>来        源：33rd Conference on Neural Information Processing Systems (NeurIPS 2019), Vancouver, Canada</p>
+<p>原文速递：<a href="./Learned TPU Cost Model for XLA Tensor Programs.pdf" title="点击直接下载原文">Learned TPU Cost Model for XLA Tensor Programs</a></p>
+</blockquote>
+<p>该工作设计了一个基于学习的神经网络性能评估模型，用于预测每个kernel的执行时间<script type="math/tex">y'</script>，该模型如下图所示。</p>
+<div align="center">
+    <img src="/2022/10/26/group1/图片1.png" style="zoom: 80%;">
+</div>
 
-        .button {
-          display: inline-block;
-          padding: 5px 15px;
-          font-size: 14px;
-          cursor: pointer;
-          text-align: center;   
-          text-decoration: none;
-          outline: none;
-          color: #000000;
-          background-color: #C9D7F3;
-          border: 0px solid #ffffff;
-          border-radius: 8px;
-          box-shadow: 0 4px 4px  #1D2088;
-          a { text-decoration: none};
-        }
-        .button:hover {background-color: #B4C7EE
-        text-decoration: none;
-        a { text-decoration: none}; 
-        }
+<center>图1 神经网络性能评估模型</center>
 
-        .button:active {
-          background-color: #ffffff;
-          box-shadow: 0 3px 4px #1D2088;
-          transform: translateY(2px);
-          text-decoration: none;
-          a { text-decoration: none};
-        }
-        p {font-size: 14px;};
-        a { text-decoration: none;} ;
-        a: hover{ text-decoration: none;};
-    </style>
-</head>
-<body>
-    <div class="head">
-        <img src="/2022/10/22/Topic1/图片1.png" style="zoom: 100%;">
-        
-    <div><br>
-    <div class="bl">
-        <b style="color:#1D2088;">CoDL：Efficient CPU-GPU Co-execution for Deep Learning Inference on Mobile Devices</b>
-        <hr>
-        <p>本文提出了一个在移动设备的CPU和GPU上协同执行模型推理的系统架构和方法，许多方法的提出基于作者对大量实验现象的观察。通过联系实验现象和系统基本特性，该文实现了针对于移动设备的准确且轻量的时延预测。同时，该文数据分割和算子链的设计也具有启发意义。</p>
+<p>第<script type="math/tex">i</script>个操作的操作码<script type="math/tex">x^o</script>通过嵌入查找表嵌入为一个向量，一个操作的特征<script type="math/tex">X^f</script>包含输出tensor形状、striding、padding、卷积核尺寸、tensor重叠等。然后使用一个前馈层<script type="math/tex">f_1</script>接一个GraphSAGE合并操作码和操作特征信息，得到节点嵌入<script type="math/tex">\varepsilon ^k</script>。之后，通过计算<script type="math/tex">\varepsilon</script>每一行的均值和最大值生成kernel嵌入，将均值和最大值向量的合并结果传入最终的前馈层生成kernel预测结果。</p>
+<blockquote>
+<p>1）该工作考虑了框架在进行神经网络推理时算子间的影响，采用图嵌入的方式进行时延预测，比单层时延预测加和的模型时延预测准确；</p>
+<p>2）该工作是基于学习的神经网络预测方法，计算和训练开销可能较大。</p>
+</blockquote>
+<HR>
 
-​        
+<h2 id="FBNet-Hardware-Aware-Efficient-ConvNet-Design-via-Differentiable-Neural-Architecture-Search"><a href="#FBNet-Hardware-Aware-Efficient-ConvNet-Design-via-Differentiable-Neural-Architecture-Search" class="headerlink" title="FBNet: Hardware-Aware Efficient ConvNet Design via Differentiable Neural Architecture Search"></a>FBNet: Hardware-Aware Efficient ConvNet Design via Differentiable Neural Architecture Search</h2><blockquote>
+<p>来        源：Computer Vision and Pattern Recognition 2019</p>
+<p>原文速递：<a href="./FBNet：Hardware-Aware Efficient ConvNet Design via Differentiable Neural Architecture Search.pdf" title="点击直接下载原文">FBNet：Hardware-Aware Efficient ConvNet Design via Differentiable Neural Architecture Search</a></p>
+</blockquote>
+<p>该工作致力于进行准确高效的神经网络搜索（NAS），注意到FLOP数并不总能准确地反映神经网络在设备上的推理时延。该工作测量了搜索空间内每个算子在设备上的运行时延，并使用一个标定表模型预测每个算子的时延，通过计算算子时延之和预测模型总时延。</p>
+<div align="center">
+    <img src="/2022/10/26/group1/图片2.png" style="zoom: 70%;">
+</div>
 
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/13/CoDL%EF%BC%9AEfficient%20CPU-GPU%20Co-execution%20for%20Deep%20Learning%20Inference%20on%20Mobile%20Devices/">
-        <button class="button">Paper Note</button></a>
-        &nbsp
-        <a href="./CoDL efficient CPU-GPU co-execution for deep learning inference on mobile devices.pdf">
-        <button class="button">Paper Link</button></a>
-    </div>
-    <br>
-    <div class="bl">
-        <b style="color:#1D2088;">Neurosurgeon：Collaborative Intelligence Between the Cloud and Mobile Edge</b>
-        <hr>
-        <p>1）性能预测器准确度无法保证。该系统的性能预测器仅仅针对对不同层参数构建简单的线性或指数回归模型，虽然该模型执行很快，但如此简单的预测方法难以获得高预测精度，而较低的预测精度势必影响DNN分割算法的效果；<br>
+<blockquote>
+<p>1）该方法考虑到时延预测的效率，采用标定表代替预测模型，是一种轻量级的方案；</p>
+<p>2）该方法在设备转换时可能存在需要重新标定的问题，工作量较大；</p>
+<p>3）该方法未考虑框架在运行时的算子融合，存在精度低的问题。</p>
+</blockquote>
+<HR>
 
-2）对多层网络的性能预测不准确。该文仅使用每层网络时延和能耗的加和表示多层的性能，而实验表明运行多层网络的时延和能耗往往低于每层网络的加和，由错误的性能预测数据确定DNN分割点很难得到最优方案。</p>
+<h2 id="PALEO：A-Performance-Model-for-Deep-Neural-Networks"><a href="#PALEO：A-Performance-Model-for-Deep-Neural-Networks" class="headerlink" title="PALEO：A Performance Model for Deep Neural Networks"></a>PALEO：A Performance Model for Deep Neural Networks</h2><blockquote>
+<p>来        源：The International Conference on Learning Representations (ICLR) 2017</p>
+<p>原文速递：<a href="./paleo：a performance model for deep neural networks.pdf" title="点击直接下载原文">PALEO：A Performance Model for Deep Neural Networks</a></p>
+</blockquote>
+<p>该工作通过分析DNN在设备上进行计算的过程对神经网络的推理时延进行预测，其建模方法如下图所示，分为计算时延和通信时延两部分，并综合考虑了网络结构和硬件配置。</p>
+<div align="center">
+    <img src="/2022/10/26/group1/图片3.png" style="zoom: 100%;">
+</div>
 
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/20/Neurosurgeon/">
-        <button class="button">Paper Note</button></a>
-        &nbsp
-        <a href="./Neurosurgeon：Collaborative Intelligence Between the Cloud and Mobile Edge.pdf">
-        <button class="button">Paper Link</button></a>
-    </div>
+<center>图2 PALEO模型方法</center>
 
-    <br>
-    <div class="bl">
-        <b style="color:#1D2088;">µLayer：Low Latency On-Device Inference Using Cooperative Single-Layer Acceleration and Processor-Friendly Quantization</b>
-        <hr>
-        <p>该文致力于通过CPU-GPU协同执行的方式进行高效神经网络推理，设计了一种层级协同推理方法，能够取得一定的性能提升，但仍存在一些问题：<br>
-        1）该系统中的时延预测器采用机器学习拟合函数，与Neurosurgeon相同，存在精度低的问题；<br>
-
-2）该CPU-GPU协同方法是层粒度的，存在高频同步的问题，而由于时延预测器的不准确性会造成CPU，GPU的运行差异，同步开销可能会成为时延的主体部分。</p>
-
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/20/%CE%BCLayer/">
-        <button class="button">Paper Note</button></a>
-        &nbsp
-        <a href="./µLayer：Low Latency On-Device Inference Using Cooperative Single-Layer Acceleration and Processor-Friendly Quantization.pdf">
-        <button class="button">Paper Link</button></a>
-    </div>
-
-    <br>
-    <div class="bl">
-        <b style="color:#1D2088;">NeuralPower：Predict and Deploy Energy-Efficient Convolutional Neural Networks</b>
-        <hr>
-        <p>1）该文考虑到其他基于单网络复杂度指标（e.g. FLOPs）方法的局限性，该文提出基于多项式模型的模型性能预测方法；<br>
-
-2）该文不仅进行了模型运行时延预测，还设计了能耗的预测方法；<br>
-
-3）该文的完整模型时延预测是对各层时延的加和，实验发现各层运行时延的加和与完整模型运行时延相近，该说法是否可靠还待考究。</p>
-
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/21/NeuralPower/">
-        <button class="button">Paper Note</button></a>
-        &nbsp
-        <a href="./NeuralPower：Predict and Deploy Energy-Efficient Convolutional Neural Networks.pdf">
-        <button class="button">Paper Link</button></a>
-    </div>
-
-    <br>
-    <div class="bl">
-        <b style="color:#1D2088;">nn-Meter：Towards Accurate Latency Prediction of Deep-Learning Model Inference on Diverse Edge Devices</b>
-        <hr>
-        <p>1）与部分工作采用模型各层时延之和预测完整模型时延的方法不同，该工作考虑了神经网络算子融合的问题，设计了针对不同设备类型的网络级时延预测方法；<br>2)但部分工作中提到nn-meter存在内存占用量大的问题，难以在移动设备上装载。</p>
-
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/nn-meter/">
-        <button class="button">Paper Note</button></a>
-        &nbsp
-        <a href="./nn-Meter-Towards-Accurate-Latency-Prediction-of-Deep-Learning-Model-Inference-on-Diverse-Edge-Devices.pdf">
-        <button class="button">Paper Link</button></a>
-    </div>
-
-    <br>
-    <div class="bl">
-        <b style="color:#1D2088;">Learned TPU Cost Model for XLA Tensor Programs</b>
-        <hr>
-        <p>1）该工作考虑了框架在进行神经网络推理时算子间的影响，采用图嵌入的方式进行时延预测，比单层时延预测加和的模型时延预测准确；<br>2）该工作是基于学习的神经网络预测方法，计算和训练开销可能较大。</p>
-
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/nn-meter/">
-        <button class="button">Paper Note</button></a>
-        &nbsp
-        <a href="./Learned TPU Cost Model for XLA Tensor Programs.pdf">
-        <button class="button">Paper Link</button></a>
-    </div>
-
-    <br>
-    <div class="bl">
-        <b style="color:#1D2088;">FBNet: Hardware-Aware Efficient ConvNet Design via Differentiable Neural Architecture Search</b>
-        <hr>
-        <p>使用一个标定表模型预测每个算子的时延，通过计算算子时延之和预测模型总时延<br>
-        1）该方法考虑到时延预测的效率，采用标定表代替预测模型，是一种轻量级的方案；<br>2）该方法在设备转换时可能存在需要重新标定的问题，工作量较大；<br>3）该方法未考虑框架在运行时的算子融合，存在精度低的问题。
-        </p>
-
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/nn-meter/">
-        <button class="button">Paper Note</button></a>
-        &nbsp
-        <a href="./FBNet：Hardware-Aware Efficient ConvNet Design via Differentiable Neural Architecture Search.pdf">
-        <button class="button">Paper Link</button></a>
-    </div>
-
-    <br>
-    <div class="bl">
-        <b style="color:#1D2088;">PALEO：A Performance Model for Deep Neural Networks</b>
-        <hr>
-        <p>1）该工作分析了在设备上进行推理需要的开销，能在一定程度上降低基于FLOPs时延预测的误差；<br>
-2）基于FLOPs的时延预测误差较大；<br>
-3）该工作对完整模型的时延预测方法采用多层时延的加和，未考虑算子融合机制，误差较大。
-        </p>
-
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/nn-meter/">
-        <button class="button">Paper Note</button></a>
-        &nbsp
-        <a href="./paleo：a performance model for deep neural networks.pdf">
-        <button class="button">Paper Link</button></a>
-    </div>
-
-    <br>
-    <div class="bl">
-        <b style="color:#1D2088;">Predicting Execution Time of Computer Programs Using Sparse Polynomial Regression</b>
-        <hr>
-        <p>1）该方法使用多项式模型预测程序运行时延，准确性优于基于FLOPs的线性模型；<br>2）该方法通过代码分析的方式预测电脑程序的运行时间，但对于神经网络的泛化性较差，许多代码并不开源，无法获得代码中的详细信息。
-        </p>
-
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/nn-meter/">
-        <button class="button">Paper Note</button></a>
-        &nbsp
-        <a href="./Predicting Execution Time of Computer Programs Using Sparse Polynomial Regression.pdf">
-        <button class="button">Paper Link</button></a>
-    </div>
-
-
-    <br>
-    <div class="bl">
-        <b style="color:#1D2088;">TVM：An Automated End-to-End Optimizing Compiler for Deep Learning</b>
-        <hr>
-        <p>该工作使用基于机器学习的代价模型，在多轮预测的过程中测量模型实际运行时间，周期性地对模型进行更新，逐渐提高模型准确度。<br>
-        1）该方法通过运行时对模型的逐渐优化提高模型在不同设备上的可迁移性；<br>
-        2）该方法完全基于机器学习，训练和计算开销较大。
-        </p>
-
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/nn-meter/">
-        <button class="button">Paper Note</button></a>
-        &nbsp
-        <a href="./TVM：An Automated End-to-End Optimizing Compiler for Deep Learning.pdf">
-        <button class="button">Paper Link</button></a>
-    </div>
-
-</div></div></body>
-</html>
+<p>该工作将每个神经网络节点<script type="math/tex">u</script>的计算时延建模为三部分：获取父节点输入的时间<script type="math/tex">R(Pa(u))</script>、在设备<script type="math/tex">d</script>上执行计算<script type="math/tex">f</script>的时间、将模型输出写入内存的时延<script type="math/tex">W(f,d)</script>。</p>
+<script type="math/tex; mode=display">
+T(u)=R(Pa(u))+C(f,d)+W(f,d)</script><p>计算时延基于FLOPs计数和设备运行速度计算：<script type="math/tex">C(f,d)=FLOPs(f)/speed(d)</script>，IO的时延通过计算内存占用/IO带宽获得。对于完整网络的时延预测，该工作通过计算所有层的时延和获得：<script type="math/tex">T(N)=\sum_{i=1}^nT(u^{(i)})</script>。</p>
+<blockquote>
+<p>1）该工作分析了在设备上进行推理需要的开销，能在一定程度上降低基于FLOPs时延预测的误差；</p>
+<p>2）基于FLOPs的时延预测误差较大；</p>
+<p>3）该工作对完整模型的时延预测方法采用多层时延的加和，未考虑算子融合机制，误差较大。</p>
+</blockquote>
+<h2 id="Predicting-Execution-Time-of-Computer-Programs-Using-Sparse-Polynomial-Regression"><a href="#Predicting-Execution-Time-of-Computer-Programs-Using-Sparse-Polynomial-Regression" class="headerlink" title="Predicting Execution Time of Computer Programs Using Sparse Polynomial Regression"></a>Predicting Execution Time of Computer Programs Using Sparse Polynomial Regression</h2><blockquote>
+<p>来        源：NIPS’10: Proceedings of the 23rd International Conference on Neural Information Processing Systems - Volume 1December 2010 Pages 883–891</p>
+<p>原文速递：<a href="./Predicting Execution Time of Computer Programs Using Sparse Polynomial Regression.pdf" title="点击直接下载原文">Predicting Execution Time of Computer Programs Using Sparse Polynomial Regression</a></p>
+</blockquote>
+<p>该工作侧重于对电脑应用程序运行时间的预测，与直接进行模型训练不同，其通过分析代码特性提取出多个程序的特征，并使用稀疏多项式回归模型预测程序运行时间。</p>
+<p>稀疏多项式回归参考了LASSO的工作，从程序中可以分析出许多特征，如循环数、分支数、变量值等，而这些特征并不都对预测结果产生较大贡献，但大量的特征会使得多项式项数增多，降低预测效率。因此，可以将对结果影响小的特征的系数置零，只留下对结果影响大的特征子集。</p>
+<blockquote>
+<p>1）该方法使用多项式模型预测程序运行时延，准确性优于基于FLOPs的线性模型；</p>
+<p>2）该方法通过代码分析的方式预测电脑程序的运行时间，但对于神经网络的泛化性较差，许多代码并不开源，无法获得代码中的详细信息。</p>
+</blockquote>
+<h2 id="TVM：An-Automated-End-to-End-Optimizing-Compiler-for-Deep-Learning"><a href="#TVM：An-Automated-End-to-End-Optimizing-Compiler-for-Deep-Learning" class="headerlink" title="TVM：An Automated End-to-End Optimizing Compiler for Deep Learning"></a>TVM：An Automated End-to-End Optimizing Compiler for Deep Learning</h2><blockquote>
+<p>来        源：the 13th USENIX Symposium on Operating Systems Design and Implementation (OSDI ’18). October 8–10, 2018 • Carlsbad, CA, USA</p>
+<p>原文速递：<a href="./TVM：An Automated End-to-End Optimizing Compiler for Deep Learning.pdf" title="点击直接下载原文">TVM：An Automated End-to-End Optimizing Compiler for Deep Learning</a></p>
+</blockquote>
+<p>该工作使用基于机器学习的代价模型，考虑到一个好的代价模型需要考虑影响性能的全部因素：内存访问模式、数据重用、管道依赖性等，现代硬件的复杂性高，并且针对每个新的目标硬件都需要新的代价模型，将是一个十分繁琐的过程。该方法在多轮预测的过程中测量模型实际运行时间，周期性地对模型进行更新，逐渐提高模型准确度。该方法在经过对比后使用梯度提升树模型（Gradient Tree Boosting Model），涉及到集中学习地范畴。</p>
+<blockquote>
+<p>1）该方法通过运行时对模型的逐渐优化提高模型在不同设备上的可迁移性；</p>
+<p>2）该方法完全基于机器学习，训练和计算开销较大。</p>
+</blockquote>
+</HR></HR></HR>
         </div>
 
         
@@ -427,13 +303,13 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2022/10/26/nn-meter/"
+                           href="/2022/10/29/Linux%E5%9F%BA%E7%A1%80/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">nn-Meter：Towards Accurate Latency Prediction of Deep-Learning Model Inference on Diverse Edge Devices</span>
+                                <span class="post-nav-title-item">Linux基础</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
@@ -443,10 +319,10 @@
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/10/22/PyTorch%E5%9F%BA%E7%A1%80/"
+                           href="/2022/10/26/nn-meter/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">PyTorch基础</span>
+                                <span class="post-nav-title-item">nn-Meter：Towards Accurate Latency Prediction of Deep-Learning Model Inference on Diverse Edge Devices</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -657,7 +533,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#BRP-NAS-Prediction-based-NAS-using-GCNs"><span class="nav-text">BRP-NAS: Prediction-based NAS using GCNs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learned-TPU-Cost-Model-for-XLA-Tensor-Programs"><span class="nav-text">Learned TPU Cost Model for XLA Tensor Programs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FBNet-Hardware-Aware-Efficient-ConvNet-Design-via-Differentiable-Neural-Architecture-Search"><span class="nav-text">FBNet: Hardware-Aware Efficient ConvNet Design via Differentiable Neural Architecture Search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PALEO%EF%BC%9AA-Performance-Model-for-Deep-Neural-Networks"><span class="nav-text">PALEO：A Performance Model for Deep Neural Networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Predicting-Execution-Time-of-Computer-Programs-Using-Sparse-Polynomial-Regression"><span class="nav-text">Predicting Execution Time of Computer Programs Using Sparse Polynomial Regression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TVM%EF%BC%9AAn-Automated-End-to-End-Optimizing-Compiler-for-Deep-Learning"><span class="nav-text">TVM：An Automated End-to-End Optimizing Compiler for Deep Learning</span></a></li></ol>
     </div>
 </div>
         </aside>
