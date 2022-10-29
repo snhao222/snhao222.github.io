@@ -278,6 +278,15 @@ T(u)=R(Pa(u))+C(f,d)+W(f,d)</script><p>计算时延基于FLOPs计数和设备运
 <p>1）该方法通过运行时对模型的逐渐优化提高模型在不同设备上的可迁移性；</p>
 <p>2）该方法完全基于机器学习，训练和计算开销较大。</p>
 </blockquote>
+<h2 id="Learning-to-Optimize-Halide-with-Tree-Search-and-Random-Programs"><a href="#Learning-to-Optimize-Halide-with-Tree-Search-and-Random-Programs" class="headerlink" title="Learning to Optimize Halide with Tree Search and Random Programs"></a>Learning to Optimize Halide with Tree Search and Random Programs</h2><blockquote>
+<p>来        源：ACM Transactions on Graphics, Volume 38, Issue 4, August 2019, Article No.: 121, pp 1–12 <a class="link" target="_blank" rel="noopener" href="https://doi.org/10.1145/3306346.3322967">https://doi.org/10.1145/3306346.3322967<i class="fas fa-external-link-alt"></i></a></p>
+<p>原文速递：<a href="./Learning to Optimize Halide with Tree Search and Random Programs.pdf" title="点击直接下载原文">Learning to Optimize Halide with Tree Search and Random Programs</a></p>
+</blockquote>
+<p>该工作采用通过神经网络预测程序运行时间的方法，同时考虑到完全用网络进行黑盒预测需要一个很大的网络，并且很难训练，该工作的代价模型使用人工设计的项向量和小神经网络预测的系数向量点乘获得程序的运行时间。这些人工设计的项是特征的非线性组合，作者希望通过这样的设计方式使这些项与运行时间成比例地扩展。神经网络只需要调整每一项的权重，对于对最终表现无关的项，可将其系数置为0。</p>
+<blockquote>
+<p>1）该方法考虑了预测器的预测效率，通过人工设计的多项式将预测网络变成小神经网络；</p>
+<p>2）该方法需要考虑程序的代码特征，而对于非开源程序，该方法的泛化性较差。</p>
+</blockquote>
 </HR></HR></HR>
         </div>
 
@@ -533,7 +542,7 @@ T(u)=R(Pa(u))+C(f,d)+W(f,d)</script><p>计算时延基于FLOPs计数和设备运
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#BRP-NAS-Prediction-based-NAS-using-GCNs"><span class="nav-text">BRP-NAS: Prediction-based NAS using GCNs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learned-TPU-Cost-Model-for-XLA-Tensor-Programs"><span class="nav-text">Learned TPU Cost Model for XLA Tensor Programs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FBNet-Hardware-Aware-Efficient-ConvNet-Design-via-Differentiable-Neural-Architecture-Search"><span class="nav-text">FBNet: Hardware-Aware Efficient ConvNet Design via Differentiable Neural Architecture Search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PALEO%EF%BC%9AA-Performance-Model-for-Deep-Neural-Networks"><span class="nav-text">PALEO：A Performance Model for Deep Neural Networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Predicting-Execution-Time-of-Computer-Programs-Using-Sparse-Polynomial-Regression"><span class="nav-text">Predicting Execution Time of Computer Programs Using Sparse Polynomial Regression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TVM%EF%BC%9AAn-Automated-End-to-End-Optimizing-Compiler-for-Deep-Learning"><span class="nav-text">TVM：An Automated End-to-End Optimizing Compiler for Deep Learning</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#BRP-NAS-Prediction-based-NAS-using-GCNs"><span class="nav-text">BRP-NAS: Prediction-based NAS using GCNs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learned-TPU-Cost-Model-for-XLA-Tensor-Programs"><span class="nav-text">Learned TPU Cost Model for XLA Tensor Programs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FBNet-Hardware-Aware-Efficient-ConvNet-Design-via-Differentiable-Neural-Architecture-Search"><span class="nav-text">FBNet: Hardware-Aware Efficient ConvNet Design via Differentiable Neural Architecture Search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PALEO%EF%BC%9AA-Performance-Model-for-Deep-Neural-Networks"><span class="nav-text">PALEO：A Performance Model for Deep Neural Networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Predicting-Execution-Time-of-Computer-Programs-Using-Sparse-Polynomial-Regression"><span class="nav-text">Predicting Execution Time of Computer Programs Using Sparse Polynomial Regression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TVM%EF%BC%9AAn-Automated-End-to-End-Optimizing-Compiler-for-Deep-Learning"><span class="nav-text">TVM：An Automated End-to-End Optimizing Compiler for Deep Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning-to-Optimize-Halide-with-Tree-Search-and-Random-Programs"><span class="nav-text">Learning to Optimize Halide with Tree Search and Random Programs</span></a></li></ol>
     </div>
 </div>
         </aside>
@@ -621,20 +630,5 @@ T(u)=R(Pa(u))+C(f,d)+W(f,d)</script><p>计算时延基于FLOPs计数和设备运
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
