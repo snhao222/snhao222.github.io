@@ -269,7 +269,8 @@
     <div class="bl">
         <b style="color:#1D2088;">Neurosurgeon：Collaborative Intelligence Between the Cloud and Mobile Edge</b>
         <hr>
-        <p>1）性能预测器准确度无法保证。该系统的性能预测器仅仅针对对不同层参数构建简单的线性或指数回归模型，虽然该模型执行很快，但如此简单的预测方法难以获得高预测精度，而较低的预测精度势必影响DNN分割算法的效果；<br>
+        <p>Neurosurgeon是一个云-端协同的协同推理系统，能够相较云计算减少传输数据量，相较单机边缘计算提升计算速度，从而提高DNN推理的响应速度。然而，该系统存在许多不足之处：<br>
+        1）性能预测器准确度无法保证。该系统的性能预测器仅仅针对对不同层参数构建简单的线性或指数回归模型，虽然该模型执行很快，但如此简单的预测方法难以获得高预测精度，而较低的预测精度势必影响DNN分割算法的效果；<br>
 
 2）对多层网络的性能预测不准确。该文仅使用每层网络时延和能耗的加和表示多层的性能，而实验表明运行多层网络的时延和能耗往往低于每层网络的加和，由错误的性能预测数据确定DNN分割点很难得到最优方案。</p>
 
@@ -328,11 +329,27 @@
 
     <br>
     <div class="bl">
+        <b style="color:#1D2088;">BRP-NAS: Prediction-based NAS using GCNs</b>
+        <hr>
+        <p>与层级时延预测不同，该工作将模型的结构信息也作为时延预测的一个参量，使用图卷积网络（GCN）直接预测完整模型的时延。<br>1）考虑整个网络的特性，而非是对单层时延预测值的简单加和，准确度更高；<br>
+    2）未考虑设备特性，是完全黑盒的预测，模型尺寸可能比较大；<br>
+    3）泛化能力差，对新模型的支持性差。</p>
+
+        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/group1/">
+        <button class="button">Paper Note</button></a>
+        &nbsp
+        <a href="./BRP-NAS：Prediction-based NAS using GCNs.pdf">
+        <button class="button">Paper Link</button></a>
+    </div>
+
+    <br>
+    <div class="bl">
         <b style="color:#1D2088;">Learned TPU Cost Model for XLA Tensor Programs</b>
         <hr>
-        <p>1）该工作考虑了框架在进行神经网络推理时算子间的影响，采用图嵌入的方式进行时延预测，比单层时延预测加和的模型时延预测准确；<br>2）该工作是基于学习的神经网络预测方法，计算和训练开销可能较大。</p>
+        <p>该工作设计了一个基于学习的神经网络性能评估模型，用于预测每个kernel的执行时间y'。 <br>
+        1）该工作考虑了框架在进行神经网络推理时算子间的影响，采用图嵌入的方式进行时延预测，比单层时延预测加和的模型时延预测准确；<br>2）该工作是基于学习的神经网络预测方法，计算和训练开销可能较大。</p>
 
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/nn-meter/">
+        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/group1/">
         <button class="button">Paper Note</button></a>
         &nbsp
         <a href="./Learned TPU Cost Model for XLA Tensor Programs.pdf">
@@ -347,7 +364,7 @@
         1）该方法考虑到时延预测的效率，采用标定表代替预测模型，是一种轻量级的方案；<br>2）该方法在设备转换时可能存在需要重新标定的问题，工作量较大；<br>3）该方法未考虑框架在运行时的算子融合，存在精度低的问题。
         </p>
 
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/nn-meter/">
+        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/group1/">
         <button class="button">Paper Note</button></a>
         &nbsp
         <a href="./FBNet：Hardware-Aware Efficient ConvNet Design via Differentiable Neural Architecture Search.pdf">
@@ -358,12 +375,14 @@
     <div class="bl">
         <b style="color:#1D2088;">PALEO：A Performance Model for Deep Neural Networks</b>
         <hr>
-        <p>1）该工作分析了在设备上进行推理需要的开销，能在一定程度上降低基于FLOPs时延预测的误差；<br>
+        <p>
+        该工作综合考虑了网络结构和硬件配置，通过分析DNN在设备上进行计算的过程对神经网络的推理时延进行预测。<br>
+        1）该工作分析了在设备上进行推理需要的开销，能在一定程度上降低基于FLOPs时延预测的误差；<br>
 2）基于FLOPs的时延预测误差较大；<br>
 3）该工作对完整模型的时延预测方法采用多层时延的加和，未考虑算子融合机制，误差较大。
         </p>
 
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/nn-meter/">
+        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/group1/">
         <button class="button">Paper Note</button></a>
         &nbsp
         <a href="./paleo：a performance model for deep neural networks.pdf">
@@ -374,10 +393,10 @@
     <div class="bl">
         <b style="color:#1D2088;">Predicting Execution Time of Computer Programs Using Sparse Polynomial Regression</b>
         <hr>
-        <p>1）该方法使用多项式模型预测程序运行时延，准确性优于基于FLOPs的线性模型；<br>2）该方法通过代码分析的方式预测电脑程序的运行时间，但对于神经网络的泛化性较差，许多代码并不开源，无法获得代码中的详细信息。
+        <p>该工作侧重于对电脑应用程序运行时间的预测，与直接进行模型训练不同，其通过分析代码特性提取出多个程序的特征，并使用稀疏多项式回归模型预测程序运行时间。<br>1）该方法使用多项式模型预测程序运行时延，准确性优于基于FLOPs的线性模型；<br>2）该方法通过代码分析的方式预测电脑程序的运行时间，但对于神经网络的泛化性较差，许多代码并不开源，无法获得代码中的详细信息。
         </p>
 
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/nn-meter/">
+        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/group1/">
         <button class="button">Paper Note</button></a>
         &nbsp
         <a href="./Predicting Execution Time of Computer Programs Using Sparse Polynomial Regression.pdf">
@@ -394,7 +413,7 @@
         2）该方法完全基于机器学习，训练和计算开销较大。
         </p>
 
-        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/nn-meter/">
+        <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/group1/">
         <button class="button">Paper Note</button></a>
         &nbsp
         <a href="./TVM：An Automated End-to-End Optimizing Compiler for Deep Learning.pdf">
@@ -411,7 +430,7 @@
     </p>
 
 
-    <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/nn-meter/">
+    <a target="_blank" rel="noopener" href="https://snspace.top/2022/10/26/group1/">
     <button class="button">Paper Note</button></a>
     &nbsp
     <a href="./Learning to Optimize Halide with Tree Search and Random Programs.pdf">
@@ -762,5 +781,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
