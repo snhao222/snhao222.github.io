@@ -9,7 +9,7 @@
     
     <title>
         
-            nn-Meter：Towards Accurate Latency Prediction of Deep-Learning Model Inference on Diverse Edge Devices |
+            An Efficient and Accuracy Multi-layer Latency Predictor |
         
         SnSpace
     </title>
@@ -141,7 +141,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">nn-Meter：Towards Accurate Latency Prediction of Deep-Learning Model Inference on Diverse Edge Devices</span>
+            <span class="title-hover-animation">An Efficient and Accuracy Multi-layer Latency Predictor</span>
         </div>
 
         
@@ -158,20 +158,9 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-10-26 16:30:20</span>
-        <span class="mobile">2022-10-26 16:30</span>
+        <span class="pc">2022-11-02 08:32:50</span>
+        <span class="mobile">2022-11-02 08:32</span>
     </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/Paper-Notes/">Paper Notes</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
     
     
 
@@ -191,53 +180,18 @@
         
 
         <div class="article-content markdown-body">
-            <blockquote>
-<p>来        源：MobiSys ‘21: Proceedings of the 19th Annual International Conference on Mobile Systems, Applications, and ServicesJune 2021 Pages 81–93<a class="link" target="_blank" rel="noopener" href="https://doi.org/10.1145/3458864.3467882">https://doi.org/10.1145/3458864.3467882<i class="fas fa-external-link-alt"></i></a></p>
-<p>原文速递：<a href="./nn-Meter-Towards-Accurate-Latency-Prediction-of-Deep-Learning-Model-Inference-on-Diverse-Edge-Devices.pdf" title="点击直接下载原文">nn-Meter：Towards Accurate Latency Prediction of Deep-Learning Model</a></p>
-</blockquote>
-<center>（2021 MobiSys Best Paper）</center>
-
-<h2 id="1-Background-amp-Motivation"><a href="#1-Background-amp-Motivation" class="headerlink" title="1. Background &amp; Motivation"></a>1. Background &amp; Motivation</h2><p>设计一个高准确度、高效的DNN模型，需要得到准确的不同模型在部署中的推理时延。然而，测量DNN模型的推理时延是繁琐且昂贵的，推理时延可能会受到设备类型、模型框架的影响，模型推理时延的预测成为了一种重要的手段。但直接进行模型级别的预测，其搜索空间又太大：假设一个具有N个节点的模型，每个节点有D个特征，在模型DAG图中最多存在N×(N-1)条边，则整个预测空间中一共有多达DN×N×(N-1)个模型，这就需要寻找更细粒度的方法。<br>尽管DNN网络大量出现，但基础算子类型仍然很少，比如卷积、激活函数、全连接层、BatchNorm和element-wise算子。虽然算子级预测是一种细粒度方法，但它并不能捕捉不同设备上的图级别（graph level）优化，如图1所示。这些较稳定的基础算子又进一步根据推理平台的优化构成了内核（kernel），任何DNN的都是由这些基础内核构成的。</p>
-<div align="center">
- <img src="/2022/10/26/nn-meter/图片1.png" style="zoom: 60%;">
+            <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Wrong Key!" data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="19e360f03b1cd130b2f32ee073176c0e9d42b758ef806074b1be433a15bb4dd3">990d3914865424503ccb870b93b6c2651f8791c940b0bbc6a9b91fa3a0d2f6021d7a2252919aa711377a584ceb0080bff71187c6d584a19c022cf123043aff2031316bc80306603f6695b08790164e3b295bd3cbf9e292a29a6819dd74448e0de5c76677f24e410850849a9d812c6448452d7b2b1955ff41ec6679728da661ddffc5aca860b63438ef1d90990862b5702325ce9413f6f63fcf9fce5d5d22715aa3062d6f57207a9309bf0e5efdfdea7206bacb82994998d7c2390f87a79663597978f2d2229ce3f899b88f912e88446794d5e011d686ad2b562e40f19433725f3a416e13f9ed58e8d49738df8bd90b757e84d812dc7353ad0c71381c0f263543afca8b9ac0603efff2c03d8e9f3b744b5625a2bd5a44b9ad93c32182eda505a64edb932748e6bd576b8f466d79bf2621b0a8dcc8dca7492e551749698c8e650f4182843845bf1455e3c661e03c36548999aa718db278a12368c388ec713bd57efbba92669bf93bd9f0f52bf45b7e4ca7ec3fd5217b769b34a0914831a4cce20bb4256e64a817ab20661b7a02f450917a2b4c74dc429006d0d3b21f2b72f9ff85508a5ff4c5eb17fa4a2be3454f4880f4461f42a4c65ab31b1e5ca555c7b1c976510fe60807140b620623d65371862cdaf28c791d4c10ad0f45f244315aa11553a3a843c0fe98b9e4472468499918e8c23fc7d7bad5bb5b77c7e8dbcbd095b42f8705f1bc8e69f2c3d0b7ba757dd87dc4f18cd2a3501e9dff2e20ca0a3ffa578b3a9b78c020da2ae25bfeac0f06769d65f1f5df74af3923b7dfea27a5d343acc37474cdcc2177e1a111d0fabe9d4f4a6aa261a648534547fa32f626041b680cc3b4c2403270acf178421600b124efb825613434a0fe29855d904fe12a734f99612a74ac6aafd94f8ef422dee0d9b71414cd604d14b21592ec24bf01348451d4c1bfdf4ee629ffcce924f2cf6dbe02312b485da45b3620ddbad875fb122516338dbef184700fce9c5e75c7026afb278fb1b7da929ecb73b5ea1f89b8a02df402c49d0b696186caf257b4f12e136c2396a5d357038e8f320ae76f6030171fc9f293c481c0f2a9d89b2dd27d56525ae1b10ac19f1bb3e2b4c2007ac06c5073812c4d8388319d015121fee8f253d7debea82c23243898777c6a71ecf846a12b93ccb4133a040aa417a4c2112941cf86a8c80c78b2ed7c58cdf4d80b0316bf9a17bc50d46c97ea00083f938e81f3c5f84640da723153c6632a6b43116030a4b62b53a4d5be3b5eec6cb51a6f3775a58d24bed5c6a1e1a0fc1196bdb11b1e4ddd57d7cc97c28059f0f2574b4bc426515165e46a24aefcb9075a8cd5d7028b4191069e68ea6db3695f8e0023dfacfc1c054b24b5989eeab13c90ee9bb79f8da170037e91</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Input Key</span>
+      </label>
+    </div>
+  </div>
 </div>
-
-<center>图1 DNN框架的图优化</center>
-
-<h2 id="2-Contributions"><a href="#2-Contributions" class="headerlink" title="2. Contributions"></a>2. Contributions</h2><blockquote>
-<p>1）提出了nn-Meter，一种在边缘设备上准确预测CNN模型推理时延的系统；</p>
-<p>2）设计了nn-Meter的两个关键技术：内核检测器，用于捕获边缘设备上的各种算子融合行为。自适应采样，用于减少构建时延预测器的计算量；</p>
-<p>3）使用nn-Meter在手机CPU、手机GPU和Intel VPU上进行实验，结果显示，nn-Meter在多种设备和模型上都取得了相比现有方法更好的预测准确度。</p>
-</blockquote>
-<h2 id="3-Design-Details"><a href="#3-Design-Details" class="headerlink" title="3. Design Details"></a>3. Design Details</h2><p>图2为nn-Meter的系统结构，包括内核检测和自适应数据采样，它离线检测了算子融合规则并且构建了内核级的预测器。</p>
-<div align="center">
- <img src="/2022/10/26/nn-meter/图片2.png" style="zoom: 60%;">
-</div>
-
-<center>图2 nn-Meter系统结构</center>
-
-<h3 id="3-1-内核检测"><a href="#3-1-内核检测" class="headerlink" title="3.1 内核检测"></a>3.1 内核检测</h3><p>内核检测可以自动识别部署平台的算子融合规则，从而基于这些规则检测模型中的所有内核。nn-Meter 会离线收集所有融合规则，进行在线模型预测时，内核搜索算法则会将这些规则递归地应用于目标模型来找到所有内核，图3为内核检测的一个示例。</p>
-<div align="center">
- <img src="/2022/10/26/nn-meter/图片3.png" style="zoom: 60%;">
-</div>
-
-<center>图3 ResNet18内核检测示例</center>
-
-<h3 id="3-2-自适应数据采样"><a href="#3-2-自适应数据采样" class="headerlink" title="3.2 自适应数据采样"></a>3.2 自适应数据采样</h3><p>自适应数据采样用于训练内核级时延预测器，由于某些内核所具有的数据采样空间巨大，例如 Conv+bn+relu 的采样空间已达到千万数量级，该方法通过迭代采样过程对最有益的配置进行采样，离线为目标设备上的所有内核构建机器学习预测器。</p>
-<div align="center">
- <img src="/2022/10/26/nn-meter/图片4.png" style="zoom: 60%;">
-</div>
-
-<center>图4 多种输出通道数下Conv+bn+relu内核的推理时延</center>
-
-<p>如图4所示，随机采样会丢失很多真实的细节信息，该方法采用自适应采样在误差较大的点附近进行更细粒度的数据采样。最后，nn-Meter采用了随机森林回归来预测非线性的内核级延迟，使用内核的延迟总和计算整个模型的延迟</p>
-<div align="center">
- <img src="/2022/10/26/nn-meter/图片5.png" style="zoom: 70%;">
-</div>
-
-<p>其中，<script type="math/tex">f_o</script>是kernel<script type="math/tex">o</script>的机器学习预测器，<script type="math/tex">x_o</script>是提取的特征。</p>
-<h2 id="4-Comments"><a href="#4-Comments" class="headerlink" title="4. Comments"></a>4. Comments</h2><p>该文章考虑了内核级别的时延估计，相比之前的工作更加深入研究了模型在实际设备上的推理机制，考虑了框架和设备对模型的加速优化问题，该方法不仅能够用来预测整个模型的推理时延，也可以预测任意几层的推理时延。但部分工作中提到nn-meter存在内存占用量大的问题，难以在移动设备上装载。</p>
-
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
         </div>
 
         
@@ -259,29 +213,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/10/26/group1/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">group：DNN Latency Prediction</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/10/22/Topic1/"
+                           href="/2022/10/31/Elastic-Collaborative-Edge-Intelligence-for-UAVs/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Topic1：Is Accurate and Light-weight DNN Multi-layer Latency Prediction Possible?</span>
+                                <span class="post-nav-title-item">Elastic Collaborative Edge Intelligence for UAVs</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -492,7 +431,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Background-amp-Motivation"><span class="nav-text">1. Background &amp; Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Contributions"><span class="nav-text">2. Contributions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Design-Details"><span class="nav-text">3. Design Details</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%86%85%E6%A0%B8%E6%A3%80%E6%B5%8B"><span class="nav-text">3.1 内核检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E8%87%AA%E9%80%82%E5%BA%94%E6%95%B0%E6%8D%AE%E9%87%87%E6%A0%B7"><span class="nav-text">3.2 自适应数据采样</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Comments"><span class="nav-text">4. Comments</span></a></li></ol>
+        
     </div>
 </div>
         </aside>
