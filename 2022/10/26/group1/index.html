@@ -259,6 +259,8 @@ T(u)=R(Pa(u))+C(f,d)+W(f,d)</script><p>计算时延基于FLOPs计数和设备运
 <p>2）基于FLOPs的时延预测误差较大；</p>
 <p>3）该工作对完整模型的时延预测方法采用多层时延的加和，未考虑算子融合机制，误差较大。</p>
 </blockquote>
+<HR>
+
 <h2 id="Predicting-Execution-Time-of-Computer-Programs-Using-Sparse-Polynomial-Regression"><a href="#Predicting-Execution-Time-of-Computer-Programs-Using-Sparse-Polynomial-Regression" class="headerlink" title="Predicting Execution Time of Computer Programs Using Sparse Polynomial Regression"></a>Predicting Execution Time of Computer Programs Using Sparse Polynomial Regression</h2><blockquote>
 <p>来        源：NIPS’10: Proceedings of the 23rd International Conference on Neural Information Processing Systems - Volume 1December 2010 Pages 883–891</p>
 <p>原文速递：<a href="./Predicting Execution Time of Computer Programs Using Sparse Polynomial Regression.pdf" title="点击直接下载原文">Predicting Execution Time of Computer Programs Using Sparse Polynomial Regression</a></p>
@@ -278,6 +280,8 @@ T(u)=R(Pa(u))+C(f,d)+W(f,d)</script><p>计算时延基于FLOPs计数和设备运
 <p>1）该方法通过运行时对模型的逐渐优化提高模型在不同设备上的可迁移性；</p>
 <p>2）该方法完全基于机器学习，训练和计算开销较大。</p>
 </blockquote>
+<HR>
+
 <h2 id="Learning-to-Optimize-Halide-with-Tree-Search-and-Random-Programs"><a href="#Learning-to-Optimize-Halide-with-Tree-Search-and-Random-Programs" class="headerlink" title="Learning to Optimize Halide with Tree Search and Random Programs"></a>Learning to Optimize Halide with Tree Search and Random Programs</h2><blockquote>
 <p>来        源：ACM Transactions on Graphics, Volume 38, Issue 4, August 2019, Article No.: 121, pp 1–12 <a class="link" target="_blank" rel="noopener" href="https://doi.org/10.1145/3306346.3322967">https://doi.org/10.1145/3306346.3322967<i class="fas fa-external-link-alt"></i></a></p>
 <p>原文速递：<a href="./Learning to Optimize Halide with Tree Search and Random Programs.pdf" title="点击直接下载原文">Learning to Optimize Halide with Tree Search and Random Programs</a></p>
@@ -287,7 +291,18 @@ T(u)=R(Pa(u))+C(f,d)+W(f,d)</script><p>计算时延基于FLOPs计数和设备运
 <p>1）该方法考虑了预测器的预测效率，通过人工设计的多项式将预测网络变成小神经网络；</p>
 <p>2）该方法需要考虑程序的代码特征，而对于非开源程序，该方法的泛化性较差。</p>
 </blockquote>
-</HR></HR></HR>
+<HR>
+
+<h2 id="HELP：Hardware-Adaptive-Efficient-Latency-Prediction-for-NAS-via-Meta-Learning"><a href="#HELP：Hardware-Adaptive-Efficient-Latency-Prediction-for-NAS-via-Meta-Learning" class="headerlink" title="HELP：Hardware-Adaptive Efficient Latency Prediction for NAS via Meta-Learning"></a>HELP：Hardware-Adaptive Efficient Latency Prediction for NAS via Meta-Learning</h2><blockquote>
+<p>来        源：35th Conference on Neural Information Processing Systems (NeurIPS 2021)</p>
+<p>原文速递：<a href="./HELP：Hardware-Adaptive Efficient Latency Prediction for Nas via Meta-Learning.pdf" title="点击直接下载原文">HELP：Hardware-Adaptive Efficient Latency Prediction for Nas via Meta-Learning</a></p>
+</blockquote>
+<p>该工作注意到许多工作的时延预测只针对特定设备进行设计，应用在每个新设备时都需要对模型重新训练，而每次训练都需要大量的测量数据，影响了NAS工作的效率。因此，该工作提出了一种基于元学习的硬件设备自适应时延预测器，在预测器部署到新设备时，只需要采集少量数据就可以实现模型迁移。</p>
+<blockquote>
+<p>1）该工作考虑了预测模型在不同设备上的重新训练问题，使用元学习减少在不同设备上训练模型的代价；</p>
+<p>2）该工作采用黑盒函数预测推理时延，要获得准确的预测结果需要复杂的函数，预测器效率不高。</p>
+</blockquote>
+</HR></HR></HR></HR></HR></HR>
         </div>
 
         
@@ -542,7 +557,7 @@ T(u)=R(Pa(u))+C(f,d)+W(f,d)</script><p>计算时延基于FLOPs计数和设备运
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#BRP-NAS-Prediction-based-NAS-using-GCNs"><span class="nav-text">BRP-NAS: Prediction-based NAS using GCNs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learned-TPU-Cost-Model-for-XLA-Tensor-Programs"><span class="nav-text">Learned TPU Cost Model for XLA Tensor Programs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FBNet-Hardware-Aware-Efficient-ConvNet-Design-via-Differentiable-Neural-Architecture-Search"><span class="nav-text">FBNet: Hardware-Aware Efficient ConvNet Design via Differentiable Neural Architecture Search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PALEO%EF%BC%9AA-Performance-Model-for-Deep-Neural-Networks"><span class="nav-text">PALEO：A Performance Model for Deep Neural Networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Predicting-Execution-Time-of-Computer-Programs-Using-Sparse-Polynomial-Regression"><span class="nav-text">Predicting Execution Time of Computer Programs Using Sparse Polynomial Regression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TVM%EF%BC%9AAn-Automated-End-to-End-Optimizing-Compiler-for-Deep-Learning"><span class="nav-text">TVM：An Automated End-to-End Optimizing Compiler for Deep Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning-to-Optimize-Halide-with-Tree-Search-and-Random-Programs"><span class="nav-text">Learning to Optimize Halide with Tree Search and Random Programs</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#BRP-NAS-Prediction-based-NAS-using-GCNs"><span class="nav-text">BRP-NAS: Prediction-based NAS using GCNs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learned-TPU-Cost-Model-for-XLA-Tensor-Programs"><span class="nav-text">Learned TPU Cost Model for XLA Tensor Programs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FBNet-Hardware-Aware-Efficient-ConvNet-Design-via-Differentiable-Neural-Architecture-Search"><span class="nav-text">FBNet: Hardware-Aware Efficient ConvNet Design via Differentiable Neural Architecture Search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PALEO%EF%BC%9AA-Performance-Model-for-Deep-Neural-Networks"><span class="nav-text">PALEO：A Performance Model for Deep Neural Networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Predicting-Execution-Time-of-Computer-Programs-Using-Sparse-Polynomial-Regression"><span class="nav-text">Predicting Execution Time of Computer Programs Using Sparse Polynomial Regression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TVM%EF%BC%9AAn-Automated-End-to-End-Optimizing-Compiler-for-Deep-Learning"><span class="nav-text">TVM：An Automated End-to-End Optimizing Compiler for Deep Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning-to-Optimize-Halide-with-Tree-Search-and-Random-Programs"><span class="nav-text">Learning to Optimize Halide with Tree Search and Random Programs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HELP%EF%BC%9AHardware-Adaptive-Efficient-Latency-Prediction-for-NAS-via-Meta-Learning"><span class="nav-text">HELP：Hardware-Adaptive Efficient Latency Prediction for NAS via Meta-Learning</span></a></li></ol>
     </div>
 </div>
         </aside>
@@ -630,20 +645,5 @@ T(u)=R(Pa(u))+C(f,d)+W(f,d)</script><p>计算时延基于FLOPs计数和设备运
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
