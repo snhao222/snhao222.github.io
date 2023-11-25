@@ -148,6 +148,23 @@
     
         <section class="archive-item">
             <div class="archive-item-header">
+                <span class="archive-year">2023</span>
+                <span class="archive-year-post-count">[1]</span>
+            </div>
+            <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2023/11/22/Topic2/"
+                        >Topic 2：How to Improve Error Tolerance Capability in Collaborative Inference System ?</a>
+                        <span class="article-date">11-22</span>
+                    </li>
+                
+            </ul>
+        </section>
+    
+        <section class="archive-item">
+            <div class="archive-item-header">
                 <span class="archive-year">2022</span>
                 <span class="archive-year-post-count">[1]</span>
             </div>
@@ -156,7 +173,7 @@
                     <li class="article-item">
                         <a class="article-title"
                            href="/2022/10/22/Topic1/"
-                        >Topic1：Is Accurate and Light-weight DNN Multi-layer Latency Prediction Possible?</a>
+                        >Topic 1：Is Accurate and Light-weight DNN Multi-layer Latency Prediction Possible?</a>
                         <span class="article-date">10-22</span>
                     </li>
                 
@@ -344,5 +361,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

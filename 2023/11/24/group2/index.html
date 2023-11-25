@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Sun Hao">
+    
+    <title>
+        
+            group2：Error Tolerance in Neural Networks |
+        
+        SnSpace
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Slogo.svg">
+    
+<link rel="stylesheet" href="/fontawesome/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"snhao222.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","logo":"/images/Slogo.svg","favicon":"/images/Slogo.svg","avatar":"/images/HeadImage.svg","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"S  n  S  p  a  c  e","font_color":null,"hitokoto":{"enable":false}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block_tools":{"enable":true,"style":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.8"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/Slogo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               SnSpace
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">group2：Error Tolerance in Neural Networks</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/HeadImage.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Sun Hao</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2023-11-24 14:04:38</span>
+        <span class="mobile">2023-11-24 14:04</span>
+    </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="Fault-and-Error-Tolerance-in-Neural-Networks-A-Review"><a href="#Fault-and-Error-Tolerance-in-Neural-Networks-A-Review" class="headerlink" title="Fault and Error Tolerance in Neural Networks: A Review"></a>Fault and Error Tolerance in Neural Networks: A Review</h2><blockquote>
+<p> 来        源：IEEE Access 2017<br> 原文速递：<a href="./Fault_and_Error_Tolerance_in_Neural_Networks_A_Review.pdf" title="点击直接下载原文">Fault and Error Tolerance in Neural Networks: A Review</a></p>
+</blockquote>
+<p>该文对神经网络的容错工作进行了调研，介绍了容错相关名词及定义，并对故障类型、故障模型进行划分。该文重点对神经网络容错工作进行了具体分类：</p>
+<ul>
+<li>被动容错（Passive fault tolerance）<br>一个具有被动容错功能的系统不会以任何特殊的方式对内部故障做出反应，而是利用系统结构中的冗余和故障屏蔽有效地屏蔽故障效应。</li>
+</ul>
+<p>​    （a）增加冗余（Explicitly augmenting redundancy）</p>
+<div align="center">
+    <img src="/2023/11/24/group2/Augment Redundancy.png" style="zoom: 45%;">
+</div>
+
+<p>​    (b) 调整训练策略（Modifying training/ learning）</p>
+<p>​        在训练过程中加入噪声、扰动或直接引入故障，一些工作在待改进的性能指标中加入惩罚项以间接地引入故障。</p>
+<p>​    (c) 解优化问题（Optimization under constraints）</p>
+<p>​        将训练过程和容错转化为一个非线性优化问题，以找到在容错约束下执行特定任务的神经网络拓扑结构和参数。</p>
+<ul>
+<li>主动容错（Active fault tolerance）<br>一个具有主动容错功能的系统能够明确、动态地识别和管理其冗余资源，以补偿故障出现时的影响（通过适应、再训练或自我修复机制）。主动容错需要特殊的检测/定位和监督/控制组件，其设计可能会比较复杂。</li>
+</ul>
+<blockquote>
+<p>1）现有神经网络容错工作大部分针对人工神经网络（ANN）进行设计，对目前的智能应用来说过于简单，且年份久远，许多神经网络的容错工作在上世纪九十年代进行；<br>2）文中提到的工作基本都为在硬件系统不稳定的设备上进行神经网络容错设计，是在计算或参数存储时造成的错误，不考虑由于传输产生的数据错误；<br>3）虽然该文涉及的神经网络容错工作部分内容与现在的实际情况有差别，但其对神经网络容错的分类和容错思路仍可以沿用。</p>
+</blockquote>
+<HR>
+
+<h2 id="NeuroMessenger-Towards-Error-Tolerant-Distributed-Machine-Learning-Over-Edge-Networks"><a href="#NeuroMessenger-Towards-Error-Tolerant-Distributed-Machine-Learning-Over-Edge-Networks" class="headerlink" title="NeuroMessenger: Towards Error Tolerant Distributed Machine Learning Over Edge Networks"></a>NeuroMessenger: Towards Error Tolerant Distributed Machine Learning Over Edge Networks</h2><blockquote>
+<p> 来        源：IEEE INFOCOM 2022 - IEEE Conference on Computer Communications<br> 原文速递：<a href="./NeuroMessenger Towards error tolerant distributed machine learning over edge networks.pdf" title="点击直接下载原文">NeuroMessenger: Towards Error Tolerant Distributed Machine Learning Over Edge Networks</a></p>
+</blockquote>
+<p>该工作考虑了分布式机器学习（Distributed Machine Learning）中的通信开销问题，提出一种新的容错分布式机器学习范式，用于提升分布式机器学习系统的效率，涉及模型分割式协同推理和联邦学习两个方面。该工作的系统架构如下。</p>
+<div align="center">
+    <img src="/2023/11/24/group2/NeuroMessenger.png" style="zoom: 60%;">
+</div>
+
+<p>该架构对模型分割或数据聚合时预测准确率与数据错误率的关系进行离线建模，使用重传控制器决定数据重传的次数。在数据容错方面，该框架使用了交织编码和重要性编码两种技术。另外，该工作提出使用特征图剪枝方法减少分布式机器学习的数据传输量。</p>
+<ul>
+<li>交织编码（Interleaved  Coding）<br>如下图所示，突发错误对预测精度的影响大于随机错误，交织编码通过数据的随机交织将数据传输时产生的突发错误转化为随机错误，降低突发错误对预测精度的影响。</li>
+</ul>
+<div align="center">
+    <img src="/2023/11/24/group2/burst error & random error.png" style="zoom: 60%;">
+</div>
+
+<ul>
+<li>重要性编码（Importance-based  Coding）<br>重要性编码根据参数对预测结果的影响对不同参数采取不平等的保护策略，对预测结果影响大的特征被认定为重要特征。</li>
+</ul>
+<blockquote>
+<p>1）该工作考虑了分布式机器学习中数据传输的容错策略，相较传统的神经网络容错工作特点鲜明；<br>2）该工作需要对模型每层的错误率-精度关键进行离线建模用于评估需要重传的次数，通用性较差。</p>
+</blockquote>
+<HR>
+
+</HR></HR>
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2023/11/22/Topic2/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Topic 2：How to Improve Error Tolerance Capability in Collaborative Inference System ?</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'AIhtvUXrzUWmPIOmYNjrGExW-gzGzoHsz',
+                    appKey: 'e4HGIfsWiHCnIXco4g7xtuAA',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: 'Add your comments',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Sun Hao';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2022</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Sun Hao</a>
+            
+        </div>
+        
+            <script async 
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme
+            &nbsp;
+            <a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.8</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-up-right-and-down-left-from-center"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Fault-and-Error-Tolerance-in-Neural-Networks-A-Review"><span class="nav-text">Fault and Error Tolerance in Neural Networks: A Review</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NeuroMessenger-Towards-Error-Tolerant-Distributed-Machine-Learning-Over-Edge-Networks"><span class="nav-text">NeuroMessenger: Towards Error Tolerant Distributed Machine Learning Over Edge Networks</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block-tools.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
