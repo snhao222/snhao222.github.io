@@ -228,7 +228,22 @@
 </blockquote>
 <HR>
 
-</HR></HR>
+<h2 id="FT-CNN-Algorithm-Based-Fault-Tolerance-for-Convolutional-Neural-Networks"><a href="#FT-CNN-Algorithm-Based-Fault-Tolerance-for-Convolutional-Neural-Networks" class="headerlink" title="FT-CNN: Algorithm-Based Fault Tolerance for Convolutional Neural Networks"></a>FT-CNN: Algorithm-Based Fault Tolerance for Convolutional Neural Networks</h2><blockquote>
+<p> 来        源：IEEE TRANSACTIONS ON PARALLEL AND DISTRIBUTED SYSTEMS, VOL. 32, NO. 7, JULY 2021<br> 原文速递：<a href="./FT-CNN_Algorithm-Based_Fault_Tolerance_for_Convolutional_Neural_Networks.pdf" title="点击直接下载原文">FT-CNN: Algorithm-Based Fault Tolerance for Convolutional Neural Networks</a></p>
+</blockquote>
+<p>该工作针对CNN的计算容错问题，提出了多个算法层面的容错方法，用于应对可能发生的软错误（soft errors）。另外，该工作将提出的四种策路集成到一个工作流中，以使用有限的运行开销获得较高的纠改错能力。该工作的容错策略主要通过下图的设计实现，其在原始卷积数据上增加了相应的Checksum部分，用于校验卷积结果是否存在错误，并定位/纠正出现的错误。</p>
+<div align="center">
+    <img src="/2023/11/24/group2/fault tolerance scheme.png" style="zoom: 90%;">
+</div>
+
+<p>该工作根据Checksum的设计制定了四种容错策略，分别用于定位不同情况的错误类型，并将四种策略嵌入到一个工作流中，在不同情况下进行相应Checksum块的检查，降低多余的判定开销。</p>
+<p><div align="center">
+    <img src="/2023/11/24/group2/FT-CNN workflow.png" style="zoom: 70%;">
+</div></p>
+<blockquote>
+<p>1）该工作针对特征图在传输和计算中出现的错误设计检纠错策略，将通信的数据编码校验融合到传输数据本身；<br>2）该方式针对每个传输的特征图都需要计算相应的Checksum矩阵，计算量增加，并且增加了传输的冗余量。</p>
+</blockquote>
+<HR></HR></HR></HR>
         </div>
 
         
@@ -468,7 +483,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Fault-and-Error-Tolerance-in-Neural-Networks-A-Review"><span class="nav-text">Fault and Error Tolerance in Neural Networks: A Review</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NeuroMessenger-Towards-Error-Tolerant-Distributed-Machine-Learning-Over-Edge-Networks"><span class="nav-text">NeuroMessenger: Towards Error Tolerant Distributed Machine Learning Over Edge Networks</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Fault-and-Error-Tolerance-in-Neural-Networks-A-Review"><span class="nav-text">Fault and Error Tolerance in Neural Networks: A Review</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NeuroMessenger-Towards-Error-Tolerant-Distributed-Machine-Learning-Over-Edge-Networks"><span class="nav-text">NeuroMessenger: Towards Error Tolerant Distributed Machine Learning Over Edge Networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FT-CNN-Algorithm-Based-Fault-Tolerance-for-Convolutional-Neural-Networks"><span class="nav-text">FT-CNN: Algorithm-Based Fault Tolerance for Convolutional Neural Networks</span></a></li></ol>
     </div>
 </div>
         </aside>
