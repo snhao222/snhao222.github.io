@@ -224,7 +224,7 @@
 <li>重要性编码（Importance-based  Coding）<br>重要性编码根据参数对预测结果的影响对不同参数采取不平等的保护策略，对预测结果影响大的特征被认定为重要特征。</li>
 </ul>
 <blockquote>
-<p>1）该工作考虑了分布式机器学习中数据传输的容错策略，相较传统的神经网络容错工作特点鲜明；<br>2）该工作需要对模型每层的错误率-精度关键进行离线建模用于评估需要重传的次数，通用性较差。</p>
+<p>1）该工作考虑了分布式机器学习中数据传输的容错策略，相较传统的神经网络容错工作特点鲜明；<br>2）该工作需要对模型每层的错误率-精度关系进行离线建模用于评估需要重传的次数，通用性较差。</p>
 </blockquote>
 <HR>
 
@@ -237,13 +237,29 @@
 </div>
 
 <p>该工作根据Checksum的设计制定了四种容错策略，分别用于定位不同情况的错误类型，并将四种策略嵌入到一个工作流中，在不同情况下进行相应Checksum块的检查，降低多余的判定开销。</p>
-<p><div align="center">
+<div align="center">
     <img src="/2023/11/24/group2/FT-CNN workflow.png" style="zoom: 70%;">
-</div></p>
+</div>
+> 1）该工作针对特征图在传输和计算中出现的错误设计检纠错策略，将通信的数据编码校验融合到传输数据本身；
+> 2）该方式针对每个传输的特征图都需要计算相应的Checksum矩阵，计算量增加，并且增加了传输的冗余量。
+
+<HR>
+
+## Fault-Tolerant Collaborative Inference through the Edge-PRUNE Framework
+
+>  来        源：DyNN workshop at the 39th International Conference on Machine Learning, Baltimore, Maryland, USA, 2022
+>  原文速递：[Fault-Tolerant Collaborative Inference through the Edge-PRUNE Framework](./Fault-Tolerant Collaborative Inference through the Edge-PRUNE Framework.pdf "点击直接下载原文")
+
+该工作针对多设备协同推理的容错问题提出机器学习框架Edge-PRUNE。该框架能够自动生成端设备和服务器间的协同推理最佳分割点，并根据模型的有向图进行条件计算。该框架实现协同推理容错的方式为将失效设备的计算任务转移到冗余设备上，如下图是一个监控系统的示例。
+
+<div align="center">
+    <img src="/2023/11/24/group2/Edge-PRUNE.png" style="zoom: 60%;">
+</div>
+
 <blockquote>
-<p>1）该工作针对特征图在传输和计算中出现的错误设计检纠错策略，将通信的数据编码校验融合到传输数据本身；<br>2）该方式针对每个传输的特征图都需要计算相应的Checksum矩阵，计算量增加，并且增加了传输的冗余量。</p>
+<p>1）该工作将边-端协同推理的模型分割和容错机制设计到了机器学习框架中；<br>2）Edge-PRUNE对协同推理的容错机制主要通过冗余的设备实现，较为简单且设备的冗余在容错的同时造成了不必要的开销。</p>
 </blockquote>
-<HR></HR></HR></HR>
+<HR></HR></HR></HR></HR>
         </div>
 
         
