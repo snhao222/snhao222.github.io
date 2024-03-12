@@ -9,7 +9,7 @@
     
     <title>
         
-            group2：Error Tolerance in Neural Networks |
+            AdaptiveNet：Post-deployment Neural Architecture Adaptation for Diverse Edge Environments |
         
         SnSpace
     </title>
@@ -141,7 +141,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">group2：Error Tolerance in Neural Networks</span>
+            <span class="title-hover-animation">AdaptiveNet：Post-deployment Neural Architecture Adaptation for Diverse Edge Environments</span>
         </div>
 
         
@@ -158,8 +158,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2023-11-24 14:04:38</span>
-        <span class="mobile">2023-11-24 14:04</span>
+        <span class="pc">2024-03-12 15:09:45</span>
+        <span class="mobile">2024-03-12 15:09</span>
     </span>
     
     
@@ -180,84 +180,48 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="Fault-and-Error-Tolerance-in-Neural-Networks-A-Review"><a href="#Fault-and-Error-Tolerance-in-Neural-Networks-A-Review" class="headerlink" title="Fault and Error Tolerance in Neural Networks: A Review"></a>Fault and Error Tolerance in Neural Networks: A Review</h2><blockquote>
-<p> 来        源：IEEE Access 2017<br> 原文速递：<a href="./Fault_and_Error_Tolerance_in_Neural_Networks_A_Review.pdf" title="点击直接下载原文">Fault and Error Tolerance in Neural Networks: A Review</a></p>
+            <blockquote>
+<p>来        源：MobiCom ‘23: Proceedings of the 29th Annual International Conference on Mobile Computing And Networking, October 2-6, 2023</p>
+<p>原文速递：<a href="./AdaptiveNet：Post-deployment Neural Architecture Adaptation for Diverse Edge Environments.pdf" title="点击直接下载原文">AdaptiveNet: Post-deployment Neural Architecture Adaptation for Diverse Edge</a></p>
 </blockquote>
-<p>该文对神经网络的容错工作进行了调研，介绍了容错相关名词及定义，并对故障类型、故障模型进行划分。该文重点对神经网络容错工作进行了具体分类：</p>
-<ul>
-<li>被动容错（Passive fault tolerance）<br>一个具有被动容错功能的系统不会以任何特殊的方式对内部故障做出反应，而是利用系统结构中的冗余和故障屏蔽有效地屏蔽故障效应。</li>
-</ul>
-<p>​    （a）增加冗余（Explicitly augmenting redundancy）</p>
-<div align="center">
-    <img src="/2023/11/24/group2/Augment Redundancy.png" style="zoom: 45%;">
-</div>
-
-<p>​    (b) 调整训练策略（Modifying training/ learning）</p>
-<p>​        在训练过程中加入噪声、扰动或直接引入故障，一些工作在待改进的性能指标中加入惩罚项以间接地引入故障。</p>
-<p>​    (c) 解优化问题（Optimization under constraints）</p>
-<p>​        将训练过程和容错转化为一个非线性优化问题，以找到在容错约束下执行特定任务的神经网络拓扑结构和参数。</p>
-<ul>
-<li>主动容错（Active fault tolerance）<br>一个具有主动容错功能的系统能够明确、动态地识别和管理其冗余资源，以补偿故障出现时的影响（通过适应、再训练或自我修复机制）。主动容错需要特殊的检测/定位和监督/控制组件，其设计可能会比较复杂。</li>
-</ul>
-<blockquote>
-<p>1）现有神经网络容错工作大部分针对人工神经网络（ANN）进行设计，对目前的智能应用来说过于简单，且年份久远，许多神经网络的容错工作在上世纪九十年代进行；<br>2）文中提到的工作基本都为在硬件系统不稳定的设备上进行神经网络容错设计，是在计算或参数存储时造成的错误，不考虑由于传输产生的数据错误；<br>3）虽然该文涉及的神经网络容错工作部分内容与现在的实际情况有差别，但其对神经网络容错的分类和容错思路仍可以沿用。</p>
-</blockquote>
-<HR>
-
-<h2 id="NeuroMessenger-Towards-Error-Tolerant-Distributed-Machine-Learning-Over-Edge-Networks"><a href="#NeuroMessenger-Towards-Error-Tolerant-Distributed-Machine-Learning-Over-Edge-Networks" class="headerlink" title="NeuroMessenger: Towards Error Tolerant Distributed Machine Learning Over Edge Networks"></a>NeuroMessenger: Towards Error Tolerant Distributed Machine Learning Over Edge Networks</h2><blockquote>
-<p> 来        源：IEEE INFOCOM 2022 - IEEE Conference on Computer Communications<br> 原文速递：<a href="./NeuroMessenger Towards error tolerant distributed machine learning over edge networks.pdf" title="点击直接下载原文">NeuroMessenger: Towards Error Tolerant Distributed Machine Learning Over Edge Networks</a></p>
-</blockquote>
-<p>该工作考虑了分布式机器学习（Distributed Machine Learning）中的通信开销问题，提出一种新的容错分布式机器学习范式，用于提升分布式机器学习系统的效率，涉及模型分割式协同推理和联邦学习两个方面。该工作的系统架构如下。</p>
-<div align="center">
-    <img src="/2023/11/24/group2/NeuroMessenger.png" style="zoom: 60%;">
-</div>
-
-<p>该架构对模型分割或数据聚合时预测准确率与数据错误率的关系进行离线建模，使用重传控制器决定数据重传的次数。在数据容错方面，该框架使用了交织编码和重要性编码两种技术。另外，该工作提出使用特征图剪枝方法减少分布式机器学习的数据传输量。</p>
-<ul>
-<li>交织编码（Interleaved  Coding）<br>如下图所示，突发错误对预测精度的影响大于随机错误，交织编码通过数据的随机交织将数据传输时产生的突发错误转化为随机错误，降低突发错误对预测精度的影响。</li>
+<h2 id="Content-at-a-glance"><a href="#Content-at-a-glance" class="headerlink" title="Content at a glance"></a>Content at a glance</h2><ul>
+<li><p><strong>Topic</strong></p>
+<p>Generate models for diverse and dynamic edge environments.</p>
+</li>
+<li><p><strong>Background</strong></p>
+<p>It is an increasingly common practice to deploy the deep learning models to edge devices, due to latency and privacy considerations. To ensure stable service quality across diverse edge environments, it is highly desirable to generate tailored model architectures for different conditions. However, conventional pre-deployment model generation approaches are not satisfactory due to the difficulty of handling the diversity of edge environments and the demand for edge information.</p>
+</li>
+<li><p><strong>Key idea</strong></p>
+<p>Let the model self-adapt to the target environment after deployment, which is so called “post-deployment approach”.<br><strong>Benefits:</strong> The quality of model architectures can be more precisely measured in the target environment, and user privacy can be better protected because there is no need to collect edge information.</p>
+</li>
 </ul>
 <div align="center">
-    <img src="/2023/11/24/group2/burst error & random error.png" style="zoom: 60%;">
+    <img src="/2024/03/12/AdaptiveNet/pre-deployment and post-deployment.png" style="zoom: 36%;">
 </div>
+
+<center><b>Figure 1: Comparison of pre-deployment and post-deployment model generation approaches.</b></center>
 
 <ul>
-<li>重要性编码（Importance-based  Coding）<br>重要性编码根据参数对预测结果的影响对不同参数采取不平等的保护策略，对预测结果影响大的特征被认定为重要特征。</li>
+<li><p><strong>Challenges</strong></p>
+<ol>
+<li>Generating the model search space for edge devices is difficult.</li>
+<li>The model performance evaluation process can be time-consuming at the edge.</li>
+</ol>
+</li>
+<li><p><strong>Techniques</strong></p>
+<p><strong>1. On-cloud model elastification</strong></p>
+<p>   The on-cloud model elastification mainly consists of a granularity-aware graph expansion step and a distillation-based training step. The graph expansion step discovers the repeating basic blocks and adds optional branches to the model to extend it into a supernet, which includes layers that can replace multiple original layers or structured-pruned layers that reduce the computational cost of individual layers. The training step use s branch-wise distillation to efficiently train the newly-added branches to mimic the original branches, which is followed by a whole-graph fine-tuning to further improve the overall accuracy of the subnets.</p>
+   <div align="center">
+       <img src="/2024/03/12/AdaptiveNet/supernet architecture.png" style="zoom: 80%;">
+   </div>
+
+   <center><b>Figure 2: Supernet architecture.</b></center>
+
+<p><strong>2. On-device subnet search</strong></p>
+<p>   The AdaptiveNet builds a latency model by profiling the blocks in the supernet to precisely estimate the latency of subnets in the native environment. Based on the latency model, a search strategy is designed by initializing a set of promising candidate models and iteratively mutating the candidates around the latency budget. The search efficiency is further improved by reusing the common intermediate features during candidate model evaluation. The optimal model is also adaptively updated by the runtime monitor to handle environment dynamicity.</p>
+</li>
 </ul>
-<blockquote>
-<p>1）该工作考虑了分布式机器学习中数据传输的容错策略，相较传统的神经网络容错工作特点鲜明；<br>2）该工作需要对模型每层的错误率-精度关系进行离线建模用于评估需要重传的次数，通用性较差。</p>
-</blockquote>
-<HR>
-
-<h2 id="FT-CNN-Algorithm-Based-Fault-Tolerance-for-Convolutional-Neural-Networks"><a href="#FT-CNN-Algorithm-Based-Fault-Tolerance-for-Convolutional-Neural-Networks" class="headerlink" title="FT-CNN: Algorithm-Based Fault Tolerance for Convolutional Neural Networks"></a>FT-CNN: Algorithm-Based Fault Tolerance for Convolutional Neural Networks</h2><blockquote>
-<p> 来        源：IEEE TRANSACTIONS ON PARALLEL AND DISTRIBUTED SYSTEMS, VOL. 32, NO. 7, JULY 2021<br> 原文速递：<a href="./FT-CNN_Algorithm-Based_Fault_Tolerance_for_Convolutional_Neural_Networks.pdf" title="点击直接下载原文">FT-CNN: Algorithm-Based Fault Tolerance for Convolutional Neural Networks</a></p>
-</blockquote>
-<p>该工作针对CNN的计算容错问题，提出了多个算法层面的容错方法，用于应对可能发生的软错误（soft errors）。另外，该工作将提出的四种策路集成到一个工作流中，以使用有限的运行开销获得较高的纠改错能力。该工作的容错策略主要通过下图的设计实现，其在原始卷积数据上增加了相应的Checksum部分，用于校验卷积结果是否存在错误，并定位/纠正出现的错误。</p>
-<div align="center">
-    <img src="/2023/11/24/group2/fault tolerance scheme.png" style="zoom: 90%;">
-</div>
-
-<p>该工作根据Checksum的设计制定了四种容错策略，分别用于定位不同情况的错误类型，并将四种策略嵌入到一个工作流中，在不同情况下进行相应Checksum块的检查，降低多余的判定开销。</p>
-<div align="center">
-    <img src="/2023/11/24/group2/FT-CNN workflow.png" style="zoom: 70%;">
-</div>
-
-<blockquote>
-<p>1）该工作针对特征图在传输和计算中出现的错误设计检纠错策略，将通信的数据编码校验融合到传输数据本身；<br>2）该方式针对每个传输的特征图都需要计算相应的Checksum矩阵，计算量增加，并且增加了传输的冗余量。</p>
-</blockquote>
-<HR>
-
-<h2 id="Fault-Tolerant-Collaborative-Inference-through-the-Edge-PRUNE-Framework"><a href="#Fault-Tolerant-Collaborative-Inference-through-the-Edge-PRUNE-Framework" class="headerlink" title="Fault-Tolerant Collaborative Inference through the Edge-PRUNE Framework"></a>Fault-Tolerant Collaborative Inference through the Edge-PRUNE Framework</h2><blockquote>
-<p> 来        源：DyNN workshop at the 39th International Conference on Machine Learning, Baltimore, Maryland, USA, 2022<br> 原文速递：<a href="./Fault-Tolerant Collaborative Inference through the Edge-PRUNE Framework.pdf" title="点击直接下载原文">Fault-Tolerant Collaborative Inference through the Edge-PRUNE Framework</a></p>
-</blockquote>
-<p>该工作针对多设备协同推理的容错问题提出机器学习框架Edge-PRUNE。该框架能够自动生成端设备和服务器间的协同推理最佳分割点，并根据模型的有向图进行条件计算。该框架实现协同推理容错的方式为将失效设备的计算任务转移到冗余设备上，如下图是一个监控系统的示例。</p>
-<div align="center">
-    <img src="/2023/11/24/group2/Edge-PRUNE.png" style="zoom: 60%;">
-</div>
-
-<blockquote>
-<p>1）该工作将边-端协同推理的模型分割和容错机制设计到了机器学习框架中；<br>2）Edge-PRUNE对协同推理的容错机制主要通过冗余的设备实现，较为简单且设备的冗余在容错的同时造成了不必要的开销。</p>
-</blockquote>
-<HR></HR></HR></HR></HR>
+<font size="4">🔐 More details will be released after the presentation, stay tuned if you like this work!</font>
         </div>
 
         
@@ -279,29 +243,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2024/03/12/AdaptiveNet/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">AdaptiveNet：Post-deployment Neural Architecture Adaptation for Diverse Edge Environments</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2023/11/22/Topic2/"
+                           href="/2023/11/24/group2/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Topic 2：How to Improve Error Tolerance Capability in Collaborative Inference System ?</span>
+                                <span class="post-nav-title-item">group2：Error Tolerance in Neural Networks</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -512,7 +461,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Fault-and-Error-Tolerance-in-Neural-Networks-A-Review"><span class="nav-text">Fault and Error Tolerance in Neural Networks: A Review</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NeuroMessenger-Towards-Error-Tolerant-Distributed-Machine-Learning-Over-Edge-Networks"><span class="nav-text">NeuroMessenger: Towards Error Tolerant Distributed Machine Learning Over Edge Networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FT-CNN-Algorithm-Based-Fault-Tolerance-for-Convolutional-Neural-Networks"><span class="nav-text">FT-CNN: Algorithm-Based Fault Tolerance for Convolutional Neural Networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fault-Tolerant-Collaborative-Inference-through-the-Edge-PRUNE-Framework"><span class="nav-text">Fault-Tolerant Collaborative Inference through the Edge-PRUNE Framework</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Content-at-a-glance"><span class="nav-text">Content at a glance</span></a></li></ol>
     </div>
 </div>
         </aside>
