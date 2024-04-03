@@ -221,7 +221,16 @@
 <p>   The AdaptiveNet builds a latency model by profiling the blocks in the supernet to precisely estimate the latency of subnets in the native environment. Based on the latency model, a search strategy is designed by initializing a set of promising candidate models and iteratively mutating the candidates around the latency budget. The search efficiency is further improved by reusing the common intermediate features during candidate model evaluation. The optimal model is also adaptively updated by the runtime monitor to handle environment dynamicity.</p>
 </li>
 </ul>
-<font size="4">🔐 More details will be released after the presentation, stay tuned if you like this work!</font>
+<h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><blockquote>
+<ol>
+<li>该工作针对DL模型在环境不同的边缘设备上部署的难题，提出在部署后对模型进行动态调整的概念，整体想法具有一定的创新性和实用性，是除协同计算外复杂模型在边缘设备部署的另一种方案；</li>
+<li>该工作针对现有模型自适应工作中存在的问题设计了扩大模型搜索灵活度和搜索效率的几种技术，针对性强且足够直观；</li>
+<li>文章写作逻辑比较严密，结构清晰，不会过度介绍细节，但会将内容描述清晰；</li>
+<li>文章评估部分的搜索对比算法存在一些歧义，有改进空间。</li>
+</ol>
+</blockquote>
+<h2 id="Presentation-Slides"><a href="#Presentation-Slides" class="headerlink" title="Presentation Slides"></a>Presentation Slides</h2><iframe src="./AdaptiveNet.pdf" width="100%" height="500px" frameborder="0" scrolling="no"></iframe>
+
         </div>
 
         
@@ -461,7 +470,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Content-at-a-glance"><span class="nav-text">Content at a glance</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Content-at-a-glance"><span class="nav-text">Content at a glance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Comments"><span class="nav-text">Comments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Presentation-Slides"><span class="nav-text">Presentation Slides</span></a></li></ol>
     </div>
 </div>
         </aside>
